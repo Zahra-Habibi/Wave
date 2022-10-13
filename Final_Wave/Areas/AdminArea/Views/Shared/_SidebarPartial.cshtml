@@ -1,0 +1,150 @@
+﻿<nav class="pcoded-navbar">
+    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+    <div class="pcoded-inner-navbar main-menu">
+        <div class="">
+            <div class="main-menu-header">
+                <img class="img-80 img-radius" src="~/Panel/assets/images/avatar-3.jpg" alt="User-Profile-Image">
+                <div class="user-details">
+                    <span id="more-details">Zahra Habibi<i class="fa fa-caret-down"></i></span>
+                </div>
+            </div>
+        </div>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="active">
+                <a asp-controller="Dashboard" asp-action="Index" class="waves-effect waves-dark  ">
+                    <span class="pcoded-micon"><i class="ti-home"></i></span>
+                    <span class="pcoded-mtext " >Dashboard</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+            <br />
+
+            <ul class="pcoded-item pcoded-left-item">
+           
+            <li class="pcoded-hasmenu">
+                <a  class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="icon-users"></i></span>
+                    <span class="pcoded-mtext">Users</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="pcoded-hasmenu">
+                        <a asp-controller="UserManager" asp-action="Index" class="waves-effect waves-dark">
+                           <span><i class="icon-user"></i></span>
+                           <span class="pcoded-mtext">User Management</span>
+                        </a>
+                    <li>
+
+                   <li class="pcoded-hasmenu">
+                       <a asp-controller="Skill" asp-action="Index" class="waves-effect waves-dark">
+                          <span><i class="icon-office"></i></span>
+                          <span class="pcoded-mtext">Skills</span>
+                       </a>
+                   <li>
+
+                   <li>
+                       <a asp-controller="Job" asp-action="Index" class="waves-effect waves-dark">
+                          <span class="pcoded-micon"><i class="icon-office"></i></span>
+                          <span class="pcoded-mtext" >Jobs </span>
+                          <span class="pcoded-mcaret"></span>
+                       </a>
+                   </li>
+                    
+                    <li>
+                      <a asp-controller="Team" asp-action="Index" class="waves-effect waves-dark">
+                          <span class="pcoded-micon"><i class="fa fa-user"></i></span>
+                          <span class="pcoded-mtext" > Team</span>
+                          <span class="pcoded-mcaret"></span>
+                      </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+         <ul class="pcoded-item pcoded-left-item">
+           
+            <li class="pcoded-hasmenu">
+                <a  class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="icon-book"></i></span>
+                    <span class="pcoded-mtext">ProductPart</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+
+                    <li class=" ">
+                        <a asp-controller="Product" asp-action="ShowProduct" class="waves-effect waves-dark">
+                            <span class="pcoded-micon"><i class="icon-picture "></i></span>
+                            <span class="pcoded-mtext" >Product</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                   <li>
+                         <a asp-controller="ProductGallery" asp-action="Index" class="waves-effect waves-dark">
+                            <span class="pcoded-micon"><i class="icon-Picture-o"></i></span>
+                            <span class="pcoded-mtext">ProductGallery</span>
+                             <span class="pcoded-mcaret"></span>
+                         </a>
+                   </li>
+                    
+                    <li class=" ">
+                        <a asp-controller="Category" asp-action="Index" class="waves-effect waves-dark">
+                            <span class="pcoded-micon"><i class="icon-pen"></i></span>
+                            <span class="pcoded-mtext">Category</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+              <li>
+                <a asp-controller="Order" asp-action="Index" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="icon-office"></i></span>
+                    <span class="pcoded-mtext" >Order </span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
+            <li>
+                <a asp-controller="Slider" asp-action="Index" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="fa fa-picture-o"></i></span>
+                    <span class="pcoded-mtext" >Slider</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+
+         <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a asp-controller="About" asp-action="Index" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="fa fa-user"></i></span>
+                    <span class="pcoded-mtext" > About</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+
+         <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a asp-controller="Service" asp-action="Index" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="fa fa-wrench"></i></span>
+                    <span class="pcoded-mtext" > Service</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+
+          <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a asp-controller="Social" asp-action="Index" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="fa fa-whatsapp"></i></span>
+                    <span class="pcoded-mtext" > Social media</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+     </div>
+
+</nav>

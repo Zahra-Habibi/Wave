@@ -1,0 +1,28 @@
+﻿<nav class="navbar header-navbar pcoded-header">
+    <div class="navbar-wrapper">
+        <div class="navbar-logo">
+            <a class="mobile-menu " id="mobile-collapse" href="#!">
+                <i class="ti-menu"></i>
+            </a>
+        </div>
+        <div class="navbar-container container-fluid">
+            <ul class="nav-left">
+                <li>
+                    <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                </li>
+                <li>
+                    <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                        <i class="ti-fullscreen"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <form asp-area="" asp-controller="Account" asp-action="LogOut" method="post"  >
+            <ul>
+                <li>
+                    <button type="submit" class="btn btn-success float-right mt-2"  > LogOut</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</nav>

@@ -1,0 +1,215 @@
+﻿@model Final_Wave.Core.ViewModels.LetterViewModel
+@{
+    ViewData["Title"] = "CreateLetter";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-mail "> Letters</i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-10 offset-1 card-box">
+                            <form asp-controller="Letter" asp-action="CreatLetter" method="post" class="mt-5" enctype="multipart/form-data" autocomplete="off">   
+                             
+                                 <div class="ml-3 mb-3 mr-3 ">
+                                    <label><b>createDate of letter</b>   &nbsp; &nbsp; &nbsp; @DateTime.UtcNow</label>
+                               </div>
+
+                                 <div class="ml-3 mb-3 mr-3 ">
+                                    <label><b>Letter_Subject:</b></label>
+                                    <input type="text" asp-for="LetterSubject" class="form-control " placeholder="Letter Subject ..." autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="LetterSubject" class="text-danger"></span>
+                               </div> 
+
+                                <div class="ml-3 mb-3 mr-3">
+                                    <label><b>Classification_Letter:</b> &nbsp; &nbsp;  &nbsp; &nbsp;
+                                         <input asp-for="ClassificationStatus" type="radio" name="classification" value="1" checked />
+                                         Private
+                                    </label>
+                                        &nbsp; &nbsp;  &nbsp; &nbsp;
+                                    <label>
+                                       <input asp-for="ClassificationStatus" type="radio" name="classification" value="2" />
+                                          Public
+                                   </label>
+                                </div>
+
+                                 <div class="ml-3 mb-3 mr-3">
+                                    <label><b>Reply status: </b> &nbsp; &nbsp; 
+                                         <input asp-for="ReplyStatus" type="radio" id="yesreply" name="ReplyStatus" value="1" checked class="checkreply" />
+                                         Have
+                                    </label>
+                                        &nbsp; &nbsp;  &nbsp; &nbsp;
+                                    <label>
+                                       <input asp-for="ReplyStatus" id="noreply" type="radio" name="ReplyStatus" value="2" class="checkreply" />
+                                          Have not
+                                   </label>
+                                </div>
+
+                                 <div class="ml-3 mb-3 mr-3 ">
+                                    <label><b>Date_Reply:</b></label>
+                                    <input type="date" asp-for="ReplyDate" class="form-control " placeholder="Reply date ..." autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="ReplyDate" class="text-danger"></span>
+                               </div>
+
+                                <div class="ml-3 mb-3 mr-3">
+                                    <label><b>AttachmentFile: </b> &nbsp; &nbsp; 
+                                         <input asp-for="AttachmentLetter"  class="attachclass" type="radio" id="yesattach" name="AttachmentFile" value="1" checked />
+                                         Have
+                                    </label>
+                                        &nbsp; &nbsp;  &nbsp; &nbsp;
+                                    <label>
+                                       <input asp-for="AttachmentLetter" class="attachclass " type="radio" id="noattach" name="AttachmentFile" value="2" />
+                                          Have not
+                                   </label>
+                                </div>
+
+                                <div>
+                                  <label class="control-label col-md-3 col-xs-12"></label>
+                                       <div class="col-md-5 col-xs-12">
+                                          <div class="col-md-12">
+                                            <div class="form-horizontal">
+
+                                             <label for="AttachmentFile" class="btn"
+                                                   style="width:100px; height:30px; font-size:11px; background-color:white; border-radius:3px; border:1px solid gray;">
+                                                    File
+                                                  <i class="icon-file-picture"></i>
+                                             </label>
+
+                                            <input type="button" value="Upload" id="btnupload" onclick="UploadFile()" class="btn"
+                                                   style="height:30px; border-radius:3px; border:1px solid gray; background-color:white; width:100px; font-size:11px;" />
+
+                                            <span id="spnfilename" style="color:black; font-size:12px;"></span>
+                                                 <!--نام جدید فایل-->
+                                            <input id="newfilePathName" name="newfilePathName" class="hidden" style="visibility:hidden"  />
+                                           <input asp-for="AttachmentFile" type="file"  class="hidden" style="visibility:hidden" />
+                                         </div>
+                                       </div>
+                                    </div>
+                                      <div class="col-md-4 col-xs-12" style="text-align:left; color:green;">
+                                          <span id="spnmessage"></span>
+                                      </div>
+                                </div>
+                                <br />
+                                <hr />
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label><b>Letter_Content:</b></label>
+                                    <textarea type="text" asp-for="LaterContent" class="form-control " placeholder="Letter Content ..." autocomplete="off" class="form-control" ></textarea>
+                                    <span asp-validation-for="LaterContent" class="text-danger"></span>
+                               </div>
+
+
+
+                               <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                  <div class="mr-3 mb-3">
+                                      <button class="btn btn-success btn-colorsave " type="submit"> Save  <i class="fa fa-plus"></i> </button>
+                                  </div>&nbsp;
+                                   <div class="ml-3 mb-3">
+                                        <a asp-action="Index" class="btn btn-back btn-primary">  Cancel </a>
+                                   </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+             </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/panel/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("LaterContent");
+</script>
+
+@section UserScripts{
+        <script>
+        $(".checkreply").on('change', function () {
+            if (document.getElementById('noreply').checked) {
+                $("#ReplyDate").prop('disabled', true);
+                $("#ReplyDate").val('');
+            } else if (document.getElementById('yesreply').checked) {
+                $("#ReplyDate").prop('disabled', false);
+            }
+        });
+    </script>
+    @* کنترل وضعیت فایل الصاقی *@
+    <script>
+        $(".attachclass").on('change', function () {
+            if (document.getElementById('noattach').checked) {
+                $("#btnupload").prop('disabled', true);
+
+            } else if (document.getElementById('yesattach').checked) {
+                $("#btnupload").prop('disabled', false);
+            }
+        });
+    </script>
+
+    @* الصاق فایل پیوست *@
+    <script>
+        var UploadFile = function () {
+            var data = new FormData;
+            var file = $("#AttachmentFile").get(0);
+            var files = file.files;
+
+            //کنترل سایز فایل
+            if (files[0].size >= 512000) {
+                $("#spnmessage").removeClass('hidden');
+                $("#spnmessage").text('حجم فایل بیش از 500 کیلوبایت است');
+                $("#spnmessage").css("color", "red");
+                return false;
+            }
+
+            for (var i = 0; i < files.length; i++) {
+                data.append('filearray', files[i]);
+                data.append('filesize', files[i].size);
+            }
+            data.append('path', "Img\\AttachFile\\");
+
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("UploadAttachmentFile", "Letter", new { area = "UserArea"})',
+                data: data,
+                contentType: false,
+                processData: false
+
+            }).done(function (result) {
+                if (result.status == "success") {
+                    $("#spnmessage").text("Successfully uploaded!");
+                    $("#spnmessage").css("color", "green");
+                    $("#spnmessage").removeClass("hidden");
+                    $("#newfilePathName").val(result.imagename);
+                }
+
+                else if (result.status == 'badsize') {
+                       $("#spnmessage").removeClass('hidden');
+                       $("#spnmessage").text('The file is more than 500kb.');
+                       $("#spnmessage").css("color", "red");
+                }
+
+            }).fail(function (result) {
+                   if (result.status != "success") {
+                    $("#spnmessage").css("color", "red");
+                    $("#spnmessage").removeClass("hidden");
+                    $("#spnmessage").text("Something wrong.");
+                }
+            });
+
+        }
+    </script>
+
+<script>
+    $("#AttachmentFile").change(function (){
+        filename = this.files[0].name;
+        $("#spnfilename").html(filename);
+    });
+</script>
+
+}
+

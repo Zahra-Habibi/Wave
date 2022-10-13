@@ -1,0 +1,43 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-info alertstyle mb-3">
+                        <i class="fas fa-book"> Order Details</i>
+                    </div>
+                </div>
+            </div>
+           <div class="col-8 mt-5  offset-2">
+              <div class="container mt-5">
+                   <div class="divstyle-detail">
+                       <div class="row p-5">
+                           <p> <strong>Id : </strong> @Model.Id</p>
+                           <p> <strong>UserName : </strong> @Model.Name</p>
+                           <p><strong>LastName : </strong> @Model.LastName</p>
+                           <p> <strong>Email : </strong> @Model.EmailAddress</p>
+                           <p> <strong>Phone : </strong> @Model.PhoneNumber</p>
+                           <p> <strong>Description : </strong> @Model.Description</p>
+                           <p> <strong>Date : </strong> @Model.OrderTime</p>
+                           <p> <strong>ProductId : </strong> @Model.ProductId</p>
+                           <p> <strong>UserId : </strong>@Model.UserId </p>
+                       </div>
+                       <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                            <a asp-action="Index" class="btn btn-back mb-3">
+                                Back
+                            </a>
+                        </div>
+                   </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+

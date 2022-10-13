@@ -1,0 +1,61 @@
+﻿
+@model IEnumerable<ProductGallery>
+
+    <style>
+
+        .admin-gallery .card:hover img {
+    transform: scale(1.2,1.2);
+    transition-duration: .5s;
+    transition-timing-function: ease-out;
+    opacity: .7;
+}
+
+.admin-gallery .card img {
+    transform: scale(1,1);
+    transition-duration: .5s;
+    transition-timing-function: ease-out;
+    opacity: 1;
+}
+
+.admin-gallery .card .card-img-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.admin-gallery .card .over-icon {
+    position: absolute;
+    bottom: -30%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+}
+
+.card-img-wrapper:hover .over-icon {
+    bottom: 0;
+    opacity: 1;
+}
+.animate {
+    transition: all .3s ease-in-out;
+}
+</style>
+
+
+    @foreach (var item in Model)
+{
+    <div class="col-3 admin-gallery man">
+        <div class="card mb-3">
+           <div class="card-img-wrapper ">
+                <img src="~/@item.ImageUrl" alt="@item.Alt" title="@item.Title" class="img-fluid" />
+                <a asp-action="Delete" asp-controller="ProductGallery" asp-route-id="@item.Id" 
+                   asp-route-url="@ViewBag.Photo" asp-route-productId="@ViewBag.ProductId"
+                   class="btn btn-danger over-icon animate">
+                   <i class="fa fa-trash"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+

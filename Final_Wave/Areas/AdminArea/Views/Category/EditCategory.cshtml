@@ -1,0 +1,56 @@
+﻿@model Category
+@{
+    ViewData["title"]="Edit category";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-pen "> Edit category</i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-10 offset-1 card-box">
+                          <form asp-action="EditCategory" method="post" class="mt-3 m-2" enctype="multipart/form-data">
+
+                                 <div class="form-group my-3">
+                                       <label> category Name</label>
+                                       <input asp-for="CategoryName" type="text"  class="form-control" autocomplete="off"> 
+                                       <span asp-validation-for="CategoryName" class="text-danger"></span>
+                                 </div>
+
+                                 <div class="form-group my-3 d-flex align-content-center align-items-center flex-column">
+                                      <input type="hidden" asp-for="CategoryPhoto" />
+                                     <input name="file" type="file"  class="form-control mb-3">
+                                    <span asp-validation-for="CategoryPhoto" class="text-danger "></span>
+                                   <img src="~/@Model.CategoryPhoto" alt="@Model.Alt" title="@Model.Title"  class="img-responsive img-thumbnail imgdetail "/>
+                                 </div>
+
+                                  <div class="ml-3 mb-3 mr-3 ">
+                                    <label>ImageAlt</label>
+                                    <input type="text" asp-for="Alt" class="form-control "  autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="Alt" class="text-danger"></span>
+                               </div>
+
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label>ImageTitle</label>
+                                    <input type="text" asp-for="Title" class="form-control " autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                               </div>
+                               <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                    <button class="btn btn-success  " type="submit">  Save Changes <i class="fa fa-plus"></i>  </button> &nbsp;
+                                    <a asp-action="Index" class="btn btn-back"> Cancel </a>
+                              </div>
+
+                       </form>
+                   </div>
+                </div>
+           </div>
+       </div>
+   </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@model SocialViewModel
+
+@{
+    ViewData["Title"] = "Add Social Media information";
+    Layout = "~/Areas/AdminArea/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-plus "> Social Media</i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-10 offset-1 card-box">
+                            <form asp-controller="Social" asp-action="AddSocial" method="post" class="mt-5" enctype="multipart/form-data" autocomplete="off">   
+                             
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label>Social Name</label>
+                                    <input type="text" asp-for="SocialName" class="form-control " placeholder="social name ..." autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="SocialName" class="text-danger"></span>
+                               </div>
+
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label>Social Link</label>
+                                    <input type="text" asp-for="SocialLink" class="form-control " placeholder="social link ..." autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="SocialLink" class="text-danger"></span>
+                               </div>
+
+                               <div class=" mb-3 my-3 form-group">
+                                    <label asp-for="SocailImg" >Image</label>
+                                    <input  type="file" name="file"  parsley-trigger="change" class="form-control"  placeholder="Image" >
+                                    <span  asp-validation-for="SocailImg" class="text-danger"></span>
+                               </div>
+
+                               <div class="ml-3 mb-3 mr-3">
+                                    <label>Image title</label>
+                                    <textarea type="text" asp-for="Title" class="form-control " placeholder="social image title..." autocomplete="off" ></textarea>
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                               </div>
+
+                               <div class=" mb-3 my-3 form-group">
+                                    <label asp-for="Alt" >Image Alt</label>
+                                    <input  type="text" parsley-trigger="change" asp-for="Alt" class="form-control" autocomplete="off" placeholder="Socila image alt.." >
+                                    <span  asp-validation-for="Alt" class="text-danger"></span>
+                               </div>
+
+
+                               <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                  <div class="mr-3 mb-3">
+                                      <button class="btn btn-success btn-colorsave " type="submit"> Save  <i class="fa fa-plus"></i> </button>
+                                  </div>&nbsp;
+                                  <div class="ml-3 mb-3"> <a asp-action="Index" class="btn btn-back btn-primary"> Cancel</a> </div>
+                               </div>
+                            </form>
+                      </div>
+                  </div>
+             </div>
+        </div>
+    </div>
+</div>
+<script src="~/panel/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("Descriptions");
+</script>
+

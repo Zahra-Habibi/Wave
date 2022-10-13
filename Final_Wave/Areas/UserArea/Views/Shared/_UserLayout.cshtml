@@ -1,0 +1,93 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Wave software services </title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Mega Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="codedthemes" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="~/Panel/assets/images/favicon.ico" type="image/x-icon">
+    <!-- waves.css -->
+    <link href="~/Panel/assets/pages/waves/css/waves.min.css" rel="stylesheet" />
+    <!-- bootstrap-->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- waves.css -->
+    <link href="~/Panel/assets/pages/waves/css/waves.min.css" rel="stylesheet" />
+
+    <link href="~/Panel/assets/icon/themify-icons/themify-icons.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- scrollbar.css -->
+    <link href="~/Panel/assets/css/jquery.mCustomScrollbar.css" rel="stylesheet" />
+    <!-- Style.css -->
+    <link href="~/Panel/assets/icon/icomoon/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Panel/assets/css/style.css">
+    
+
+</head>
+
+<body>
+    <!-- Pre-loader start -->
+    <partial name="_PreLoaderPartial" />
+    <!-- Pre-loader end -->
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <!---nav bar-->
+            <partial name="_navbarPartial" />
+            <!--end of navbar-->
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    <!--sidebar-->
+                    <partial name="_SidebarPartial">
+                        <!--end of sidebar-->
+
+                        <div class="pcoded-content">
+                            <div class="pcoded-inner-content">
+
+                                <!-- Main-body start -->
+                                <div class="main-body">
+                                    <div class="page-wrapper">
+                                        <div class="container">
+                                            <div class="row ">
+                                                @RenderBody()
+                                            </div>
+                                        </div>
+                                        <div id="#styleSelector"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Required Jquery -->
+    <script src="~/Panel/assets/js/jquery/jquery.min.js"></script>
+    <script src="~/Panel/assets/js/popper.js/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- waves js -->
+    <script src="~/Panel/assets/pages/waves/js/waves.min.js"></script>
+    <script src="~/Panel/assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- slimscroll js -->
+    <script src="~/Panel/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- menu js -->
+    <script src="~/Panel/assets/js/pcoded.min.js"></script>
+    <script src="~/Panel/assets/js/vertical-layout.min.js"></script>
+    <!-- custom js -->
+    <script src="~/Panel/assets/js/script.js"></script>
+    @RenderSection("UserScripts", required: false)
+</body>
+
+</html>
+

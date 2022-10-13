@@ -1,0 +1,70 @@
+﻿@model ProductGalleryViewModel
+@{
+    ViewData["Title"] = "AddPhoto";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-picture-o "> Product Gallery</i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-4 offset-4 ">
+                           <div class="card">
+                                  <img src="~/@ViewBag.Photo"  alt="@ViewBag.Alt" title="@ViewBag.title" height="180" />
+                           </div>
+                    </div>
+                    <div class="mb-1 mt-3 col-8  offset-2 card-box">
+                           
+                            <form asp-controller="ProductGallery" asp-action="AddPhoto" method="post" class="mt-5" enctype="multipart/form-data">   
+                                <input asp-for="ProductId" type="hidden"  value="@ViewBag.ProductId" />
+                                    <div class="ml-3 mb-3 mr-3 ">
+                                       <label> ImageGallery</label>
+                                        <input type="file" name="file" class="form-control "  autocomplete="off" class="form-control" />
+                                       <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                    </div>
+
+                                     <div class="ml-3 mb-3 mr-3 ">
+                                       <label> ImageAlt</label>
+                                        <input type="text"  asp-for="Alt" class="form-control "  placeholder="alt" autocomplete="off" class="form-control" />
+                                       <span asp-validation-for="Alt" class="text-danger"></span>
+                                    </div>
+
+                                     <div class="ml-3 mb-3 mr-3 ">
+                                       <label> ImageTitle</label>
+                                        <input type="text"  asp-for="Title" class="form-control "  placeholder="title" autocomplete="off" class="form-control" />
+                                       <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                               
+                                   <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                       <div class="mr-3 mb-3">
+                                          <button class="btn btn-success btn-colorsave " type="submit">
+                                               Save  <i class="fa fa-plus"></i>
+                                          </button>
+                                        </div>&nbsp;
+                                       <div class="ml-3 mb-3">
+                                         <a asp-action="Index" class="btn btn-back btn-primary">
+                                              mainpage
+                                         </a>
+                                       </div>
+                                   </div>
+                            </form>
+                    </div>
+                </div>
+             </div>
+
+        </div>
+    </div>
+     <div class="row mt-5">
+         @(await Component.InvokeAsync("GalleryComponent", @ViewBag.ProductId))
+    </div>
+</div>
+
+
+

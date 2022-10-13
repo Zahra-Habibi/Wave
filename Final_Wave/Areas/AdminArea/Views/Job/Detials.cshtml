@@ -1,0 +1,49 @@
+﻿@model Job
+@{
+    ViewData["Title"] = "Detials";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-info alertstyle mb-3">
+                        <i class="fa fa-book"> job Details</i>
+                    </div>
+                </div>
+            </div>
+           <div class="col-8 mt-5  offset-2">
+               <div class="container mt-5">
+                 <div class="divstyle-detail">
+                     <div class="row p-5">
+                        <p> <strong>user name : </strong>@Model.Name </p>
+                        <p><strong>lastName : </strong> @Model.LastName</p>
+                        <p> <strong>JobName : </strong> @Model.JobName</p>
+                         <p> <strong>Email : </strong> @Model.EmailAddress</p>
+                          <p> <strong>Phone Number : </strong> @Model.PhoneNumber</p>
+                           <p> <strong>Description : </strong> @Model.Description</p>
+                        <p> <strong>IsDelete : </strong> @Model.IsDelete</p>
+                        <p> <strong>Date : </strong> @Model.Date</p>
+                        <p>
+                           <strong>UserImage :&nbsp;</strong> 
+                           <img  controls  class="imgdetail " alt="@Model.Name" title="@Model.Name" src="~/@Model.Image" />
+                        </p>
+                        <p>
+                           <strong>Resume :&nbsp;</strong> 
+                           <img  controls  class="imgdetail " alt="@Model.Name" title="@Model.Name" src="~/@Model.Resume" />
+                        </p>
+                     </div>
+                     <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                           <a asp-action="Index" class="btn btn-back mb-3"> Dack</a>
+                     </div>
+                 </div>
+               </div>
+           </div>
+        </div>
+     </div>
+</div>
+
+
+

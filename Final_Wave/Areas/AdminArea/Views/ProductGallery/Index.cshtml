@@ -1,0 +1,91 @@
+﻿@model IEnumerable<ProductViewModel>
+@{
+    ViewData["Title"] = "ShowProduct";
+    var counter = 1;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                       <i class="fa  fa-picture-o "> Gallery</i>
+                    </div> 
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-2 mt-3">
+                 
+                         <i class="fa fa-search fabg  ">
+                             <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search Product..." class="search" />
+                         </i>
+                    </div>
+                 <div class="table-responsive table-style">
+                    <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
+                        <thead class="bgcolor   ">
+                            <tr class="text-center">
+                                  <th scope="col">#</th>
+                                <th scope="col">ProductName</th>
+                                 <th scope="col">ProductImage</th>
+                                <th scope="col">IsActive</th>
+                                 <th scope="col">Category</th>
+                                 <th scope="col">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                              @foreach (var item in Model)
+                                {
+                                     <tr>
+                                          <th scope="row">@counter</th>
+                                          <td>@item.ProductName</td>
+                                          <td>
+                                             <img src="~/@item.ProductImage" alt="@item.Alt" title="@item.Title" class="imgsize img-thumbnail"/>
+                                          </td>
+                                         <td style="color:@(item.IsActive? "green": "darkred"); font-weight:bold; ">@(item.IsActive? "Active" : "InActive")</td>
+                                        <td>@item.CategoryId</td>
+                                         <td>
+                                              <a class="btn customBlue" asp-controller="ProductGallery" asp-action="AddPhoto" title="photo" asp-route-id="@item.Id">
+                                                <i class="fa fa-picture"> Add photo</i>
+                                             </a>
+                                         </td>
+                                     </tr>
+                                 counter++;
+                                }
+                            </tbody>
+                    </table>
+                  </div>
+                </div>
+             </div>
+
+          </div>
+     </div>
+ </div>
+ @section AdminScripts
+{
+    <script>
+    function myfunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (var i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    </script>
+    }
+
+

@@ -1,0 +1,42 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Detials";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-info alertstyle mb-3">
+                        <i class="fa fa-books"> Slider </i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8   offset-2">
+                 <div class="container ">
+                     <div class="divstyle-detail">
+                          <div class="row p-5">
+                              <p> <strong>Slider id : </strong> @Model.SliderId</p>
+                              <p><strong>SliderName : </strong> @Model.silderName</p>
+                              <p><strong>Caption : </strong> @Model.Caption</p>
+                              <p><strong>OrderSlider : </strong> @Model.sliderOrder</p>
+                              <p> <strong>Slider Status : </strong> @Model.IsDelete</p>
+                              <p> <strong>Slider Alt : </strong> @Model.Alt</p>
+                              <p> <strong>Slider Title : </strong> @Model.Title</p>
+                              <p> <strong>Slider Image :&nbsp;</strong> 
+                                  <img src="~/@Model.sliderImage" alt="@Model.Alt" title="@Model.Title" class="imgdetail" />
+                              </p>
+
+                          </div>
+                         <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                             <a asp-action="Index" class="btn btn-back mb-3">  Back    </a>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+

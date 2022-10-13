@@ -1,0 +1,60 @@
+﻿@model CategoryViewModel
+
+@{
+    ViewData["Title"] = "Add category";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-2">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-book "> Category</i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-8  offset-2 card-box">
+                            <form  asp-action="AddCategory" method="post" class="mt-5" enctype="multipart/form-data"> 
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label>categoryName</label>
+                                    <input type="text" asp-for="CategoryName" class="form-control " placeholder="category name..." autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="CategoryName" class="text-danger"></span>
+                               </div>
+
+                               <div class=" mb-3 my-3 form-group">
+                                    <label asp-for="CategoryPhoto" for="emailAddress">CategoryImage</label>
+                                     <input name="file" type="file" parsley-trigger="change"  class="form-control" id="emailAddress" data-parsley-id="6">
+                                    <span asp-validation-for="CategoryPhoto" class="text-danger"></span>   
+                               </div>
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label>ImageAlt</label>
+                                    <input type="text" asp-for="Alt" class="form-control " placeholder="category alt..." autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="Alt" class="text-danger"></span>
+                               </div>
+
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label>ImageTitle</label>
+                                    <input type="text" asp-for="Title" class="form-control " placeholder="category title..." autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                               </div>
+
+                               <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                  <div class="mr-3 mb-3">
+                                      <button class="btn btn-success btn-colorsave " type="submit">Save  <i class="fa fa-plus"></i> </button>
+                                  </div>&nbsp;
+                                   <div class="ml-3 mb-3">
+                                        <a asp-action="Index" class="btn btn-back btn-primary"> Cancel </a>
+                                   </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+             </div>
+
+        </div>
+    </div>
+</div>
+

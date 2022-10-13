@@ -1,0 +1,36 @@
+﻿@model ApplicationUser
+@{
+    ViewData["Title"] = "Detials";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-info alertstyle mb-3">
+                        <i class="fa fa-users"> UserManger </i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8   offset-2">
+                 <div class="container ">
+                     <div class="divstyle-detail">
+                          <div class="row p-5">
+                              <p><strong>UserName : </strong> @Model.UserName</p>
+                              <p><strong>Email : </strong> @Model.Email</p>
+                              <p><strong>IsActive : </strong> @Model.IsActive</p>
+                              <p> <strong>IsAdmin : </strong> @Model.IsAdmin</p>
+                              <p><strong>RegisterDate: </strong>@Model.RegisterDate</p>
+                          </div>
+                         <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                             <a asp-action="Index" class="btn btn-back mb-3">  Back    </a>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+

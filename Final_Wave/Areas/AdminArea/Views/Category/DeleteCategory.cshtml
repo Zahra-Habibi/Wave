@@ -1,0 +1,38 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Delete Category";
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-info alertstyle mb-3">
+                        <i class="fa fa-trash"> Delete category</i>
+                    </div>
+                </div>
+            </div>
+
+           
+           <div class="col-6 mt-5  offset-3">
+               <div class="card-box pt-5">
+                   <h5 class="text-center text-danger">@ViewBag.Message</h5>
+                   <form asp-action="DeleteCategory" method="post" class="mt-5" enctype="multipart/form-data">
+                        <input type="number" hidden asp-for="Id" />
+                        <input type="hidden" asp-for="CategoryPhoto" />
+                        <input type="text" asp-for="CategoryName" hidden />
+                        <input type="hidden" asp-for="IsDelete" />
+                        <input type="hidden" asp-for="Alt" />
+                        <input type="hidden" asp-for="Title" />
+                       <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                            <button class="btn btn-primary btn-color-del mb-3 " type="submit">   Save change <i class="fa fa-plus"></i></button>&nbsp;
+                            <a asp-action="Index" class="btn btn-back mb-3"> Cancel </a>
+                       </div>
+
+                   </form>
+               </div>
+           </div>
+       </div>
+    </div>
+ </div>

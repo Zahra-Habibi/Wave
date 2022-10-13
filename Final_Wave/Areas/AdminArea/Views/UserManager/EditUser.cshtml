@@ -1,0 +1,74 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "AddSlider";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-2">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-user fa-success "> Edit user</i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-10  offset-1 card-box">
+                            <form asp-controller="UserManager" asp-action="EditUser" method="post" class="mt-5" enctype="multipart/form-data">   
+                                <input type="hidden" asp-for="Id" />
+                               
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label><b>Email</b></label>
+                                    <input type="text" asp-for="Email" class="form-control " placeholder="Email..." autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                               </div>
+
+                               <div class="ml-3 mb-3 mr-3">
+                                    <label><b>UserName</b></label>
+                                    <input type="text" asp-for="UserName" class="form-control " placeholder=" UserName..." readonly autocomplete="off">
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                               </div>
+
+                                <div class="ml-3 mb-3 mr-3">
+                                    <label>
+                                         <input asp-for="IsAdmin" type="radio" name="IsAdmin" value="1" checked />
+                                          Admin
+                                    </label>
+                                        &nbsp; &nbsp;  &nbsp; &nbsp;
+                                    <label>
+                                       <input asp-for="IsAdmin" type="radio" name="IsAdmin" value="2" />
+                                          User
+                                   </label>
+                                </div>
+
+                                 <div class="ml-3 mb-3 mr-3">
+                                    <div class="checkbox">
+                                        <input asp-for="IsActive" class="check-box" id="remember-1" type="checkbox" class="mr-4">
+                                        <label asp-for="IsActive" for="remember-1"> Keep Active </label>
+                                    </div>
+                                 </div>
+
+                               <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                  <div class="mr-3 mb-3">
+                                      <button class="btn btn-success btn-colorsave " type="submit">
+                                         Save  <i class="fa fa-plus"></i>
+                                      </button>
+                                  </div>&nbsp;
+                                  <div class="ml-3 mb-3">
+                                        <a asp-action="Index" class="btn btn-back btn-primary">
+                                         Cancel
+                                        </a>
+                                   </div>
+                                </div>
+                            </form>
+                     </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+
+

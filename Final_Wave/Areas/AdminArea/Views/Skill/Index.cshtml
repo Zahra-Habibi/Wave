@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "لست مشاغل سازمان";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-computer"> List of Skills</i>
+                    </div> 
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-2 mt-3">
+                         <a class="btn btn-coloredit"  id="navigationtoadd" href="#" >
+                             <i class="fa fa-plus"> Add Skill </i>
+                        </a>
+                        <a class="btn btn-coloredit1" id="navigationtoedit" href="#">
+                             <i class="fa fa-edit"> Edit Skill </i>
+                        </a>
+                        
+                    </div>
+
+                   <div class="alert alert-light">
+                    If you want to add or edit a skill ar first you have to choose a skill.
+                   </div>
+
+                  <div class="panel panel-body container-fluid overflow-auto" style="border-radius:2px; height:450px;
+                    box-shadow:3px 1px 1px 0 gray; background-color:#fff;">
+                 <div id="jstreejobs">
+
+              </div>
+          </div>
+       </div>
+     </div>
+    </div>
+</div>
+</div>
+
+
+@section AdminScripts{
+    <script>
+        $(function () {
+            $("#jstreejobs").on("changed.jstree", function (e, data) {
+
+                var i, j;
+                var postedItems = [];
+
+                j = data.selected.length;
+                for (var i = 0; i < j; i++) {
+                    postedItems.push({
+                        text: data.instance.get_node(data.selected[i]).text,
+                        id: data.selected[i],
+                        parent: data.node.parents[0]
+                    });
+
+                }
+
+
+                if (data.selected.length) {
+                    $('#navigationtoadd , #navigationtoedit').click(function () {
+                        if (this.id == 'navigationtoadd') {
+                            ///Add
+                            var id = postedItems[0].id;
+                            var parentname = postedItems[0].text;
+                            $('#navigationtoadd').attr("href", "/AdminArea/Skill/AddSkill?id=" + id +
+                                "&parentname=" + parentname);
+                        }
+                        else if (this.id == 'navigationtoedit') {
+                            ///Edit
+                                 var id = postedItems[0].id;
+                            var parentname = postedItems[0].text;
+                            $('#navigationtoedit').attr("href", "/AdminArea/Skill/EditSkill?id=" + id +
+                                "&parentname=" + parentname);
+                        }
+                    });
+                }
+
+            }).jstree({
+                "core": {
+                    "themes": {
+                        "variant":"large"
+                    },
+                    "data":  @Html.Raw(ViewBag.JobJson) ,
+                },
+                "checkbox": {
+                    "Keep_selected_style":false
+                },
+            }).on("loaded.jstree", function () {
+                $.jstree.reference('#jstreejobs').open_all();
+            });
+        });
+    </script>
+}
+

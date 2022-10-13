@@ -1,0 +1,84 @@
+using Final_Wave.AutoMapper;
+using Final_Wave.Core.PublicFile.Services;
+using Final_Wave.Core.PublicFile;
+using Final_Wave.DataLayer.Contexxt;
+using Final_Wave.DataLayer.Entites;
+using Final_Wave.DataLayer.Repository.Interfaces;
+using Final_Wave.DataLayer.Repository.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ApplicationContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+//signalr
+builder.Services.AddSignalR();
+
+//Identity Methods
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
+{
+    option.Password.RequireDigit = false;
+    option.Password.RequireLowercase = false;
+    option.Password.RequireNonAlphanumeric = false;
+    option.Password.RequireUppercase = false;
+}).AddEntityFrameworkStores<ApplicationContext>()
+    .AddDefaultTokenProviders();
+builder.Services.AddSignalR();
+
+
+#region RegisterInterfaces
+////Recognizing the interface
+builder.Services.AddScoped<IUploadFiels, UploadFiel>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductRepasitory, ProductService>();
+builder.Services.AddAutoMapper(typeof(AutoMapping).Assembly);
+#endregion
+
+// for taostr
+builder.Services.AddNotyf(config =>
+{ config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
+ 
+
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseNotyf();
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers();
+
+
+app.MapAreaControllerRoute(
+    "AdminArea",
+    "AdminArea",
+    "AdminArea/{controller=UserManager}/{action=Index}/{id?}");
+//userarearout
+app.MapAreaControllerRoute(
+ "UserArea",
+ "UserArea",
+ "UserArea/{controller=Chat}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();

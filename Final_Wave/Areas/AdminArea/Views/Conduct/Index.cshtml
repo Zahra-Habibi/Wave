@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ContactUs>
+@{
+    ViewData["Title"] = "Index";
+      int counter = 1;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-user-plus"> ContactUs List</i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container">
+                 <div class="mb-2 mt-3">
+                         <a class="btn customBlue" asp-controller="UserManager" asp-action="AddUser">
+                             <i class="fa fa-plus"> Add new user</i>
+                        </a>
+                          <i class="fas fa-search fabg ">
+                             <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search Contactus..." class="search" />
+                         </i>
+                  </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped mt-4  " id="myTable">
+                        <thead class="bgcolor">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Sent Date</th>
+                                <th scope="col">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             @foreach (var item in Model)
+                                {
+                                  <tr>
+                                         <td>@counter</td>
+                                         <td>@item.Name</td>
+                                         <td>@item.Email</td>
+                                         <td>@item.SentDate.ToString("dddd, dd MMMM yyyy")</td>
+                                     <td>
+                                         <a asp-action="Detials" asp-route-id="@item.Id" title="Details" asp-controller="ContactUs" class="btn-coloredit btn mr-3"><i class="fa fa-book"></i></a>&nbsp;
+                                          <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" asp-controller="ContactUs" class="btn-danger btn mr-3"><i class="fa fa-book"></i></a>
+                                     </td>   
+                                  </tr>
+                                          counter++;
+                                }
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  @section AdminScripts
+{
+    <script>
+    function myfunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (var i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    </script>
+    }
+

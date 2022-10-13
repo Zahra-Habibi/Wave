@@ -1,0 +1,38 @@
+﻿@model ContactUs
+@{
+    ViewData["Title"] = "Contact message";
+    Layout = "~/Areas/AdminArea/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-info alertstyle mb-3">
+                        <i class="fas fa-user">  Contact message</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 mt-5  offset-2">
+               <div class="container mt-5">
+                  <div class="divstyle-detail">
+                      <div class="row p-5">
+                           <p> <strong>Sender : </strong> @Model.Name</p>
+                           <p> <strong>Sent Date : </strong> @Model.SentDate.ToString("dddd, dd MMMM yyyy")</p>
+                           <p> <strong>Email : </strong> @Model.Email</p>
+                           <p> <strong>Message : </strong> @Model.Message</p>
+                      </div>
+                 <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                        <a class="btn btn-color-del btn-danger mb-3" asp-route-id="@Model.Id" asp-action="Delete" asp-controller="ContactUS"> Delete This Message <i class="fa fa-trash ml-2"></i></a>&nbsp;&nbsp;
+                        <a asp-action="Index" class="btn btn-back mb-3">
+                             Cancel
+                        </a>
+                 </div>
+                 </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

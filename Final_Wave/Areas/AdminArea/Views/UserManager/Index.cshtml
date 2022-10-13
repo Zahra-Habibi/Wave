@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+    var counter = 1;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-10 col-sm-10">
+            <div class="container mt-1">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-2">
+                        <i class="fa fa-user">  UserManger</i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="mb-2 mt-3">
+                         <a class="btn customBlue" asp-controller="UserManager" asp-action="AddUser">
+                              <i class="fa fa-plus"> Add new user</i>
+                        </a>
+                        <i class="fa fa-search fabg ">
+                             <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search user..." class="search" />
+                        </i>
+                    </div>
+
+                 <div class="table-responsive table-style">
+                    <table class="table table-bordered table-hover table-striped mt-4  table-responsive  " id="myTable">
+                        <thead class="bgcolor   ">
+                            <tr class="text-center">
+                                <th scope="col">#</th>
+                                <th scope="col">UserName</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Register_Date</th>
+                                <th scope="col">IsActive</th>
+                                <th scope="col">Is Admin</th>
+                                <th scope="col">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             @foreach (var item in Model)
+                                {
+                                     <tr>
+                                         <td class="text-center">@counter</td>
+                                         <td class="text-center">@item.UserName</td>
+                                         <td class="text-center">@item.Email</td>
+                                          <td class="text-center">@item.RegisterDate</td> 
+                                         <td style="color:@(item.IsActive? "green": "darkred"); font-weight:bold; ">@(item.IsActive? "Active" : "InActive")</td>
+                                                @if (item.IsAdmin == 1)
+                                                {
+                                                  <td style="color:green; font-weight:bold;">
+                                                      Admin
+                                                  </td>
+                                                }
+                                              else
+                                             {
+                                                <td style="color:red; font-weight:bold;">
+                                                      User
+                                                </td>
+                                             }
+                                         <td class="text-center">
+                                            
+                                             <a asp-action="EditUser" asp-route-userId="@item.Id" asp-controller="UserManager" title="EditUser" class="btn-coloredit btn mr-3"><i class="fa fa-edit"></i></a>
+                                              <a asp-action="UserDetails" asp-route-userId="@item.Id" asp-controller="UserManager" title="Userdetail" class="btn-coloredit btn mr-3"><i class="fa fa-book"></i></a>
+                                             <a asp-action="ChangePassword" asp-route-id="@item.Id" asp-controller="UserManager" title="Change Passowrd" class="btn-success btn mr-3 "><i class="fa fa-key"></i></a>
+                                          </td>
+                                         
+                                     </tr>
+                                          counter++;
+                                 }
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+             </div>
+
+        </div>
+    </div>
+</div>
+    @section AdminScripts
+{ 
+    <script>
+    function myfunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (var i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    </script>
+   }
+
+
+

@@ -1,0 +1,43 @@
+﻿@model Team
+@{
+    ViewData["Title"] = "Detials";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-2">
+                <div class="row">
+                    <div class="alert alert-info alertstyle mb-3">
+                        <i class="fa fa-book ">  Our Team Detials</i>
+                    </div>
+                </div>
+            </div>
+             <div class="col-8   offset-2">
+                 <div class="container ">
+                     <div class="divstyle-detail">
+                          <div class="row p-5">
+                               <p> <strong>Id : </strong> @Model.Id</p>    
+                              <p><strong>Member Name : </strong> @Model.Name</p>
+                              <p><strong>LastName : </strong> @Model.LastName</p>
+                              <p> <strong>Member position : </strong> @Model.PositionName</p>
+                              <p> <strong>Short Description : </strong> @Model.ShortDesc</p>
+                              <p> <strong>User status : </strong> @Model.IsDelete</p>
+                               <p> <strong>Title : </strong> @Model.Title</p>
+                              <p> <strong>Alt : </strong> @Model.Alt</p>
+                              <p>
+                                <strong>Team Image :&nbsp;</strong> 
+                                  <img src="~/@Model.ImageUrl" alt="@Model.Alt" title="@Model.Title" class="imgdetail" />
+                              </p>
+                          </div>
+                          <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                              <a asp-action="Index" class="btn btn-back mb-3"> Back  </a>
+                          </div>
+                     </div>
+                 </div>
+            </div>
+         </div>
+     </div>
+</div>
+
+

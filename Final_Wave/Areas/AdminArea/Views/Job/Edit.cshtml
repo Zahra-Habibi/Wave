@@ -1,0 +1,105 @@
+﻿@model Job
+@{
+    ViewData["Title"] = "Edit job";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container ">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-plus "> Job </i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-2 col-10  offset-1 card-box">
+                            <form asp-controller="Job" asp-action="Edit" method="post" class="mt-5" enctype="multipart/form-data">   
+                                
+                                
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label><b>User_Name</b></label>
+                                    <input asp-for="Name" type="text" placeholder="user Name " class="form-control" autocomplete="off">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                               </div>
+
+
+                                 <div class="ml-3 mb-3 mr-3">
+                                       <label><b>LastName</b></label>
+                                       <input asp-for="LastName" type="text" placeholder="LastName" class="form-control" autocomplete="off">
+                                      <span asp-validation-for="LastName" class="text-danger"></span>
+                                 </div>
+
+                                 
+                                  <div class="ml-3 mb-3 mr-3">
+                                       <label><b>PhoneNumber</b></label>
+                                       <input asp-for="PhoneNumber" type="text" placeholder="Phone" class="form-control" autocomplete="off">
+                                      <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                 </div>
+
+
+
+                                  <div class="ml-3 mb-3 mr-3">
+                                       <label><b>Email</b></label>
+                                       <input asp-for="EmailAddress" type="text" placeholder="Email" class="form-control" autocomplete="off">
+                                      <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                 </div> 
+
+
+                                  <div class="form-group my-3 d-flex align-content-center align-items-center flex-column">
+                                        <input type="hidden" asp-for="Image" />
+                                        <input name="file" type="file"  class="form-control mb-3">
+                                        <span asp-validation-for="Image" class="text-danger "></span>
+                                        <img src="~/@Model.Image" alt="@Model.JobName" title="@Model.Name" class="img-responsive img-thumbnail imgdetail "/>
+                                  </div>
+
+                                <div class="ml-3 mb-3 mr-3">
+                                       <label><b>Job_Name</b></label>
+                                       <input asp-for="JobName" type="text" placeholder="JobName" class="form-control" autocomplete="off">
+                                      <span asp-validation-for="JobName" class="text-danger"></span>
+                                 </div>
+
+
+                                <div class="ml-3 mb-3 mr-3">
+                                   <label><b>Job_Description</b> </label>
+                                   <textarea asp-for="Description" placeholder="Short Description " class="form-control"></textarea>
+                                   <span asp-validation-for="Description" class="text-danger"></span>
+                              </div>
+
+
+                              <div class="form-group my-3 d-flex align-content-center align-items-center flex-column">
+                                        <input type="hidden" asp-for="Resume" />
+                                        <input name="file" type="file"  class="form-control mb-3">
+                                        <span asp-validation-for="Resume" class="text-danger "></span>
+                                        <p  class="img-responsive img-thumbnail imgdetail ">@Model.Resume</p>
+                                  </div>
+
+                               <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                  <div class="mr-3 mb-3">
+                                      <button class="btn btn-success btn-colorsave " type="submit">
+                                         Save  <i class="fa fa-plus"></i>
+                                      </button>
+                                  </div>&nbsp;
+                                   <div class="ml-3 mb-3">
+                                        <a asp-action="Index" class="btn btn-back btn-primary">
+                                         Cancel
+                                        </a>
+                                   </div>
+                                </div>
+                            </form>
+                      </div>
+                </div>
+
+        </div>
+    </div>
+  </div>
+</div>
+<script src="~/panel/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("Description");
+</script>
+
+
+

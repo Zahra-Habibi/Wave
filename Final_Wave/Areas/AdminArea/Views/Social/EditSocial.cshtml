@@ -1,0 +1,75 @@
+﻿@model SocialViewModel
+@{
+    ViewData["Title"] = "Edit Social media";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-edit "> Edit Social media Information</i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-10  offset-1 card-box">
+                        <form asp-action="EditSocial" asp-controller="Social" method="post" class="mt-3 m-2" enctype="multipart/form-data">
+
+                            <div class="form-group my-3">
+                                 <label>Social media Name</label>
+                                 <textarea asp-for="SocialName"   class="form-control"></textarea>
+                                 <span asp-validation-for="SocialName" class="text-danger"></span>
+                            </div>
+
+                           <div class="form-group my-3">
+                               <label>Social link</label>
+                               <input asp-for="SocialLink" type="text"  class="form-control">
+                               <span asp-validation-for="SocialLink" class="text-danger"></span>
+                           </div>
+
+
+                           <div class="form-group my-3 d-flex align-content-center align-items-center flex-column">
+                                   <input type="hidden" asp-for="SocailImg" />
+                                   <input name="file" type="file"  class="form-control mb-3">
+                                  <span asp-validation-for="SocailImg" class="text-danger "></span>
+                                  <img src="~/@Model.SocailImg" alt="@Model.Alt" title="@Model.Title" class="img-responsive img-thumbnail imgdetail "/>
+                           </div> 
+
+                            <div class="form-group my-3">
+                                <label>Social image Title</label>
+                                <input asp-for="Title" type="text"  class="form-control">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group my-3">
+                                <label>Image Alt</label>
+                                <input asp-for="Alt" type="text"  class="form-control">
+                                <span asp-validation-for="Alt" class="text-danger"></span>
+                            </div>
+
+                           <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                               <button class="btn btn-success  " type="submit">
+                                   Save Changes <i class="fa fa-plus"></i>
+                               </button>
+                                  &nbsp;
+                              <a asp-action="Index" class="btn btn-back">
+                                   Cancel
+                              </a>
+                           </div>
+                      </form>
+                 </div>
+              </div>
+           </div>
+       </div>
+   </div>
+</div>
+<script src="~/panel/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("Descriptions");
+</script>
+
+

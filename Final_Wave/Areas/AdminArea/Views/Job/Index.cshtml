@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Job>
+@{
+    ViewData["Title"] = "Index";
+    var counter = 1;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-plus "> Job</i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                  <div class="mb-2 mt-3">
+                         <a class="btn customBlue" asp-controller="Job" asp-action="AddJob">
+                             <i class="fa fa-plus"> Add new </i>
+                        </a>
+                 
+                         <i class="fa fa-search fabg  ">
+                             <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search Product..." class="search" />
+                         </i>
+                    </div>
+                <div class="row">
+                 <div class="table-responsive table-style">
+                    <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
+                        <thead class="bgcolor   ">
+                            <tr class="text-center">
+                                <th scope="col" >#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">LastName</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Resume</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             @foreach (var item in Model)
+                                {
+                                     <tr>
+                                         <td class="text-center">@counter</td>
+                                         <td class="text-center">@item.Name</td>
+                                         <td class="text-center">@item.LastName</td>
+                                         <td class="text-center">@item.Date.ToString("dddd, dd MMMM yyyy")</td>
+                                          <td class="text-center">
+                                             <img src="~/@item.Image" alt="@item.Name" title="@item.Name" class="imgsize img-thumbnail"/>
+                                         </td>
+                                          <td class="text-center">
+                                             <a  class="imgsize img-thumbnail" href="@item.Resume"></a>
+                                         </td>
+                                       <td class="text-center">
+                                             @if(item.IsDelete){
+                                               <h5 class="text-danger text-center">Deleted</h5>
+                                            }
+                                            else
+                                            {
+                                              <h5 class="text-success text-center">Active</h5>
+                                            }
+                                        </td>
+                                  
+                                         <td class="text-center">
+                                            @if (item.IsDelete)
+                                             {
+                                              <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Job" title="Undo" class="btn-success btn mr-3 mb-1 btn-color-del"><i class="fa fa-undo"></i></a>
+                                            }
+                                            else
+                                            {
+                                               <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Job" title="Delete" class="btn-danger btn-color-del btn mr-3 mb-1"><i class="fa fa-trash"></i></a>
+                                             }
+                                              <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" asp-controller="Job" class="btn-coloredit btn mr-3 mb-1"><i class="fa fa-edit "></i></a>
+                                              <a asp-action="Detials" asp-route-id="@item.Id" title="details" asp-controller="Job" class="btn-coloredit1 btn mr-3 mb-1"><i class="fa fa-book"></i></a>
+                                          </td>
+                                         
+                                     </tr>
+                                          counter++;
+                                }
+                            </tbody>
+                    </table>
+                  </div>
+                </div>
+             </div>
+
+          </div>
+     </div>
+ </div>
+   @section AdminScripts
+{
+    <script>
+    function myfunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (var i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    </script>
+    }
+

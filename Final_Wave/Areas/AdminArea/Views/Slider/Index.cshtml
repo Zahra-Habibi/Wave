@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Slider>
+@{
+    ViewData["Title"] = "Index";
+    var counter = 1;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-10 col-sm-10">
+            <div class="container mt-1">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-2">
+                        <i class="fa fa-picture-o">  Slider</i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="mb-2 mt-3">
+                         <a class="btn customBlue" asp-controller="Slider" asp-action="AddSlider">
+                              <i class="fa fa-plus"> Add new  slider</i>
+                        </a>
+                        <i class="fa fa-search fabg ">
+                             <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search Slider..." class="search" />
+                        </i>
+                    </div>
+
+                 <div class="table-responsive table-style">
+                    <table class="table table-bordered table-hover table-striped mt-4  table-responsive  " id="myTable">
+                        <thead class="bgcolor   ">
+                            <tr class="text-center">
+                                <th scope="col">#</th>
+                                <th scope="col">SliderName</th>
+                                <th scope="col">title</th>
+                                <th scope="col">Alt</th>
+                                <th scope="col">Order</th>
+                                <th scope="col">SliderImage</th>
+                                <th scope="col">IsActive</th>
+                                <th scope="col">IsDelete</th>
+                                <th scope="col">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             @foreach (var item in Model)
+                                {
+                                     <tr>
+                                         <td class="text-center">@counter</td>
+                                         <td class="text-center">@item.silderName</td>
+                                         <td class="text-center">@item.Title</td>
+                                         <td class="text-center">@item.Alt</td>
+                                         <td class="text-center">@item.sliderOrder</td>
+                                         <td class="text-center">
+                                             <img src="~/@item.sliderImage" alt="@item.Alt" title="@item.Title" class="imgsize img-thumbnail"/>
+                                         </td>
+                                         <td style="color:@(item.IsActive? "green": "darkred"); font-weight:bold; ">@(item.IsActive? "Active" : "InActive")</td>
+                                         <td class="text-center">
+                                             @if(item.IsDelete){
+                                               <h6 class="text-danger text-center">Deleted</h6>
+                                            }
+                                            else
+                                            {
+                                              <h6 class="text-success text-center">Not Deleted</h6>
+                                            }
+                                        </td>
+                                  
+                                         <td class="text-center">
+                                            @if (item.IsDelete)
+                                             {
+                                              <a asp-action="Delete" asp-route-id="@item.SliderId" asp-controller="Slider" title="Undo" class="btn-success btn mr-4 btn-color-del mt-2"><i class="fa fa-undo"></i></a> 
+                                            }
+                                            else
+                                            {
+                                               <a asp-action="Delete" asp-route-id="@item.SliderId" asp-controller="Slider" title="Delete" class="btn-danger btn-color-del btn mr-4 mt-2"><i class="fa fa-trash"></i></a>
+                                             }
+                                              <a asp-action="Edit" asp-route-id="@item.SliderId" title="Edit" asp-controller="Slider" class="btn-coloredit btn mr-3 mt-2 "><i class="fa fa-edit "></i></a>
+                                             <a asp-action="Detials" asp-route-id="@item.SliderId" title="details" asp-controller="Slider" class="btn-coloredit1   btn mr-3 mt-2 "><i class="fa fa-book "></i></a>
+                                          </td>
+                                         
+                                     </tr>
+                                          counter++;
+                                }
+                            </tbody>
+                    </table>
+                  </div>
+                </div>
+             </div>
+
+          </div>
+     </div>
+ </div>
+    @section AdminScripts
+{ 
+    <script>
+    function myfunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (var i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    </script>
+   }
+
+
+
