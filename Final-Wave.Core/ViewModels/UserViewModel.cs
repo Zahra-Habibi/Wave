@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,10 @@ namespace Final_Wave.Core.ViewModels
         public string Email { get; set; }
 
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter your  Password!")]
+        [Display(Name ="Password")]
+        [PasswordPropertyText]
+        public string PasswordHash { get; set; }
 
         [Display(Name = "IsAdmin")]
         public byte IsAdmin { get; set; }
@@ -45,5 +50,25 @@ namespace Final_Wave.Core.ViewModels
         public string ConfirmNewPassword { get; set; }
 
     }
+
+    public class ChangePasswordViewModel
+    {
+        [Display(Name = "curremt Password")]
+        [Required(ErrorMessage ="Please enter the old password!")]
+       
+        public string CurrentPassword { get; set; }
+
+        [Display(Name = "New Password")]
+        [Required(ErrorMessage = "Please enter the New password!")]
+        [StringLength(maximumLength: 30, MinimumLength = 4, ErrorMessage = "please enter between 4-30 charachter!")]
+        public string NewPassword { get; set; }
+
+        [Display(Name = "ConfirmNewPassword")]
+        [Required(ErrorMessage = "Please enter the ConfirmNewPassword!")]
+        [Compare("NewPassword", ErrorMessage = "Your confirm passowrd doesn't match")]
+        public string ConfirmNewPassword { get; set; }
+
+    }
+
 
 }
