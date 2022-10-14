@@ -2,7 +2,7 @@
 
 namespace Final_Wave.Areas.UserArea.Controllers
 {
-    [Area("AdminArea")]
+    [Area("UserArea")]
     public class UserHomeController : Controller
     {
         public IActionResult Index()
