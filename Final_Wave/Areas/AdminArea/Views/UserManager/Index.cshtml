@@ -64,7 +64,7 @@
                                             
                                              <a asp-action="EditUser" asp-route-userId="@item.Id" asp-controller="UserManager" title="EditUser" class="btn-coloredit btn mr-3"><i class="fa fa-edit"></i></a>
                                               <a asp-action="UserDetails" asp-route-userId="@item.Id" asp-controller="UserManager" title="Userdetail" class="btn-coloredit btn mr-3"><i class="fa fa-book"></i></a>
-                                             <a asp-action="ChangePassword" asp-route-id="@item.Id" asp-controller="UserManager" title="Change Passowrd" class="btn-success btn mr-3 "><i class="fa fa-key"></i></a>
+                                             <a asp-action="ChangePassword" asp-route-id="@item.Id" asp-route-UserName="@item.UserName" asp-controller="UserManager" title="Change Passowrd" class="btn-success btn mr-3 "><i class="fa fa-key"></i></a>
                                           </td>
                                          
                                      </tr>

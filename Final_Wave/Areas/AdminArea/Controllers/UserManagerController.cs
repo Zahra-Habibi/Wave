@@ -107,9 +107,14 @@ namespace Final_Wave.Areas.AdminArea.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> ChangePassword(string id)
+        public IActionResult ChangePassword(string id , string UserName)
         {
+            if(id == null)
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
             ViewBag.Id = id;
+            ViewBag.UserName = UserName;
             return View();
         }
 
@@ -117,15 +122,17 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordByAdminViewModel model)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
+           if (!ModelState.IsValid)
+             return View(model);
 
             var user = await _usermanager.FindByIdAsync(model.Id);
             user.PasswordHash = _usermanager.PasswordHasher.HashPassword(user, model.NewPassword);
             var result = await _usermanager.UpdateAsync(user);
             await _context.saveAsync();
             _notify.Information("You  changed the User Password!", 5);
-            }
+            return RedirectToAction(nameof(Index));
+
+ 
         }
     }
 }

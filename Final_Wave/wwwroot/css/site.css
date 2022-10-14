@@ -198,3 +198,15 @@ body {
     float: left;
     color: #999;
 }
+.ERR404 {
+    background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0)),url("/Err/concept-404-error-page-file-260nw-1115879936.webp");
+    background-repeat: no-repeat;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.sty{
+    color:red;
+
+}

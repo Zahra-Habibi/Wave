@@ -42,12 +42,13 @@ namespace Final_Wave.Core.ViewModels
     public class ChangePasswordByAdminViewModel
     {
         public string Id { get; set; }
+
         [Display(Name = "New Password")]
         public string NewPassword { get; set; }
 
         [Display(Name = "ConfirmNewPassword")]
         [Compare("NewPassword", ErrorMessage = "Your confirm passowrd doesn't match")]
-        public string ConfirmNewPassword { get; set; }
+        public string ConfirmNewPassword { get; set; } 
 
     }
 
