@@ -39,16 +39,16 @@ namespace Final_Wave.DataLayer.Contexxt
 
 
         //ModelBuilder
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            builder.Entity<Message>()
-                .HasOne<ApplicationUser>(a => a.Sender)
-                .WithMany(d => d.Messages)
-                .HasForeignKey(d => d.UserID);
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
+        //    builder.Entity<Message>()
+        //        .HasOne<ApplicationUser>(a => a.Sender)
+        //        .WithMany(d => d.Messages)
+        //        .HasForeignKey(d => d.UserID);
 
 
-        }
+        //}
 
 
     }
