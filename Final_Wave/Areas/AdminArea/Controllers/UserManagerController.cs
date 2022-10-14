@@ -42,27 +42,27 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddUser(UserViewModel model)
         {
-            ////if (!ModelState.IsValid)
-            ////    return View(model);
+            //if (!ModelState.IsValid)
+            //    return View(model);
 
-            //var user = new ApplicationUser
-            //{
-            //    UserName = model.UserName,
-            //    Email=model.Email,
-            //    IsActive=model.IsActive,
-            //    IsAdmin=model.IsAdmin,
-            //};
-            //await _context.UsermanagerUW.Create(user);
-            //await _context.saveAsync();
-            //_notify.Success("You successfuly added a new user!", 5);
-            //return RedirectToAction(nameof(Index));
-
-            var mapModel = _mapper.Map<ApplicationUser>(model);
-            await _context.UserUW.Create(mapModel);
-            await _context.saveAsync();
-            _notify.Success("You successfuly added a new user!", 5);
-            return RedirectToAction(nameof(Index));
-
+            if (await _usermanager.FindByNameAsync(model.UserName) != null)
+                {
+                    ModelState.AddModelError("UserName", "The username is invalid!");
+                }
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    PasswordHash = model.PasswordHash,
+                    IsActive = true,
+                    IsAdmin = model.IsAdmin,
+                };
+                IdentityResult result = await _usermanager.CreateAsync(user, model.PasswordHash);
+                if (result.Succeeded)
+                {             
+                    return RedirectToAction(nameof(Index));
+                }
+            return View(model);
         }
 
 
