@@ -1,28 +1,60 @@
 ﻿<nav class="navbar header-navbar pcoded-header">
     <div class="navbar-wrapper">
         <div class="navbar-logo">
-            <a class="mobile-menu " id="mobile-collapse" href="#!">
+            <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!" style="text-decoration:none;">
                 <i class="ti-menu"></i>
             </a>
         </div>
+
         <div class="navbar-container container-fluid">
             <ul class="nav-left">
                 <li>
                     <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
                 </li>
+
                 <li>
-                    <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                    <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light" style="text-decoration:none;">
                         <i class="ti-fullscreen"></i>
                     </a>
                 </li>
             </ul>
-        </div>
-        <form asp-area="" asp-controller="Account" asp-action="LogOut" method="post"  >
-            <ul>
-                <li>
-                    <button type="submit" class="btn btn-success float-right mt-2"  > LogOut</button>
+
+            <ul class="nav-right">
+                <li class="header-notification">
+                    <a href="#!" class="waves-effect waves-light" style="text-decoration:none;">
+                        <i class="ti-bell"></i>
+                        <span class="badge bg-c-red"></span>
+                    </a>
+                    <ul class="show-notification">
+                        <li>
+                            <h6>Notifications</h6>
+                            <label class="label label-danger">New</label>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="user-profile header-notification">
+                    <a href="#!" class="waves-effect waves-light" style="text-decoration:none;">
+                        <span>System setting</span>
+                        <i class="ti-angle-down"></i>
+                    </a>
+
+                    <ul class="show-notification profile-notification">
+                        <li class="waves-effect waves-light">
+                            <a href="user-profile.html" style="text-decoration:none;">
+                                <i class="ti-user"></i> Profile
+                            </a>
+                        </li>
+
+                        <form asp-area="" asp-controller="Account" asp-action="LogOut" method="post">
+                        <li class="waves-effect waves-light">
+                            <button type="submit" style="border:none; background-color:white"><i class="icon-switch2"></i> LogOut </button>
+                        </li>
+                        </form>
+
+                    </ul>
                 </li>
             </ul>
-        </form>
+        </div>
     </div>
 </nav>
