@@ -125,7 +125,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             var result = await _usermanager.UpdateAsync(user);
             await _context.saveAsync();
             _notify.Information("You  changed the User Password!", 5);
-            return RedirectToAction(nameof(Index));
+            }
         }
     }
 }
