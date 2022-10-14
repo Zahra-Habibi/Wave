@@ -28,5 +28,11 @@ namespace Final_Wave.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult Err404()
+        {
+            return View();
+        }
     }
 }
