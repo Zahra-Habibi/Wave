@@ -29,7 +29,12 @@
                                     <input type="text" asp-for="UserName" class="form-control " placeholder=" UserName..." autocomplete="off">
                                     <span asp-validation-for="UserName" class="text-danger"></span>
                                </div>
-                               
+
+                                <div class="ml-3 mb-3 mr-3">
+                                    <label><b>Password</b></label>
+                                    <input type="text" asp-for="PasswordHash" class="form-control " placeholder=" UserName..." autocomplete="off">
+                                    <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                               </div>
 
                                 <div class="ml-3 mb-3 mr-3">
                                     <label>

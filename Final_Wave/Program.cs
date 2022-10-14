@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
+using static System.Net.Mime.MediaTypeNames;
+using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +60,18 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+//error 404
+app.Use(async (Context , next) =>
+{
+    await next();
+    if(Context.Response.StatusCode == 404)
+    {
+        Context.Request.Path = "/Home/Err404";
+        await next();
+    }
+});
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
