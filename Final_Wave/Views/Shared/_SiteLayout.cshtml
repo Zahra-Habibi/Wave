@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Css Links-->
+    <partial name="_CssLinks" />
+    <title>Home</title>
+</head>
+<body>
+
+    <div class="container-fluid ">
+        <!--Start of navbar  -->
+        <div class="container-fluid bg-top-nav fixed-top ">
+            <div class="container  ">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <nav class="navbar navbar-expand-md custome-top-nav  ">
+                            <!-- Brand -->
+                            <a class="navbar-brand" href="#"><img class="brand-img img-responsive" src="assets/images/logo.png" alt=""></a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                                <span class="navbar-toggler-icon fa-solid fa-list custome-icon-list"></span>
+                            </button>
+
+                            <!-- Navbar Items -->
+                            <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                                <ul class="navbar-nav ">
+                                    <li class="nav-item myList">
+                                        <a class="nav-link active " href="index.html">Home</a>
+                                    </li>
+                                    <li class="nav-item myList">
+                                        <a class="nav-link" href="product.html">Products</a>
+                                    </li>
+                                    <li class="nav-item myList">
+                                        <a class="nav-link" href="service.html">Service</a>
+                                    </li>
+                                    <li class="nav-item myList">
+                                        <a class="nav-link" href="team.html">Team</a>
+                                    </li>
+                                    <li class="nav-item myList">
+                                        <a class="nav-link" href="order.html">Order</a>
+                                    </li>
+                                    <li class="nav-item myList">
+                                        <a class="nav-link" href="job.html">Job</a>
+                                    </li>
+                                    <li class="nav-item myList">
+                                        <a class="nav-link" href="about-us.html">About us</a>
+                                    </li>
+                                    <li class="nav-item myList">
+                                        <a class="nav-link" href="contact-us.html">Contact us</a>
+                                    </li>
+                                    <li class="nav-item myList">
+                                        <a class="nav-link message-icon" href="#" title="message"><i class="fa-solid fa-message"></i></a>
+                                    </li>
+                                </ul>
+
+                                <ul class="nav navbar-nav ml-auto custome-login">
+                                    <a href="sign-up.html" class="sign-up"><span class="fas fa-user"></span> Sign Up &nbsp;</a>
+                                    <a href="login.html"><span class="fa-solid fa-right-to-bracket ml-1"></span> Login</a>
+                                </ul>
+                                <!-- &nbsp;<img src="assets/images/moon.png" class="isDay" id="icon" onclick="darkApplier()"> -->
+                                &nbsp;<div class="ToggleIconsWrapper" onclick="darkApplier()">
+                                    <i class="fas fa-sun DayIcon isDay"></i>
+                                    <i class="fas fa-moon NightIcon"></i>
+                                </div>
+
+
+                            </div>
+
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--End of navbar -->
+
+         @RenderBody()
+
+        <!-- Start of footer -->
+        <div class="container-fluid custome-footer">
+            <div class="row mt-3">
+                <div class=" col col-sm-12 col-md-4 custome-footer-wss ">
+                    <h5 class="mt-3">Wave Software Service</h5>
+                    <small>Worldwide website since 2022. We sell over 1000+ branded products on our website</small>
+                    <ul>
+                        <li><a href="#" class="footer-menu"><i class="fa-solid fa-location-pin mt-3"></i> address</a></li>
+                        <li><a href="#" class="footer-menu"><i class="fa-solid fa-phone"></i> +93780182221</a></li>
+                        <li><a href="#">www.Wave software service.af</a></li>
+                    </ul>
+                </div>
+                <div class="col col-sm-6 col-md-2">
+                    <h5 class="mt-3">Menu</h5>
+                    <ul>
+                        <li><a href="#" class="footer-menu">Home</a></li>
+                        <li><a href="product.html" class="footer-menu">Product</a></li>
+                        <li><a href="service.html" class="footer-menu">Service</a></li>
+                        <li><a href="team.html" class="footer-menu">Team</a></li>
+                        <li><a href="about-us.html" class="footer-menu">About us</a></li>
+                        <li><a href="contact-us.html" class="footer-menu">Contact us</a></li>
+
+                    </ul>
+                </div>
+                <div class="col col-sm-6 col-md-3">
+                    <h5 class="mt-3">Others</h5>
+                    <ul>
+                        <li><a href="#" class="footer-menu">User FAQs</a></li>
+                        <li><a href="#" class="footer-menu">Order</a></li>
+                        <li><a href="#" class="footer-menu">Technology</a></li>
+
+                    </ul>
+                </div>
+                <div class="col col-sm-6 col-md-3">
+                    <h5 class="mt-3">Stay Connected</h5>
+                    <ul>
+                        <li><a href="#" class="footer-menu">Facebook</a></li>
+                        <li><a href="#" class="footer-menu">Instagram</a></li>
+                        <li><a href="#" class="footer-menu">Whatsapp</a></li>
+                        <li><a href="#" class="footer-menu">Twitter</a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="container mt-10">
+                <hr>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-9">
+                        <p>2022  &copy; Wave software service. All rights reserved</p>
+                    </div>
+                    <div class="col-sm-4 col-md-3">
+                        <ul>
+                            <a href="#" class="Instagram-btn-f "><i class="fa-brands fa-instagram social-link"></i></a>
+                            <a href="#" class="Twitter-btn-f"><i class="fa-brands fa-twitter social-link"></i></a>
+                            <a href="#" class="linkedin-btn"><i class="fa-brands fa-linkedin-in social-link"></i></a>
+                            <a href="#" class="facebook-btn"><i class="fa-brands fa-facebook-f social-link"></i></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of footer -->
+        <!--Start back to the top icon -->
+        <a href="#" class="to-top">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+        <!-- End of back to the top icon -->
+
+        <!-- Sile socail media links -->
+        <div class=" shared-btn-container">
+            <a href="#" class="linkedin-btn">
+                <i class="fab fa-linkedin linked-In"></i>
+            </a>
+            <a href="#" class="facebook-btn">
+                <i class="fab fa-facebook Face-Book"></i>
+            </a>
+            <a href="#" class="whatsapp-btn">
+                <i class="fab fa-whatsapp Whats-app"></i>
+            </a>
+        </div>
+        <!-- end of sidle socail media links -->
+
+    </div>
+
+
+
+
+
+
+    <!--------------- Scripts Links--------------->
+    <partial name="_JsLinks" />
+    @RenderSection("mySection", false)
+</body>
+</html>
