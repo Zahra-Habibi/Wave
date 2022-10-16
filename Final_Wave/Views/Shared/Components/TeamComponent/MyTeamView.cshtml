@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Final_Wave.DataLayer.Entites.Team>
+
+@{
+    bool active = true;
+}
+
+<div id="demo3" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            if (i == 0)
+            {
+                <li data-target="demo3" data-slide-to="@i" class="active"></li>
+            }
+            else
+            {
+                <li data-target="demo3" data-slide-to="@i"></li>
+            }
+        }
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner role=" listbox"">
+        @foreach (var item in Model)
+        {
+            if (active)
+            {
+                <div class="carousel-item active ">
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="row">
+                                   <div class="media p-3 mt-3 bg-white mr-2 team-main-div about-team">
+                                     <img src="~/@item.ImageUrl" class="team-img img-responsive">
+                                        <div class="ml-3">
+                                           <h3 class="ml-3 team-name-color">@item.Name</h3>
+                                             <p class="ml-3">
+                                                @Html.Raw(item.ShortDesc)
+                                             </p>
+
+                                        </div>
+                                   </div>
+                                </div>
+                            </div>
+                </div>
+
+                active = false;
+            }
+            else
+            {
+                <div class="carousel-item ">
+                    <div class="col-sm-6 col-md-6 col-lg-6 ">
+                        <div class="row">
+                            <div class="media p-3 mt-3 bg-white mr-2 team-main-div about-team">
+                                <img src="~/@item.ImageUrl" class="team-img img-responsive">
+                                <div class="">
+                                    <h3 class="ml-3 team-name-color">@item.Name</h3>
+                                    <p class="ml-3">
+                                        @Html.Raw(item.ShortDesc)
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+
+    <a class="carousel-control-prev" href="#demo3" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo3" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
