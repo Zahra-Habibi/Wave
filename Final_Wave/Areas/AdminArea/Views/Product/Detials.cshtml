@@ -1,0 +1,45 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Detials";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-info alertstyle mb-3">
+                        <i class="fa fa-book"> Product Details</i>
+                    </div>
+                </div>
+            </div>
+           <div class="col-8 mt-5  offset-2">
+               <div class="container mt-5">
+                 <div class="divstyle-detail">
+                     <div class="row p-5">
+                        <p> <strong>ProductName : </strong>@Model.ProductName </p>
+                        <p><strong>Description : </strong> @Model.ShortDescription</p>
+                        <p> <strong>IsActive : </strong> @Model.IsActive</p>
+                        <p> <strong>IsDelete : </strong> @Model.IsDelete</p>
+                        <p> <strong>CategoryId : </strong> @Model.CategoryId</p>
+                        <p> <strong>Count : </strong>@Model.count</p>
+                        <p>
+                           <strong>ProductImage :&nbsp;</strong> 
+                           <img  controls  class="imgdetail " alt="@Model.Alt" title="@Model.Title" src="~/@Model.ProductImage" />
+                        </p>
+                         <p> <strong>Alt : </strong>@Model.Alt</p>
+                          <p> <strong>Title : </strong>@Model.Title</p>
+                     </div>
+                     <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                           <a asp-action="ShowProduct" class="btn btn-back mb-3"> Dack</a>
+                     </div>
+                 </div>
+               </div>
+           </div>
+        </div>
+     </div>
+</div>
+
+
+
