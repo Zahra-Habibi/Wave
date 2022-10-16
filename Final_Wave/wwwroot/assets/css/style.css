@@ -101,27 +101,29 @@ a.home{
     width: 100%;
     height: 450px;
 }
-.product-back{
+.product-back {
     background-color: var(--primary-color);
+    box-shadow: 1px 4px 2px 3px rgba(0,0,0,0.1);
 }
 .custome-product{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
-.product-img{
+.product-img {
     width: 100%;
-    height: 250px;
+    height: 200px;
     position: relative;
     cursor: pointer;
     transition: all 1.1s;
     overflow: hidden;
+    transform: scale(0.9);
+    border-radius:10px;
 }
-.product-img:hover{
-transform: scale(0.9);
-overflow: hidden;
-opacity: 0.8;
-
-}
+    .product-img:hover {
+        overflow: hidden;
+        opacity: 0.5;
+        transform: scale(1);
+    }
 .see-product{
     width: 200px;
     text-decoration: none;
@@ -209,10 +211,10 @@ opacity: 0.8;
 }
 .team-img{
     width: 150px;
-    height: 150px;
+    height: 140px;
 }
 .team-title{
-    padding: 20px;
+    padding-left: 20px;
 }
 .team-m-top{
     margin-top: -10%;
@@ -420,6 +422,11 @@ opacity: 0.8;
     height: auto;
     width: 100%;
 }
+.product-custome:hover {
+    background-color: white !important;
+    height: auto;
+    width: 100%;
+}
 .img-product-detail{
     width: 100%;
     height: 350px;
@@ -502,31 +509,36 @@ opacity: 0.8;
 }
 .service-icon{
     font-size: 26px;
-    background-color:var(--primary-color);
     color: #00bef8;
     border-radius: 50%;
     padding: 20px;
     transition: all 0.2s;
+    border-radius:10px;
     
 }
 .service-icon:hover{
-    background-color: #00bef8;
     color: white;
+    opacity:9;
 }
-.service-card{
+.cardImg {
+    border-radius:10px !important;
+    opacity:5;
+}
+.service-card {
     background-color: var(--socialMedia-color);
     position: relative;
     cursor: pointer;
     transition: all 1.1s;
     overflow: hidden;
-    height: 320px;
+    box-shadow: 0 3px 2px 3px rgba(0,0,0,0.1);
+    border-radius: 10px;
 }
 .service-card:hover{
     transform: scale(0.9);
     overflow: hidden;
     box-shadow: 0 0 2px 3px rgba(0,0,0,0.1);
 }
-.service-detail-btn{
+.service-detail-btn {
     color: white;
     background-color: #00bef8;
     border: 2px solid #00bef8;
