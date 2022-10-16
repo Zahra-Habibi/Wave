@@ -14,7 +14,7 @@
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map" />
-    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
+	  <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map" />
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map" />
@@ -56,6 +56,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Final-Wave.Core\Final-Wave.Core.csproj" />
     <ProjectReference Include="..\Final_Wave.DataLayer\Final_Wave.DataLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Img\Slider\" />
   </ItemGroup>
 
 </Project>
