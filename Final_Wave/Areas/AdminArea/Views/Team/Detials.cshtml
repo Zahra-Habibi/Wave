@@ -21,7 +21,7 @@
                               <p><strong>Member Name : </strong> @Model.Name</p>
                               <p><strong>LastName : </strong> @Model.LastName</p>
                               <p> <strong>Member position : </strong> @Model.PositionName</p>
-                              <p> <strong>Short Description : </strong> @Model.ShortDesc</p>
+                            <p> <strong>Short Description : </strong> @Html.Raw(Model.ShortDesc)</p>
                               <p> <strong>User status : </strong> @Model.IsDelete</p>
                                <p> <strong>Title : </strong> @Model.Title</p>
                               <p> <strong>Alt : </strong> @Model.Alt</p>
