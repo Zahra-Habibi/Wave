@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Final_Wave.DataLayer.Entites.Service>
+@{
+    ViewData["Title"] = "Wave software service";
+    ViewData["Description"] = "This site is a new site , It provide diffirent software (desktop application , mobile application web application, video and image editing,banner , prototype.).";
+    Layout = "_SiteLayout";
+}
+<br /><br /><br />
+<!-- start of search  -->
+<div class="container custome-bubles">
+    <!-- bubles -->
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <div class="bubles"><span class="dot"></span></div>
+    <!-- end of bubles -->
+</div>
+<!-- end of search -->
+<!-- start of services -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-4 col-md-4"></div>
+        <div class="col-sm-4 col-md-4">
+            <h3 class="service-page-title ">Services you can trust</h3>
+        </div>
+        <div class="col-sm-4 col-md-4"></div>
+    </div>
+    <div class="row mt-5">
+        
+        @(await Component.InvokeAsync("ShowserviceComponent"))
+
+    </div>
+    
+</div>
+<!-- end of services -->
+<br>
