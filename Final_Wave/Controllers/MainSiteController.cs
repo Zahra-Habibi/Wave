@@ -17,8 +17,14 @@ namespace Final_Wave.Controllers
         }
         public async Task<IActionResult> ServiceDetials(int id)
         {
-            var about = await _context.serviceUW.GetByIdAsync(id);
-            return View(about);
+            var service = await _context.serviceUW.GetByIdAsync(id);
+            return View(service);
+        }
+
+        public async Task<IActionResult> ShowService()
+        {
+            var service = await _context.serviceUW.GetEntitiesAsync();
+            return View(service);
         }
     }
 }
