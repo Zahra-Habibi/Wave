@@ -210,8 +210,9 @@ a.home{
     cursor: pointer;
 }
 .team-img{
-    width: 150px;
-    height: 140px;
+    width: 140px;
+    height: 120px;
+    border-radius:5%;
 }
 .team-title{
     padding-left: 20px;
@@ -386,7 +387,7 @@ a.home{
         width: 200px !important;
     }
     .team-name-color{
-        font-size: 18px;
+        font-weight: bold;
     }
     .custome-footer-wss{
         width: 100% !important;
@@ -586,12 +587,12 @@ img.upper-wave{
     font-variant-caps: all-petite-caps;
     font-size: 36px;
 }
-.about-img{
-    margin-top: -15%;
+.about-img {
+    margin-top: 2%;
     width: 100%;
-    height: 400px;
-     
+    height: 350px;
 }
+
 .history-about{
     font-weight: bold;
     color: #00bef8;
