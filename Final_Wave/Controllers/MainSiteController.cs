@@ -7,11 +7,10 @@ namespace Final_Wave.Controllers
     public class MainSiteController : Controller
     {
         private readonly IUnitOfWork _context;
-        private readonly ApplicationUser _user;
-        public MainSiteController(IUnitOfWork context,ApplicationUser user)
+        public MainSiteController(IUnitOfWork context)
         {
             _context = context;
-            _user = user;
+
         }
 
         public IActionResult Index()
@@ -33,6 +32,20 @@ namespace Final_Wave.Controllers
         {
             var product = await _context.productUW.GetEntitiesAsync();
             return View(product);
+        }
+
+        //team
+        public async Task<IActionResult> Team()
+        {
+            var team= await _context.teamUW.GetEntitiesAsync();
+            return View(team);
+        }
+
+        //about
+        public async Task<IActionResult> About()
+        {
+            var about = await _context.AboutUW.GetEntitiesAsync();
+            return View(about);
         }
     }
 }
