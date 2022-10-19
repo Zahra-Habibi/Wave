@@ -1,4 +1,4 @@
-﻿@model Final_Wave.DataLayer.Entites.Service
+﻿@model IEnumerable<Final_Wave.DataLayer.Entites.Service>
 @{
     ViewData["Title"] = "ServiceDetials";
     Layout = "_SiteLayout";
@@ -34,7 +34,7 @@
             <div class="col-sm-4 col-md-4"></div>
         </div>
         <div class="container-fluid mt-4">
-            @(await Component.InvokeAsync("ServiceDetialsComponent",Model.Id))
+            @(await Component.InvokeAsync("ServiceDetialsComponent"))
             <br><br><br>
         </div>
     </div>
