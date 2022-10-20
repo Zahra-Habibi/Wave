@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
+    [Area("AdminArea")]
     public class ConductController : Controller
     {
 
