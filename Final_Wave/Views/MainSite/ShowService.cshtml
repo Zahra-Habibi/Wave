@@ -5,27 +5,7 @@
     Layout = "_SiteLayout";
 }
 <br /><br /><br />
-<!-- start of search  -->
-<div class="container custome-bubles">
-    <!-- bubles -->
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <div class="bubles"><span class="dot"></span></div>
-    <!-- end of bubles -->
-</div>
-<!-- end of search -->
+
 <!-- start of services -->
 <div class="container mt-4">
     <div class="row">
@@ -38,6 +18,7 @@
     <div class="row mt-5">
             @foreach (var item in Model)
             {
+               if(!item.IsDelete){
                 <div class="col-sm-6 col-md-3">
                     <div class="card text-center service-card mt-2">
                         <a asp-controller="Home" asp-action="Services" class=" service-icon">
@@ -51,6 +32,7 @@
                         </div>
                     </div>
                 </div>
+               }
             }
     </div>
 </div>
