@@ -1,4 +1,6 @@
-﻿using Final_Wave.DataLayer.Repository.Interfaces;
+﻿using Final_Wave.Core.ViewModels;
+using Final_Wave.DataLayer.Entites;
+using Final_Wave.DataLayer.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Final_Wave.ViewComponents.ContactComponent

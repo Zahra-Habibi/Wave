@@ -1,0 +1,62 @@
+﻿@model Final_Wave.Core.ViewModels.ContactViewModel
+@{
+    ViewData["Title"] = "Wave software service";
+    ViewData["Description"] = "This site is a new site , It provide diffirent software (desktop application , mobile application web application, video and image editing,banner , prototype.).";
+    Layout = "_SiteLayout";
+}
+<div class="contact-form custome-bubles">
+    <img src="~/assets//images/form-back.png" class="img-responsive form-back">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1 col-md-2"></div>
+            <div class="col-sm-10 col-md-8 mb-4 custome-form-edit ">
+                <h3 class="form-title mt-3">Get In Touch</h3>
+                <div class="row">
+                    <div class="col-md-5 form-contact-page">
+                        <!-- Start of Get In touch -->
+                        <form method="post" asp-action="Contact" asp-antiforgery="true">
+                            <div class="form-home">
+                                <input type="text" class="form-control" placeholder="Full name" name="name" required asp-for="Name">
+                            </div>
+                            <div class="mt-3 form-home">
+                                <input type="email" class="form-control" placeholder="Email address" name="email" required asp-for="Email">
+                            </div>
+                            <div class="mt-3 form-home">
+                                <textarea class="form-control" rows="5" id="comment" placeholder="Type Your Message:" asp-for="Message"></textarea>
+                            </div>
+                            <input type="submit" value="Submit" class="btn btn-custom-contact-page mt-3 form-control">
+                        </form>
+                        <!-- End of get in touch -->
+                        @if (ViewBag.IsSuccess)
+                        {
+                            @section mySection{
+                            <script>
+                                swal({
+                                    title: "Send your message.",
+                                    text: "Your message successfully send!",
+                                    type: 'success',
+                                    showCancelButton: false,
+                                    allowOutsideClick: false,
+                                    confirmButtonColor: "green",
+                                    confirmButtonText: "Ok"
+                                });
+                            </script>
+
+                        }
+                        }
+                    </div>
+                    <div class="col col-md-5 address-form ">
+                        <small>Worldwide website since 2022. We sell over 1000+ branded products on our website</small>
+                        <ul>
+                            <li><a href="#" class="footer-menu"><i class="fa-solid fa-location-pin mt-3"></i> address</a></li>
+                            <li><a href="#" class="footer-menu"><i class="fa-solid fa-phone"></i> +93780182221</a></li>
+                            <li><a href="#" class="footer-menu"><i class="fa-solid fa-envelope"></i> wave.wss@gmial.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 col-md-2"></div>
+        </div>
+    </div>
+</div>
+<!-- End of contact form -->

@@ -17,7 +17,7 @@ namespace Final_Wave.DataLayer.Entites
         public string Alt { get; set; }
         public string Title { get; set; }
 
-        public string ShortDescription { get; set; }
+        public string? ShortDescription { get; set; }
 
         public DateTime ProductCreate { get; set; }
        = DateTime.UtcNow;

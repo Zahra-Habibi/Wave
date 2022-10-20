@@ -16,16 +16,13 @@
             
             <div class="container">
                  <div class="mb-2 mt-3">
-                         <a class="btn customBlue" asp-controller="UserManager" asp-action="AddUser">
-                             <i class="fa fa-plus"> Add new user</i>
-                        </a>
-                          <i class="fas fa-search fabg ">
-                             <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search Contactus..." class="search" />
+                          <i class="fa fa-search fabg ">
+                             <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search by id..." class="search" />
                          </i>
                   </div>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped mt-4  " id="myTable">
-                        <thead class="bgcolor">
+                <div class="table-responsive table-style">
+                    <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
+                        <thead class="bgcolor   ">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
@@ -43,8 +40,8 @@
                                          <td>@item.Email</td>
                                          <td>@item.SentDate.ToString("dddd, dd MMMM yyyy")</td>
                                      <td>
-                                         <a asp-action="Detials" asp-route-id="@item.Id" title="Details" asp-controller="ContactUs" class="btn-coloredit btn mr-3"><i class="fa fa-book"></i></a>&nbsp;
-                                          <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" asp-controller="ContactUs" class="btn-danger btn mr-3"><i class="fa fa-book"></i></a>
+                                        <a asp-action="Detials" asp-route-id="@item.Id" title="Details" asp-controller="Conduct" class="btn-coloredit btn mr-3"><i class="fa fa-book"></i></a>&nbsp;
+                                        <a asp-action="Delete" asp-route-id="@item.Id" title="Delete" asp-controller="Conduct" class="btn-danger btn mr-3"><i class="fa fa-book"></i></a>
                                      </td>   
                                   </tr>
                                           counter++;

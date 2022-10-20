@@ -1,7 +1,7 @@
 ﻿@model Final_Wave.DataLayer.Entites.ContactUs
 
 <div class="col-sm-12 col-md-12">
-    <form asp-action="Contact" asp-controller="Contact" asp-area="Adminarea" method="post">
+    <form method="post" asp-action="Contact" asp-antiforgery="true">
         <div class="form-row">
             <div class="col form-home">
                 <input type="text" asp-for="Name" class="form-control" placeholder="Enter Your Full name" name="name" required>
