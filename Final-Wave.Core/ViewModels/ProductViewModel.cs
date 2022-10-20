@@ -20,7 +20,7 @@ namespace Final_Wave.Core.ViewModels
         public int Price { get; set; }
 
         [Display(Name = "Product description ")]
-        public string ShortDescription { get; set; }
+        public string? ShortDescription { get; set; }
 
         [Display(Name = "Product Image ")]
         public string? ProductImage { get; set; }

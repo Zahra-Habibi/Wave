@@ -1,4 +1,5 @@
-﻿using Final_Wave.DataLayer.Entites;
+﻿using Final_Wave.Core.ViewModels;
+using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,12 @@ namespace Final_Wave.DataLayer.Repository.Services
     public class TempService: ITemp
     {
         private readonly ApplicationUser _context;
+  
         public TempService(ApplicationUser context)
         {
             _context = context;
+   ;
         }
+
     }
 }
