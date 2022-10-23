@@ -14,43 +14,34 @@
                 <div class="row">
                     <div class="col-md-5 form-contact-page">
                         <!-- Start of Get In touch -->
-                        <form method="post" asp-action="Contact" asp-antiforgery="true">
+                        <form method="post" asp-action="Contact" asp-controller="MainSite">
+                           
                             <div class="form-home">
-                                <input type="text" class="form-control" placeholder="Full name" name="name" required asp-for="Name">
+                                <input type="text" class="form-control" placeholder="Full name" required asp-for="Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
+
                             <div class="mt-3 form-home">
-                                <input type="email" class="form-control" placeholder="Email address" name="email" required asp-for="Email">
+                                <input type="email" class="form-control" placeholder="Email address" required   asp-for="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
+
                             <div class="mt-3 form-home">
-                                <textarea class="form-control" rows="5" id="comment" placeholder="Type Your Message:" asp-for="Message"></textarea>
+                                <textarea class="form-control" rows="5"  placeholder="Type Your Message:" required  asp-for="Message"></textarea>
+                                <span asp-validation-for="Message" class="text-danger"></span>
                             </div>
+
                             <input type="submit" value="Submit" class="btn btn-custom-contact-page mt-3 form-control">
                         </form>
                         <!-- End of get in touch -->
-                        @if (ViewBag.IsSuccess)
-                        {
-                            @section mySection{
-                            <script>
-                                swal({
-                                    title: "Send your message.",
-                                    text: "Your message successfully send!",
-                                    type: 'success',
-                                    showCancelButton: false,
-                                    allowOutsideClick: false,
-                                    confirmButtonColor: "green",
-                                    confirmButtonText: "Ok"
-                                });
-                            </script>
 
-                        }
-                        }
                     </div>
                     <div class="col col-md-5 address-form ">
                         <small>Worldwide website since 2022. We sell over 1000+ branded products on our website</small>
                         <ul>
-                            <li><a href="#" class="footer-menu"><i class="fa-solid fa-location-pin mt-3"></i> address</a></li>
-                            <li><a href="#" class="footer-menu"><i class="fa-solid fa-phone"></i> +93780182221</a></li>
-                            <li><a href="#" class="footer-menu"><i class="fa-solid fa-envelope"></i> wave.wss@gmial.com</a></li>
+                            <li><a href="#" class="footer-menu"><i class="fa-solid fa-location-pin mt-3"></i>Kabul, Afghanistan </a></li>
+                            <li><a href="#" class="footer-menu"><i class="fa-solid fa-phone"></i> +93770665909</a></li>
+                            <li><a href="habibi.zahra.ku@gmail.com" class="footer-menu"><i class="fa-solid fa-envelope"></i> wave.af@gmial.com</a></li>
                         </ul>
                     </div>
                 </div>
