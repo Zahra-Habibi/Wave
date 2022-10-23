@@ -31,8 +31,6 @@ namespace Final_Wave.DataLayer.Repository.Services
         {
             IQueryable<Product> products = _context.products.Where(x => x.ProductName.Contains(text));
 
-        
-
             if (categoryid.Count() > 0)
             {
                 products = products.Where(c => categoryid.Contains(c.CategoryId));

@@ -15,14 +15,22 @@ namespace Final_Wave.Controllers
         private readonly IUnitOfWork _context;
         private readonly INotyfService _notify;
         private readonly IMapper _mapper;
-        public MainSiteController(IUnitOfWork context, INotyfService noty,IMapper mapper)
+        private readonly IProductRepasitory _product;
+        public MainSiteController(IUnitOfWork context, INotyfService noty,IMapper mapper, IProductRepasitory product)
         {
             _context = context;
             _notify = noty;
             _mapper = mapper;
+            _product = product;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Home()
         {
             return View();
         }
@@ -37,11 +45,20 @@ namespace Final_Wave.Controllers
             var service = await _context.serviceUW.GetEntitiesAsync();
             return View(service);
         }
+
+        //product
         public async Task<IActionResult> Product()
         {
             var product = await _context.productUW.GetEntitiesAsync();
             return View(product);
         }
+
+        public async Task<IActionResult> ProductDetails(int id)
+        {
+            var product = await _context.productUW.GetByIdAsync(id);
+            return View(product);
+        }
+
 
         //team
         public async Task<IActionResult> Team()
@@ -57,29 +74,23 @@ namespace Final_Wave.Controllers
             return View(about);
         }
 
-        public IActionResult Contact(bool isSuccess = false)
+        public IActionResult Contact()
         {
-            ViewBag.IsSuccess = isSuccess;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Contact(ContactViewModel model)
+        public async Task<IActionResult> Contact(ContactViewModel contact)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
+           
 
-            ContactUs contact = new ContactUs
-            {
-                Name = model.Name,
-                Email = model.Email,
-                Message = model.Message,
-            };
-            await _context.conductUW.Create(contact);
+            //if (!ModelState.IsValid) return View(contact);
+            var mapModel = _mapper.Map<ContactUs>(contact);
+            await _context.conductUW.Create(mapModel);
             await _context.saveAsync();
-            _notify.Success("You Have new message in contact page!", 10);
-            return RedirectToAction(nameof(Contact), new { isSuccess = true });
+            _notify.Success("Your message was sent successfuly!");
+            return RedirectToAction(nameof(Contact));
         }
 
         [Authorize]
@@ -106,6 +117,9 @@ namespace Final_Wave.Controllers
             return RedirectToAction(nameof(Contact));
         }
 
+        //search
+
+ 
 
     }
 }

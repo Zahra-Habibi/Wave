@@ -93,6 +93,6 @@ app.MapAreaControllerRoute(
  "UserArea/{controller=Chat}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=MainSite}/{action=Index}/{id?}");
 
 app.Run();
