@@ -37,6 +37,9 @@ namespace Final_Wave.Core.ViewModels
 
         [Display(Name = "IsActive")]
         public bool IsActive { get; set; }
+
+        [Display(Name ="UserImage")]
+        public string? usrimag { get; set; }
     }
 
     public class ChangePasswordByAdminViewModel
