@@ -34,6 +34,7 @@ namespace Final_Wave.Controllers
         {
             return View();
         }
+
         public async Task<IActionResult> ServiceDetials(int id)
         {
             var service = await _context.serviceUW.GetByIdAsync(id);
@@ -83,8 +84,6 @@ namespace Final_Wave.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Contact(ContactViewModel contact)
         {
-           
-
             //if (!ModelState.IsValid) return View(contact);
             var mapModel = _mapper.Map<ContactUs>(contact);
             await _context.conductUW.Create(mapModel);
@@ -108,18 +107,84 @@ namespace Final_Wave.Controllers
             //if (!ModelState.IsValid)
             //    return View(model);
             ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
+            Order order = new Order
+            {
+                Name = model.Name,
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                EmailAddress = model.EmailAddress,
+               Description = model.Description,
+               OrderTime=DateTime.Now,
+               UserId = model.UserId,
+               ProductId=model.ProductId
 
-            model.OrderTime = DateTime.Now;
-            var mapModel = _mapper.Map<Order>(model);
-            await _context.orderUW.Create(mapModel);
+            };
+            await _context.orderUW.Create(order);
             await _context.saveAsync();
             _notify.Success("You Have new order!", 10);
             return RedirectToAction(nameof(Contact));
         }
 
-        //search
+        //job
+        [HttpGet]
+        public async Task<IActionResult> AddJob()
+        {
+            return View();
+        }
 
- 
+        [HttpPost]
+        public async Task<IActionResult> AddJob(JobViewModel model, IFormFile file, IFormFile file1)
+        {
+            //if (!ModelState.IsValid)
+            //    return View(model);
+
+            if (file == null)
+            {
+                ModelState.AddModelError("Image", "Please choose an image .");
+                return View(model);
+
+            }
+            if(file1 == null)
+            {
+                ModelState.AddModelError("resume", "Please choose your Resume .");
+                return View(model);
+            }
+
+            string imgname = "Img/Job/" + UploadFiles.CreateImg(file, "Job");
+            if (imgname == "false")
+            {
+                TempData["Result"] = "false";
+                return RedirectToAction(nameof(Index));
+            }
+
+            string imgname1 = "Img/Resume/" + UploadFiles.CreateImg(file1, "Resume");
+            if (imgname1 == "false")
+            {
+                TempData["Result"] = "false";
+                return RedirectToAction(nameof(Index));
+            }
+
+            Job jabb = new Job
+            {
+                Name = model.Name,
+                LastName = model.LastName,
+                PhoneNumber = model.PhoneNumber,
+                EmailAddress = model.EmailAddress,
+                Image = imgname,
+                Resume = imgname1,
+                Description = model.Description,
+                JobName = model.JobName,
+
+            };
+            await _context.JobUW.Create(jabb);
+            await _context.saveAsync();
+            _notify.Success("You successfuly Added  !", 5);
+            return RedirectToAction(nameof(AddJob));
+        }
+
+
+
+
 
     }
 }

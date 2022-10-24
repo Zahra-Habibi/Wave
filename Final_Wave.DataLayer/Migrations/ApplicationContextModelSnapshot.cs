@@ -291,14 +291,10 @@ namespace Final_Wave.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmailAddress")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -324,8 +320,6 @@ namespace Final_Wave.DataLayer.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("ProductId");
 
@@ -812,6 +806,9 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("usrimag")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
@@ -850,10 +847,6 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Order", b =>
                 {
-                    b.HasOne("Final_Wave.DataLayer.Entites.Category", null)
-                        .WithMany("orders")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("Final_Wave.DataLayer.Entites.Product", "Product")
                         .WithMany("orders")
                         .HasForeignKey("ProductId")
@@ -946,8 +939,6 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Category", b =>
                 {
-                    b.Navigation("orders");
-
                     b.Navigation("products");
                 });
 

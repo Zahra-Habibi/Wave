@@ -5,6 +5,7 @@ using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Final_Wave.Controllers
 {
@@ -31,10 +32,17 @@ namespace Final_Wave.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task< IActionResult> Register(RegisterViewModel model)
+        public async Task< IActionResult> Register(RegisterViewModel model, IFormFile file)
         {
             //if (!ModelState.IsValid)
             //    return View(model);
+
+            string imgname = "Img/UserProfile/" + UploadFiles.CreateImg(file, "UserProfile");
+            if (imgname == "false")
+            {
+                TempData["Result"] = "false";
+                return RedirectToAction(nameof(Register));
+            }
 
             if (await _usermanager.FindByNameAsync(model.UserName) != null)
             {
@@ -47,15 +55,15 @@ namespace Final_Wave.Controllers
                 PasswordHash = model.PasswordHash,
                 IsActive = true,
                 IsAdmin = 2,
+                usrimag = imgname,
             };
             IdentityResult result = await _usermanager.CreateAsync(user, model.PasswordHash);
             if (result.Succeeded)
             {
-                return RedirectToAction(nameof(Login));
-                _notify.Success("You successfuly Registerd  !", 5);
+                return RedirectToAction(nameof(Login));   
             }
-            return View(model);
-         
+            _notify.Success("You successfuly Registerd  !");
+            return RedirectToAction(nameof(Login));
             
         }
 
@@ -68,11 +76,11 @@ namespace Final_Wave.Controllers
                 var user = await _usermanager.GetUserAsync(HttpContext.User);
                 if (user.IsAdmin == 1)
                 {
-                    return Redirect("AdminArea/DashBoard/Index");
+                    return Redirect("/AdminArea/DashBoard/Index");
                 }
                 else
                 {
-                    return Redirect("UserArea/UserHome/Index");
+                    return Redirect("/UserArea/UserHome/Index");
                 }
             }
             else
@@ -102,7 +110,7 @@ namespace Final_Wave.Controllers
                     if (user.IsAdmin == 1)
                     {
                         //Admin
-                        return Redirect("/AdminArea/UserManager/Index");
+                        return Redirect("/AdminArea/DashBoard/Index");
                     }
                     else if (user.IsAdmin == 2)
                     {
@@ -113,7 +121,7 @@ namespace Final_Wave.Controllers
                 }
                     else
                     {
-                        ModelState.AddModelError("Password" ,"Opps, your information is invalid!  ");
+                        ModelState.AddModelError("Password" ,"Oops, your information is invalid!  ");
                         return View(model);
                     }
 

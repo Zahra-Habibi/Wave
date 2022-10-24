@@ -20,6 +20,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             _mapper = mapper;
             _notify = service;
         }
+
+
         [HttpGet]
         public async Task<IActionResult> Index()
         {

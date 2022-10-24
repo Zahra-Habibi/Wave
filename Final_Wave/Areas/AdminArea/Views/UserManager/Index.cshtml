@@ -36,6 +36,7 @@
                                 <th scope="col">Register_Date</th>
                                 <th scope="col">IsActive</th>
                                 <th scope="col">Is Admin</th>
+                                <th scope="col">UserProfile</th>
                                 <th scope="col">Operation</th>
                             </tr>
                         </thead>
@@ -60,6 +61,9 @@
                                                       User
                                                 </td>
                                              }
+                                        <td class="text-center">
+                                            <img src="~/@item.usrimag" alt="@item.UserName" title="userprofile" class="imgsize img-thumbnail" />
+                                        </td>
                                          <td class="text-center">
                                             
                                              <a asp-action="EditUser" asp-route-userId="@item.Id" asp-controller="UserManager" title="EditUser" class="btn-coloredit btn mr-3"><i class="fa fa-edit"></i></a>

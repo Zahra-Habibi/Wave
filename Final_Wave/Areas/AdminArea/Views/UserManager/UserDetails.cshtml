@@ -22,6 +22,10 @@
                               <p><strong>IsActive : </strong> @Model.IsActive</p>
                               <p> <strong>IsAdmin : </strong> @Model.IsAdmin</p>
                               <p><strong>RegisterDate: </strong>@Model.RegisterDate</p>
+                            <p>
+                                <strong>User_Profile :&nbsp;</strong>
+                                <img src="~/@Model.usrimag" alt="@Model.UserName" title="userprofile" class="imgdetail" />
+                            </p>
                           </div>
                          <div class="form-group text-right m-b-0 d-flex justify-content-center">
                              <a asp-action="Index" class="btn btn-back mb-3">  Back    </a>

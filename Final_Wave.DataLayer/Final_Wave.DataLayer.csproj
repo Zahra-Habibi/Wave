@@ -7,6 +7,192 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Entites\Views\Account\AccessDenied.cshtml" />
+    <None Remove="Entites\Views\Account\Login.cshtml" />
+    <None Remove="Entites\Views\Account\Register.cshtml" />
+    <None Remove="Entites\Views\Home\Err404.cshtml" />
+    <None Remove="Entites\Views\Home\Index.cshtml" />
+    <None Remove="Entites\Views\Home\Privacy.cshtml" />
+    <None Remove="Entites\Views\MainSite\About.cshtml" />
+    <None Remove="Entites\Views\MainSite\AddJob.cshtml" />
+    <None Remove="Entites\Views\MainSite\Contact.cshtml" />
+    <None Remove="Entites\Views\MainSite\Home.cshtml" />
+    <None Remove="Entites\Views\MainSite\Index.cshtml" />
+    <None Remove="Entites\Views\MainSite\Order.cshtml" />
+    <None Remove="Entites\Views\MainSite\Product.cshtml" />
+    <None Remove="Entites\Views\MainSite\ProductDetails.cshtml" />
+    <None Remove="Entites\Views\MainSite\ProductSearch.cshtml" />
+    <None Remove="Entites\Views\MainSite\ServiceDetials.cshtml" />
+    <None Remove="Entites\Views\MainSite\ShowService.cshtml" />
+    <None Remove="Entites\Views\MainSite\Team.cshtml" />
+    <None Remove="Entites\Views\Shared\Components\ContactComponent\MyContacttView.cshtml" />
+    <None Remove="Entites\Views\Shared\Components\ProductComponent\MyProductView.cshtml" />
+    <None Remove="Entites\Views\Shared\Components\ProductGalleryComponent\GalleryProduct.cshtml" />
+    <None Remove="Entites\Views\Shared\Components\RelatedProduct\RelatedProduct.cshtml" />
+    <None Remove="Entites\Views\Shared\Components\ServiceComponent\MyServiceView.cshtml" />
+    <None Remove="Entites\Views\Shared\Components\ServiceDetialsComponent\MyServieDetialView.cshtml" />
+    <None Remove="Entites\Views\Shared\Components\ShowserviceComponent\MyAllServiceView.cshtml" />
+    <None Remove="Entites\Views\Shared\Components\SliderComponent\MySliderView.cshtml" />
+    <None Remove="Entites\Views\Shared\Components\TeamComponent\MyTeamView.cshtml" />
+    <None Remove="Entites\Views\Shared\Error.cshtml" />
+    <None Remove="Entites\Views\Shared\_Account.cshtml" />
+    <None Remove="Entites\Views\Shared\_CssLinks.cshtml" />
+    <None Remove="Entites\Views\Shared\_JsLinks.cshtml" />
+    <None Remove="Entites\Views\Shared\_Layout.cshtml" />
+    <None Remove="Entites\Views\Shared\_SiteLayout.cshtml" />
+    <None Remove="Entites\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Remove="Entites\Views\_ViewImports.cshtml" />
+    <None Remove="Entites\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Entites\Views\Account\AccessDenied.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Account\Login.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Account\Register.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Home\Err404.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Home\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Home\Privacy.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\About.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\AddJob.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\Contact.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\Home.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\Order.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\Product.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\ProductDetails.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\ProductSearch.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\ServiceDetials.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\ShowService.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\MainSite\Team.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Components\ContactComponent\MyContacttView.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Components\ProductComponent\MyProductView.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Components\ProductGalleryComponent\GalleryProduct.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Components\RelatedProduct\RelatedProduct.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Components\ServiceComponent\MyServiceView.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Components\ServiceDetialsComponent\MyServieDetialView.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Components\ShowserviceComponent\MyAllServiceView.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Components\SliderComponent\MySliderView.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Components\TeamComponent\MyTeamView.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\Error.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\_Account.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\_CssLinks.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\_JsLinks.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\_SiteLayout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\Shared\_ValidationScriptsPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Entites\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />

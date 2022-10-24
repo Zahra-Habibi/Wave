@@ -32,9 +32,15 @@
 
                                 <div class="ml-3 mb-3 mr-3">
                                     <label><b>Password</b></label>
-                                    <input type="text" asp-for="PasswordHash" class="form-control " placeholder=" UserName..." autocomplete="off">
+                                    <input type="password" asp-for="PasswordHash" class="form-control " placeholder=" UserName..." autocomplete="off">
                                     <span asp-validation-for="PasswordHash" class="text-danger"></span>
                                </div>
+
+                            <div class=" mb-3 my-3 form-group">
+                                <label asp-for="usrimag">UserProfile</label>
+                                <input type="file" name="file" parsley-trigger="change" class="form-control" placeholder="Image">
+                                <span asp-validation-for="usrimag" class="text-danger"></span>
+                            </div>
 
                                 <div class="ml-3 mb-3 mr-3">
                                     <label>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Final_Wave.DataLayer.Entites.Service>
+@{
+    ViewData["Title"] = "Wave software service";
+    ViewData["Description"] = "This site is a new site , It provide diffirent software (desktop application , mobile application web application, video and image editing,banner , prototype.).";
+    Layout = "_SiteLayout";
+}
+<br /><br /><br />
+
+<!-- start of services -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-4 col-md-4"></div>
+        <div class="col-sm-4 col-md-4">
+            <h3 class="service-page-title">Services you can trust</h3>
+        </div>
+        <div class="col-sm-4 col-md-4"></div>
+    </div>
+    <div class="row mt-5">
+            @foreach (var item in Model)
+            {
+               if(!item.IsDelete){
+                <div class="col-sm-6 col-md-3">
+                    <div class="card text-center service-card mt-2">
+                        <a asp-controller="Home" asp-action="Services" class=" service-icon">
+                            <img src="~/@item.ImageUrl" class="img-fluid " alt="@item.Alt" title="@item.Title" class="cardImg img-responsive" asp-append-version="true" />
+                        </a>
+
+                        <div class="card-body">
+                            <h5 class="card-title custome-service-title">@item.Name</h5>
+                            <p class="card-text">  @Html.Raw(item.Descriptions)</p>
+                            <a asp-controller="MainSite" asp-action="MyServieDetialView" asp-route-id="@item.Id" class="card-link service-detail-btn form-control">Service Detail</a>
+                        </div>
+                    </div>
+                </div>
+               }
+            }
+    </div>
+</div>
+<!-- end of services -->
+<br>
