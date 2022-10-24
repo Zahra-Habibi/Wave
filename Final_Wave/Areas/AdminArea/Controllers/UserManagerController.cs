@@ -1,10 +1,12 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
+using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32;
 
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
@@ -40,10 +42,17 @@ namespace Final_Wave.Areas.AdminArea.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddUser(UserViewModel model)
+        public async Task<IActionResult> AddUser(UserViewModel model, IFormFile file)
         {
             //if (!ModelState.IsValid)
             //    return View(model);
+
+            string imgname = "Img/UserProfile/" + UploadFiles.CreateImg(file, "UserProfile");
+            if (imgname == "false")
+            {
+                TempData["Result"] = "false";
+                return RedirectToAction(nameof(Index));
+            }
 
             if (await _usermanager.FindByNameAsync(model.UserName) != null)
                 {
@@ -56,13 +65,16 @@ namespace Final_Wave.Areas.AdminArea.Controllers
                     PasswordHash = model.PasswordHash,
                     IsActive = true,
                     IsAdmin = model.IsAdmin,
+                    usrimag = imgname,
                 };
                 IdentityResult result = await _usermanager.CreateAsync(user, model.PasswordHash);
-                if (result.Succeeded)
+                if (!result.Succeeded)
                 {             
-                    return RedirectToAction(nameof(Index));
+                    
+                  return RedirectToAction(nameof(AddUser));
                 }
-            return View(model);
+            _notify.Success("You successfuly Registerd  !");
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -81,28 +93,32 @@ namespace Final_Wave.Areas.AdminArea.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditUser(UserViewModel model)
+        public async Task<IActionResult> EditUser(UserViewModel model, IFormFile file)
         {
-           var user = await _usermanager.FindByIdAsync(model.Id);
-                IdentityResult result = await _usermanager.UpdateAsync(_mapper.Map(model, user));
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index", "UserManager");
-                  _notify.Success("You successfuly Edited !", 5);
+            if (file != null)
+            {
+                string imgname = "Img/UserProfile/" + UploadFiles.CreateImg(file, "UserProfile");
+
+                bool DeleteImage = UploadFiles.DeleteImg("UserProfile", model.usrimag);
+                model.usrimag = imgname;
             }
-            return View(model);
+            var user = await _usermanager.FindByIdAsync(model.Id);
+                IdentityResult result = await _usermanager.UpdateAsync(_mapper.Map(model, user));
+                if (!result.Succeeded)
+                {
+                return View(model);
+                }
+            _notify.Success("You successfuly Edited !", 5);
+            return RedirectToAction("Index", "UserManager");
         }
 
 
-
-  
         public async Task<IActionResult> UserDetails(string userId)
         {
             var model = await _context.UserUW.GetByIdAsync(userId);
             _notify.Information("You checked all the information  !", 5);
             return View(model);
         }
-
 
 
 
@@ -117,6 +133,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             ViewBag.UserName = UserName;
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

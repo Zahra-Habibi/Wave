@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Final_Wave.DataLayer.Entites.Product>
+
+@foreach (var item in Model)
+{
+    if(!item.IsDelete){
+        <div class="col-sm-6 col-md-3">
+            <div class="card product-back">
+
+                <div>
+                     <a asp-action="ProductDetails" asp-controller="MainSite" asp-route-id="@item.Id">
+                        <img src="~/@item.ProductImage" class="  product-img img-responsive" alt="@item.Alt" title="@item.Title" asp-append-version="true">
+                        </a>
+                </div>
+               
+                <div class="card-body">
+                    <h5 class="custome-service-title ">@item.ProductName</h5>
+                    <p class="card-text"> @Html.Raw(item.ShortDescription)</p>
+                    <a href="#" class="card-link service-detail-btn form-control text-center">product Detail</a>
+                </div>
+            </div>
+        </div>
+    }
+}

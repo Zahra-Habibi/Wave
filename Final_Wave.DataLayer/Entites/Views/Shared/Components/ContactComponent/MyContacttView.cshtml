@@ -1,0 +1,19 @@
+﻿@model Final_Wave.DataLayer.Entites.ContactUs
+
+<div class="col-sm-12 col-md-12">
+    <form method="post" asp-action="Contact" asp-antiforgery="true">
+        <div class="form-row">
+            <div class="col form-home">
+                <input type="text" asp-for="Name" class="form-control" placeholder="Enter Your Full name" name="name" required>
+            </div>
+            <div class="col form-home">
+                <input type="email" asp-for="Email" class="form-control" placeholder="Enter Your Email" name="email" required>
+            </div>
+        </div>
+        <div class="mt-3 form-home">
+            <textarea class="form-control" asp-for="Message" rows="5" id="comment" placeholder="Type Your Message:"></textarea>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-custom mt-3 float-right" id="submit-error-home">
+    </form>
+
+</div>

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Final_Wave.DataLayer.Entites.Product>
+
+    @foreach(var item in Model){
+    <div class="col-sm-6 col-md-3 mt-2 ">
+        <div class="card silimar-product-item">
+            <img src="~/@item.ProductImage" class="silimar-product-img img-responsive">
+            <div class="card-body text-center">@item.ProductName</div>
+            <a href="product-detail.html" class="card-link product-want-btn form-control">See Detail</a>
+        </div>
+    </div>
+    }

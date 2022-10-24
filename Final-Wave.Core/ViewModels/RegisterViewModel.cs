@@ -31,5 +31,8 @@ namespace Final_Wave.Core.ViewModels
 
         [Display(Name = "IsAdmin")]
         public byte IsAdmin { get; set; }
+
+        [Display(Name = "UserImage")]
+        public string? usrimag { get; set; }
     }
 }

@@ -9,12 +9,9 @@ namespace Final_Wave.DataLayer.Entites
 {
     public class ApplicationUser: IdentityUser
     {
-        public ApplicationUser()
-        {
-            Messages =new HashSet<Message>();
-        }
         public bool IsActive { get; set; }
         public byte IsAdmin { get; set; }
+        public string? usrimag { get;set; }
         public DateTime RegisterDate { get; set; } = DateTime.UtcNow;
         public List<Order> orders { get; set; }
 
