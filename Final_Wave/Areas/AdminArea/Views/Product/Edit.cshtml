@@ -28,7 +28,7 @@
           
                                 <div class="ml-3 mb-3 mr-3">
                                      <label asp-for="CategoryId" class="control-label"> Product Category</label>
-                                     <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId" >
+                                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.ProductId">
                                         <option selected>Select a Category</option>
                                      </select>
                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
