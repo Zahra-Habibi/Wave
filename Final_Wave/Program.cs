@@ -11,19 +11,21 @@ using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using static System.Net.Mime.MediaTypeNames;
 using Polly;
+using Final_Wave.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//signalr
+builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-//signalr
-builder.Services.AddSignalR();
+
 
 //Identity Methods
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
@@ -34,7 +36,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
     option.Password.RequireUppercase = false;
 }).AddEntityFrameworkStores<ApplicationContext>()
     .AddDefaultTokenProviders();
-builder.Services.AddSignalR();
+
 
 
 #region RegisterInterfaces
@@ -94,5 +96,5 @@ app.MapAreaControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=MainSite}/{action=Index}/{id?}");
-
+app.MapHub<UserHub>("/hubs/usercount");
 app.Run();

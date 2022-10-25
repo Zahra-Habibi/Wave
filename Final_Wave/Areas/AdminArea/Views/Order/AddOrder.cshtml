@@ -1,0 +1,90 @@
+﻿@model OrderViewModel
+@{
+    ViewData["Title"] = "AddOrder";
+}
+
+
+<div class="mt-5"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-plus "> Order </i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-8  offset-2 card-box">
+                        <form asp-controller="Order" asp-action="AddOrder" method="post" class="mt-5" enctype="multipart/form-data">
+                            <div class="ml-3 mb-3 mr-3 ">
+                                <label> Prodcut Name</label>
+                                <input asp-for="Name" type="text" placeholder="Product Name " class="form-control" autocomplete="off">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="ml-3 mb-3 mr-3">
+                                <label asp-for="ProductId" class="control-label"> Choose Product</label>
+                                <select asp-for="ProductId" class="form-select" asp-items="ViewBag.ProductId ">
+                                    <option selected>Select a product</option>
+                                </select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>LastName</label>
+                                <input asp-for="LastName" type="text" placeholder="Alt" class="form-control" autocomplete="off">
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>Title</label>
+                                <input asp-for="PhoneNumber" type="text" placeholder="Title" class="form-control" autocomplete="off">
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <input  asp-for="UserId"/>
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>Count</label>
+                                <input asp-for="EmailAddress" type="email" placeholder="Count" class="form-control" autocomplete="off">
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="ml-3 mb-3 mr-3">
+                                <label> Short Descriptioin</label>
+                                <textarea asp-for="Description" placeholder="Short Description " class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                <div class="mr-3 mb-3">
+                                    <button class="btn btn-success btn-colorsave " type="submit">
+                                        Save  <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>&nbsp;
+                                <div class="ml-3 mb-3">
+                                    <a asp-action="ShowProduct" class="btn btn-back btn-primary">
+                                        Cancel
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/panel/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("ShortDescription");
+</script>
+
+
+
