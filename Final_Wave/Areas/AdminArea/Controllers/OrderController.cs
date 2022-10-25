@@ -1,5 +1,6 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
+using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
@@ -32,6 +33,36 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             return View(order);
         }
 
+        public async Task<IActionResult> AddOrder()
+        {
+            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddOrder(OrderViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
+            Order order = new Order
+            {
+                Name = model.Name,
+               LastName=model.LastName,
+               Description=model.Description,
+               UserId=model.UserId,
+               EmailAddress=model.EmailAddress,
+               PhoneNumber=model.PhoneNumber,
+               OrderTime=DateTime.Now,
+            };
+            await _context.orderUW.Create(order);
+            await _context.saveAsync();
+            _notify.Success("You successfuly Added  !", 5);
+            return RedirectToAction(nameof(Index));
+        }
+
+
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
@@ -45,6 +76,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
             Order order = await _context.orderUW.GetByIdAsync(id);
             return View(order);
         }
@@ -56,7 +88,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
 
             //if (!ModelState.IsValid)
             //    return View(model);
-
+            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
             _context.orderUW.Update(model);
             await _context.saveAsync();
             _notify.Success("You successfuly Edited the socialMedia!", 5);
