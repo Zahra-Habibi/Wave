@@ -4,7 +4,7 @@
     ViewData["Description"] = "This site is a new site , It provide diffirent software (desktop application , mobile application web application, video and image editing,banner , prototype.).";
     Layout = "_SiteLayout";
 }
-<br><br><br><br><br><br><br>
+<br><br><br>
 <!-- start of job form -->
 <div class="container custome-bubles">
     <div class="row">
@@ -20,50 +20,38 @@
                 </div>
                 <div class="row mt-4">
                     <!-- start of form tag -->
-                    <form class="col-md-12" asp-controller="MainSite" asp-action="AddJob" method="post" enctype="multipart/form-data">
+                    <form class="col-md-12">
                         <div class="row">
                             <div class="col">
-                                <label hidden><b>User_Name</b></label>
-                                <input asp-for="Name" type="text" placeholder="user Name " class="form-control" autocomplete="off">
-                                <span asp-validation-for="Name" class="text-danger"></span>
+                                <input type="text" class="form-control" placeholder="Your name" name="name" required>
                             </div>
                             <div class="col">
-                                 <label hidden><b>Job_Name</b></label>
-                                 <input asp-for="JobName" type="text" placeholder="JobName" class="form-control" autocomplete="off">
-                                 <span asp-validation-for="JobName" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <label hidden><b>LastName</b></label>
-                                <input asp-for="LastName" type="text" placeholder="LastName" class="form-control" autocomplete="off">
-                                <span asp-validation-for="LastName" class="text-danger"></span><br />
-
-                                <label hidden><b>Email</b></label>
-                                <input asp-for="EmailAddress" type="text" placeholder="Email" class="form-control" autocomplete="off">
-                                <span asp-validation-for="EmailAddress" class="text-danger"></span><br />
-
-                                <label hidden><b>PhoneNumber</b></label>
-                                <input asp-for="PhoneNumber" type="text" placeholder="Phone" class="form-control" autocomplete="off">
-                                <span asp-validation-for="PhoneNumber" class="text-danger"></span><br />
-                            </div>
-                            <div class="col">
-                                <label hidden> <b>Short_Descriptioin</b> </label>
-                                <textarea asp-for="Description" placeholder="Short Description " class="form-control"></textarea>
-                                <span asp-validation-for="Description" class="text-danger"></span>
+                                <select name="category" class="form-control" required>
+                                    <option value="category">Choose skill</option>
+                                    <option value="web design">Web design</option>
+                                    <option value="web application">Web application</option>
+                                    <option value="Mobile application">Mobile application</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col">
-                                <label hidden asp-for="Image">Image</label>
-                                <input type="file" name="file" parsley-trigger="change" class="form-control" placeholder="Image">
-                                <span asp-validation-for="Image" class="text-danger"></span>
+                                <input type="text" class="form-control" placeholder="Your Last name" name="last-name" required><br>
+                                <input type="email" class="form-control" placeholder="Your Email address" name="email" required><br>
+                                <input type="number" class="form-control" placeholder="Your Phone number" name="Phone" required>
                             </div>
-
                             <div class="col">
-                                <label hidden asp-for="Resume" >Resume</label>
-                                <input  type="file" name="file1"  parsley-trigger="change" class="form-control"  placeholder="Resume" >
-                                <span  asp-validation-for="Resume" class="text-danger"></span>
+                                <textarea class="form-control" rows="6" name="message" placeholder="Discription"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                Photo: <input type="file"
+                                              id="avatar" name="avatar"
+                                              accept="image/jpeg">
+                            </div>
+                            <div class="col">
+                                Resume: <input type="file" name="file" id="file">
                             </div>
                         </div>
                         <input type="submit" value="Send" class="mx-auto d-block btn-send-order mt-3">
