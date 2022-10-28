@@ -3,8 +3,8 @@
 @foreach (var item in Model)
 {
     if(!item.IsDelete){
-        <div class="col-sm-6 col-md-3">
-            <div class="card product-back">
+   <div class="col-sm-6 col-md-3">
+                <div class="card product-back">
 
                 <div>
                      <a asp-action="ProductDetails" asp-controller="MainSite" asp-route-id="@item.Id">
@@ -19,5 +19,6 @@
                 </div>
             </div>
         </div>
+        <br />
     }
 }

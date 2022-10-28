@@ -29,7 +29,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             node.Add(new TreeViewModel
             {
                 id = "1",
-                text = "Webdeveloping",
+                text = "Skills",
                 parent = "#"
             });
 

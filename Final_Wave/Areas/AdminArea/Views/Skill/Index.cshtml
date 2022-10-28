@@ -84,12 +84,12 @@
             }).jstree({
                 "core": {
                     "themes": {
-                        "variant":"large"
+                        "variant": "large"
                     },
-                    "data":  @Html.Raw(ViewBag.JobJson) ,
+                    "data": @Html.Raw(ViewBag.JobJson) ,
                 },
                 "checkbox": {
-                    "Keep_selected_style":false
+                    "Keep_selected_style": false
                 },
             }).on("loaded.jstree", function () {
                 $.jstree.reference('#jstreejobs').open_all();

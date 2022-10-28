@@ -38,8 +38,10 @@
                 <div class="row mt-3">
                     @foreach(var item in Model)
                     {
-                     <div class="col-sm-6 col-md-3 mt-2 ">
-                         <div class="card silimar-product-item">
+                if (!item.IsDelete)
+                {
+                    <div class="col-sm-6 col-md-3 mt-2 ">
+                        <div class="card silimar-product-item">
                            <img src="~/@item.ProductImage" alt="@item.Alt" title="@item.Title" class="   product-img img-responsive" asp-append-version="true">
                            <div class="card-body text-center">
                               <h5 class="custome-service-title ">@item.ProductName</h5>
@@ -48,6 +50,7 @@
                            </div>
                          </div>
                      </div>
+                } 
                     }
                 </div>
 
