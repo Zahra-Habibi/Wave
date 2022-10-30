@@ -54,9 +54,9 @@ namespace Final_Wave.Controllers
             return View(product);
         }
 
-        public async Task<IActionResult> ProductDetails(int id)
+        public async Task<IActionResult> ProductDetails(int Id)
         {
-            var product = await _context.productUW.GetByIdAsync(id);
+            var product = await _context.productUW.GetByIdAsync(Id);
             return View(product);
         }
 
@@ -142,43 +142,26 @@ namespace Final_Wave.Controllers
             {
                 ModelState.AddModelError("Image", "Please choose an image .");
                 return View(model);
-
             }
-            if(file1 == null)
+    
+
+
+            if (file1 == null)
             {
-                ModelState.AddModelError("resume", "Please choose your Resume .");
+                ModelState.AddModelError("Resume", "Please choose your Resume .");
                 return View(model);
             }
+           /// ViewBag.SkillId = new SelectList(await _context.skillUW.GetEntitiesAsync(), "Id", "SkillName");
 
-            string imgname = "Img/Job/" + UploadFiles.CreateImg(file, "Job");
-            if (imgname == "false")
-            {
-                TempData["Result"] = "false";
-                return RedirectToAction(nameof(Index));
-            }
-
-            string imgname1 = "Img/Resume/" + UploadFiles.CreateImg(file1, "Resume");
-            if (imgname1 == "false")
-            {
-                TempData["Result"] = "false";
-                return RedirectToAction(nameof(Index));
-            }
-
-            Job jabb = new Job
-            {
-                Name = model.Name,
-                LastName = model.LastName,
-                PhoneNumber = model.PhoneNumber,
-                EmailAddress = model.EmailAddress,
-                Image = imgname,
-                Resume = imgname1,
-                Description = model.Description,
-                JobName = model.JobName,
-
-            };
-            await _context.JobUW.Create(jabb);
+            model.Date = DateTime.Now;
+            var imagename = "Img/Job/" + UploadFiles.CreateImg(file, "Job");
+            var imagname1 = "Img/Resume/" + UploadFiles.CreateImg(file1, "Resume");
+            var mapModel = _mapper.Map<Job>(model);
+            mapModel.Image = imagename;
+            mapModel.Resume = imagname1;
+            await _context.JobUW.Create(mapModel);
             await _context.saveAsync();
-            _notify.Success("You successfuly Added  !", 5);
+            _notify.Success("You sucessfully send your request    !", 5);
             return RedirectToAction(nameof(AddJob));
         }
 
