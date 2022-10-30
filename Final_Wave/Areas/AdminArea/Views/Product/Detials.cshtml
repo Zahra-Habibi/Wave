@@ -19,7 +19,8 @@
                  <div class="divstyle-detail">
                      <div class="row p-5">
                         <p> <strong>ProductName : </strong>@Model.ProductName </p>
-                        <p><strong>Description : </strong> @Model.ShortDescription</p>
+                        <p><strong>Description : </strong>@Html.Raw(Model.ShortDescription)</p>
+                            <p><strong>Description : </strong>@Html.Raw(Model.FullDescription)</p>
                         <p> <strong>IsActive : </strong> @Model.IsActive</p>
                         <p> <strong>IsDelete : </strong> @Model.IsDelete</p>
                         <p> <strong>CategoryId : </strong> @Model.CategoryId</p>

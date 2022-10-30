@@ -34,8 +34,8 @@ namespace Final_Wave.Controllers
         [ValidateAntiForgeryToken]
         public async Task< IActionResult> Register(RegisterViewModel model, IFormFile file)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
             string imgname = "Img/UserProfile/" + UploadFiles.CreateImg(file, "UserProfile");
             if (imgname == "false")

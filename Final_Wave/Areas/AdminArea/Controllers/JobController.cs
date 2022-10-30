@@ -41,12 +41,12 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [HttpPost]
         public async Task<IActionResult> AddJob(JobViewModel model, IFormFile file,IFormFile file1)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
             if (file == null)
             {
-                ModelState.AddModelError("Image", "Please choose an image for.");
+                ModelState.AddModelError("Image", "Please choose your image .");
                 return View(model);
 
             }
@@ -58,6 +58,12 @@ namespace Final_Wave.Areas.AdminArea.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            if (file1 == null)
+            {
+                ModelState.AddModelError("Resume", "Please choose your resume.");
+                return View(model);
+
+            }
             string imgname1 = "Img/Resume/" + UploadFiles.CreateImg(file1, "Resume");
             if (imgname1 == "false")
             {
@@ -75,6 +81,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
                 Resume=imgname1,
                 Description=model.Description,
                 JobName=model.JobName,
+        
             
         };
             await _context.JobUW.Create(jabb);

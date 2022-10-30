@@ -42,6 +42,8 @@ namespace Final_Wave.Core.ViewModels
         public int count { get; set; }
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
+        [Display(Name ="fullDescription")]
+        public string FullDescription { get; set; }
 
         public ICollection<ProductGalleryViewModel> Photos { get; set; }
         public int CategoryId { get; set; }

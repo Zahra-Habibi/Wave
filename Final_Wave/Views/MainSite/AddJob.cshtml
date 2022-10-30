@@ -20,41 +20,51 @@
                 </div>
                 <div class="row mt-4">
                     <!-- start of form tag -->
-                    <form class="col-md-12">
+                    <form class="col-md-12" asp-controller="MainSite" asp-action="AddJob" asp-antiforgery="true" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger">
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Your name" name="name" required>
+                                <input type="text" asp-for="Name" class="form-control" placeholder="Your name" name="name" required>
+                                 <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
                             <div class="col">
-                                <select name="category" class="form-control" required>
-                                    <option value="category">Choose skill</option>
-                                    <option value="web design">Web design</option>
-                                    <option value="web application">Web application</option>
-                                    <option value="Mobile application">Mobile application</option>
-                                </select>
+                                    <label><b>Job_Name</b></label>
+                                    <input asp-for="JobName" type="text" placeholder="JobName" class="form-control" autocomplete="off">
+                                    <span asp-validation-for="JobName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Your Last name" name="last-name" required><br>
-                                <input type="email" class="form-control" placeholder="Your Email address" name="email" required><br>
-                                <input type="number" class="form-control" placeholder="Your Phone number" name="Phone" required>
+                                <input type="text" asp-for="LastName" class="form-control" placeholder="Your Last name" name="last-name" required><br>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                               
+                                <input type="email" asp-for="EmailAddress" class="form-control" placeholder="Your Email address" name="email" required><br>
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                
+                                <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Your Phone number" name="Phone" required>
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
                             <div class="col">
-                                <textarea class="form-control" rows="6" name="message" placeholder="Discription"></textarea>
+                                <textarea class="form-control" asp-for="Description" rows="6" name="message" placeholder="Discription"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col">
-                                Photo: <input type="file"
-                                              id="avatar" name="avatar"
-                                              accept="image/jpeg">
+                                    <label>Picture</label>
+                                    <input name="file" type="file" class="form-control">
+                                    <span asp-validation-for="Image" class="text-danger"></span>
                             </div>
+
                             <div class="col">
-                                Resume: <input type="file" name="file" id="file">
+                                    <label>Resume</label>
+                                    <input name="file" type="file" class="form-control">
+                                    <span asp-validation-for="Resume" class="text-danger"></span>
                             </div>
+
                         </div>
                         <input type="submit" value="Send" class="mx-auto d-block btn-send-order mt-3">
+                      </div>
                     </form>
                     <!-- end of form tag -->
                 </div>

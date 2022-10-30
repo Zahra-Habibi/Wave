@@ -52,14 +52,14 @@
                                         <input type="hidden" asp-for="Image" />
                                         <input name="file" type="file"  class="form-control mb-3">
                                         <span asp-validation-for="Image" class="text-danger "></span>
-                                        <img src="~/@Model.Image" alt="@Model.JobName" title="@Model.Name" class="img-responsive img-thumbnail imgdetail "/>
+                                        <img src="~/@Model.Image" alt="@Model.Name" title="@Model.Name" class="img-responsive img-thumbnail imgdetail "/>
                                   </div>
 
-                                <div class="ml-3 mb-3 mr-3">
+                              @*  <div class="ml-3 mb-3 mr-3">
                                        <label><b>Job_Name</b></label>
                                        <input asp-for="JobName" type="text" placeholder="JobName" class="form-control" autocomplete="off">
                                       <span asp-validation-for="JobName" class="text-danger"></span>
-                                 </div>
+                                 </div>*@
 
 
                                 <div class="ml-3 mb-3 mr-3">

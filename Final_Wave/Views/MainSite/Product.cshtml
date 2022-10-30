@@ -46,7 +46,7 @@
                            <div class="card-body text-center">
                               <h5 class="custome-service-title ">@item.ProductName</h5>
                               <p class="card-text"> @Html.Raw(item.ShortDescription)</p>
-                              <a href="#" class="card-link service-detail-btn form-control text-center">product Detail</a>
+                                <a asp-action="ProductDetails" asp-controller="MainSite" asp-route-Id="@item.Id" class="card-link service-detail-btn form-control text-center">product Detail</a>
                            </div>
                          </div>
                      </div>

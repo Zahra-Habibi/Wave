@@ -47,6 +47,12 @@ builder.Services.AddScoped<IProductRepasitory, ProductService>();
 builder.Services.AddAutoMapper(typeof(AutoMapping).Assembly);
 #endregion
 
+//end cors
+builder.Services.AddSignalR(options =>
+{
+    options.EnableDetailedErrors = true;
+});//on signalR
+
 // for taostr
 builder.Services.AddNotyf(config =>
 { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
@@ -82,6 +88,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapHub<ChatHub>("/ChatHub");
 
 
 app.MapAreaControllerRoute(
@@ -96,5 +103,4 @@ app.MapAreaControllerRoute(
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=MainSite}/{action=Index}/{id?}");
-app.MapHub<UserHub>("/hubs/usercount");
 app.Run();
