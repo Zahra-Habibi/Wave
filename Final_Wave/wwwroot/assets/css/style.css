@@ -504,15 +504,13 @@ a.home {
     width: 100%;
 }
 
-    .product-custome:hover {
-        background-color: white !important;
-        height: auto;
-        width: 100%;
-    }
-
 .img-product-detail {
     width: 100%;
     height: 350px;
+    box-shadow: 7px 7px 5px #aaa;
+}
+.img-product-detail:hover{
+    opacity:0.8;
 }
 
 .product-title {

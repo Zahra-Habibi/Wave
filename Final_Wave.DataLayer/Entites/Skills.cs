@@ -15,6 +15,8 @@ namespace Final_Wave.DataLayer.Entites
         public string Description { get; set;}
         public int level { get; set; }
         public bool IsDelete { get; set; }
+       
+
 
 
     }

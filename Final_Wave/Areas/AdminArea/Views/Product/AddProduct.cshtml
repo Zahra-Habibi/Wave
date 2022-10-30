@@ -69,10 +69,16 @@
 
 
                               <div class="ml-3 mb-3 mr-3">
-                                   <label> Short Descriptioin</label>
+                                   <label> Short_Descriptioin</label>
                                    <textarea asp-for="ShortDescription" placeholder="Short Description " class="form-control"></textarea>
                                    <span asp-validation-for="ShortDescription" class="text-danger"></span>
                               </div>
+
+                            <div class="ml-3 mb-3 mr-3">
+                                <label> Full_Descriptioin</label>
+                                <textarea asp-for="FullDescription" placeholder="Short Description " class="form-control"></textarea>
+                                <span asp-validation-for="FullDescription" class="text-danger"></span>
+                            </div>
 
                
                                <div class="form-group text-right m-b-0 d-flex justify-content-center">
@@ -98,6 +104,9 @@
 <script src="~/panel/ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.replace("ShortDescription");
+</script>
+<script>
+    CKEDITOR.replace("FullDescription");
 </script>
 
 

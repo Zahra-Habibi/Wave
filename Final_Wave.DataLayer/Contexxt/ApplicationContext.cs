@@ -25,11 +25,12 @@ namespace Final_Wave.DataLayer.Contexxt
         public DbSet<Skills> skills { get; set; }
 
         public DbSet<Order> orders { get; set; }
-
-       public  DbSet<ProductGallery> productGalleries { get; set; }
+        public DbSet<Job> job { get; set; }
+        public  DbSet<ProductGallery> productGalleries { get; set; }
         public DbSet<AdministrativeForm> administrativeForms { get; set; }
-        public DbSet<Job> jobs { get; set; }
+     
         public DbSet<Latter> letters { get; set; }
+        public DbSet<Information> information { get; set; }
 
  
 

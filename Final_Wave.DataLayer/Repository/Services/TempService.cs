@@ -9,15 +9,13 @@ using System.Threading.Tasks;
 
 namespace Final_Wave.DataLayer.Repository.Services
 {
-    public class TempService: ITemp
+    public class TempService : ITemp
     {
         private readonly ApplicationUser _context;
-  
+
         public TempService(ApplicationUser context)
         {
             _context = context;
-   ;
         }
-
     }
 }

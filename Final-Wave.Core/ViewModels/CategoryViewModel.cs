@@ -25,5 +25,6 @@ namespace Final_Wave.Core.ViewModels
         [Display(Name = "Title")]
         [Required(ErrorMessage = "Please enter the image title.")]
         public string Title { get; set; }
+        
     }
 }

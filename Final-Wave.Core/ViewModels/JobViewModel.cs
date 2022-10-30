@@ -25,7 +25,6 @@ namespace Final_Wave.Core.ViewModels
         public string LastName { get; set; }
 
         [Display(Name = "JobName")]
-        [Required(ErrorMessage = "Enter the job name!")]
         public string JobName { get; set; }
 
         [Display(Name = "PhoneNumber")]
@@ -54,8 +53,10 @@ namespace Final_Wave.Core.ViewModels
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public bool IsDelete { get; set; }
+       
 
-    
+
+
 
 
 
