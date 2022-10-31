@@ -17,9 +17,9 @@
                  <div class="container ">
                      <div class="divstyle-detail">
                           <div class="row p-5">
-
-                               <p> <strong>Service Name : </strong> @Model.Name</p>
-                              <p><strong>Desctiption : </strong> @Model.Descriptions</p>
+                              <p> <strong>Service Name : </strong> @Model.Name</p>
+                              <p><strong>Short_Desctiption : </strong> @Html.Raw(Model.ShortDescription)</p>
+                              <p><strong>Full_Desctiption : </strong> @Html.Raw(Model.Descriptions)</p>
                               <p> <strong> ServiceImage Title : </strong> @Model.Title</p>
                               <p> <strong> Image Alt : </strong> @Model.Alt</p>
                               <p> <strong>User status : </strong> @Model.IsDelete</p>

@@ -26,7 +26,7 @@ namespace Final_Wave.DataLayer.Entites
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
         public int CategoryId { get; set; }
-        public int OrderId { get; set; }
+       
         public int count { get; set; }
 
         [ForeignKey("CategoryId")]
@@ -35,6 +35,8 @@ namespace Final_Wave.DataLayer.Entites
      
          public ICollection<ProductGallery> ProductGalleries { get; set; }
 
-        public List<Order> orders { get; set; }
+        public List<Order> Orders { get; set; }
+
+
     }
 }

@@ -4,6 +4,7 @@ using Final_Wave.DataLayer.Contexxt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Wave.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221031105123_new11")]
+    partial class new11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -804,8 +806,8 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Order", b =>
                 {
-                    b.HasOne("Final_Wave.DataLayer.Entites.Product", "product")
-                        .WithMany("Orders")
+                    b.HasOne("Final_Wave.DataLayer.Entites.Product", "Product")
+                        .WithMany("orders")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -814,9 +816,9 @@ namespace Final_Wave.DataLayer.Migrations
                         .WithMany("orders")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("User");
+                    b.Navigation("Product");
 
-                    b.Navigation("product");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Product", b =>
@@ -899,9 +901,9 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Product", b =>
                 {
-                    b.Navigation("Orders");
-
                     b.Navigation("ProductGalleries");
+
+                    b.Navigation("orders");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.ApplicationUser", b =>

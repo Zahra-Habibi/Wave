@@ -10,7 +10,7 @@
                 </a>
                 <div class="card-body">
                     <h5 class="card-title custome-service-title">@item.Name</h5>
-                    <p class="card-text "> @Html.Raw(item.Descriptions)</p>
+                    <p class="card-text "> @Html.Raw(item.ShortDescription)</p>
                     <a asp-action="ServiceDetials" asp-controller="MainSite" asp-route-id="@item.Id" class="card-link service-detail-btn form-control text-center">Service Detail</a>
                 </div>
             </div>

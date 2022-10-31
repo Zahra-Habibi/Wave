@@ -32,10 +32,10 @@ namespace Final_Wave.Core.ViewModels
         [Display(Name = "Email")]
         [EmailAddress]
         [DataType(DataType.EmailAddress)]
-        public string? EmailAddress { get; set; }
+        public string EmailAddress { get; set; }
 
         [Display(Name = ("description"))]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         [Display(Name = "OrderTime")]
         public DateTime OrderTime { get; set; }

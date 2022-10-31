@@ -4,6 +4,7 @@ using Final_Wave.DataLayer.Contexxt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Wave.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221031120538_new111")]
+    partial class new111
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,6 +282,9 @@ namespace Final_Wave.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -298,15 +303,12 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("UserId");
 
@@ -804,9 +806,9 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Order", b =>
                 {
-                    b.HasOne("Final_Wave.DataLayer.Entites.Product", "product")
+                    b.HasOne("Final_Wave.DataLayer.Entites.Category", "category")
                         .WithMany("Orders")
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -816,7 +818,7 @@ namespace Final_Wave.DataLayer.Migrations
 
                     b.Navigation("User");
 
-                    b.Navigation("product");
+                    b.Navigation("category");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Product", b =>
@@ -894,13 +896,13 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Category", b =>
                 {
+                    b.Navigation("Orders");
+
                     b.Navigation("products");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Product", b =>
                 {
-                    b.Navigation("Orders");
-
                     b.Navigation("ProductGalleries");
                 });
 

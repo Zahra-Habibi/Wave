@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -44,11 +45,13 @@ namespace Final_Wave.Core.ViewModels
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Display(Name = ("Image"))]
-        public string? Image { get; set; }
+        [Display(Name = "UserPhoto")]
+        public IFormFile Coverphoto { get; set; }
+        public string Image { get; set; }
 
         [Display(Name = ("Resume"))]
-        public string? Resume { get; set; }
+        public IFormFile ResumePhoto { get; set; }
+        public string Resume { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; } = DateTime.UtcNow;

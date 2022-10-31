@@ -1,21 +1,6 @@
 ﻿@model IEnumerable<Final_Wave.DataLayer.Entites.Service>
 @foreach (var item in Model)
 {
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-sm-6 col-md-3 ml-5 mt-3">
-            <div class="card text-center mt-2 page-service-detail">
-                <a asp-controller="Home" asp-action="Services" class=" service-icon">
-                    <img src="~/@item.ImageUrl" class="img-fluid " alt="@item.Alt" title="@item.Title" class="cardImg img-responsive" asp-append-version="true" />
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-6">
-            <h4 class="mt-5 ml-3 service-title">@item.Name</h4>
-            <p class="mt-2 ml-3">@item.Descriptions</p>
-            <p class=" ml-3">@item.Descriptions</p>
-            <a href="#" class="want-product ml-3">Want This Service</a>
-        </div>
-    </div>
+    
 }
 
