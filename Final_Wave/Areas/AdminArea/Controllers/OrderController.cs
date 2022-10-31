@@ -35,7 +35,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
 
         public async Task<IActionResult> AddOrder()
         {
-            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
             return View();
         }
 
@@ -45,21 +45,14 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
-            Order order = new Order
-            {
-                Name = model.Name,
-               LastName=model.LastName,
-               Description=model.Description,
-               UserId=model.UserId,
-               EmailAddress=model.EmailAddress,
-               PhoneNumber=model.PhoneNumber,
-               OrderTime=DateTime.Now,
-            };
-            await _context.orderUW.Create(order);
+
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
+            model.OrderTime = DateTime.Now;
+            var mapModel = _mapper.Map<Order>(model);
+            await _context.orderUW.Create(mapModel);
             await _context.saveAsync();
-            _notify.Success("You successfuly Added  !", 5);
-            return RedirectToAction(nameof(Index));
+            _notify.Success("You successfully orderd!", 5);
+            return RedirectToAction(nameof(Order));
         }
 
 
@@ -76,7 +69,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
             Order order = await _context.orderUW.GetByIdAsync(id);
             return View(order);
         }
@@ -86,9 +79,9 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         public async Task<IActionResult> Edit(Order model)
         {
 
-            //if (!ModelState.IsValid)
-            //    return View(model);
-            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
+            if (!ModelState.IsValid)
+                return View(model);
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
             _context.orderUW.Update(model);
             await _context.saveAsync();
             _notify.Success("You successfuly Edited the socialMedia!", 5);

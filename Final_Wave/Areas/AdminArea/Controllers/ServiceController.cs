@@ -56,6 +56,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
                 Title = model.Title,
                 Alt = model.Alt,
                 ImageUrl = imgname,
+                ShortDescription = model.ShortDescription,
             };
             await _context.serviceUW.Create(service);
             await _context.saveAsync();
@@ -76,9 +77,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ServicesViewModel model, IFormFile file)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
-
+            if (!ModelState.IsValid)
+                return View(model);
 
             if (file != null)
             {

@@ -27,7 +27,13 @@
                                </div>
 
                                <div class="ml-3 mb-3 mr-3">
-                                    <label>Description</label>
+                                    <label>Short_Description</label>
+                                    <textarea type="text" asp-for="ShortDescription" class="form-control " placeholder="Service Description..." autocomplete="off"></textarea>
+                                    <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                               </div>
+
+                               <div class="ml-3 mb-3 mr-3">
+                                    <label>Full_Description</label>
                                     <textarea type="text" asp-for="Descriptions" class="form-control " placeholder="Service Description..." autocomplete="off" ></textarea>
                                     <span asp-validation-for="Descriptions" class="text-danger"></span>
                                </div>
@@ -73,6 +79,9 @@
 <script src="~/panel/ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.replace("Descriptions");
+</script>
+<script>
+    CKEDITOR.replace("ShortDescription");
 </script>
 
 

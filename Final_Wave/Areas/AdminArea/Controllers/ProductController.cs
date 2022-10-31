@@ -44,8 +44,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddProduct(ProductViewModel model, IFormFile file)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
             if (file == null)
             {
@@ -79,7 +79,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         {
             ViewBag.CategoryId = new SelectList(await _context.categoryUW.GetEntitiesAsync(), "Id", "CategoryName", "CategoryPhoto ");
             Product product = await _context.productUW.GetByIdAsync(id);
-            return View(product);
+            var mapUser = _mapper.Map<ProductViewModel>(product);
+            return View(mapUser);
         }
 
         [HttpPost]
@@ -87,8 +88,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         public async Task<IActionResult> Edit(ProductViewModel model, IFormFile file)
         {
 
-            //if (!ModelState.IsValid)
-            //    return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
             if (await _productRepository.GetProductByProductNameAsync(model.ProductName, model.Id))
             {
@@ -133,8 +134,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Product model)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
             if (model.IsDelete)
             {

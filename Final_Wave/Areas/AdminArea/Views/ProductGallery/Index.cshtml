@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="mb-2 mt-3">
                  
-                         <i class="fa fa-search fabg  ">
+                          <i class="fa fa-search fabg  ">
                              <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search Product..." class="search" />
                          </i>
                     </div>
@@ -37,7 +37,7 @@
                               @foreach (var item in Model)
                                 {
                                      <tr>
-                                          <th scope="row">@counter</th>
+                                          <td scope="row">@counter</td>
                                           <td>@item.ProductName</td>
                                           <td>
                                              <img src="~/@item.ProductImage" alt="@item.Alt" title="@item.Title" class="imgsize img-thumbnail"/>
@@ -61,30 +61,30 @@
           </div>
      </div>
  </div>
- @section AdminScripts
-{
+@section AdminScripts
+    {
     <script>
-    function myfunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
+        function myfunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
 
-        for (var i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
+            for (var i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
 
-            if (td) {
-                txtValue = td.textContent || td.innerText;
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
 
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
     </script>
     }
 

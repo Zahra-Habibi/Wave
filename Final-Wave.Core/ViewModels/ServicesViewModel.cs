@@ -19,6 +19,9 @@ namespace Final_Wave.Core.ViewModels
         [Required(ErrorMessage = "Please enter the Description.")]
         public string Descriptions { get; set; }
 
+        [Display(Name = "ShortDescription")]
+        public string ShortDescription { get; set; }
+
         [Display(Name = "Image")]
         public string? ImageUrl { get; set; }
 

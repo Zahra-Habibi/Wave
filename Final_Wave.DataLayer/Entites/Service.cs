@@ -12,6 +12,7 @@ namespace Final_Wave.DataLayer.Entites
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+        public string ShortDescription { get; set; }
         public string Descriptions { get; set; }
         public string? ImageUrl { get; set; }
 
