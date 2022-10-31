@@ -124,10 +124,11 @@ a.home {
     background-color: var(--primary-color);
     box-shadow: 7px 7px 5px #aaa;
 }
-.product-back:hover {
-    background-color: #fff;
+    .product-back:hover {
+        transform: scale(0.9);
+        overflow: hidden;
+    }
 
-}
 
 .custome-product {
     font-family: Arial, Helvetica, sans-serif;
@@ -265,8 +266,12 @@ a.home {
 
 .team-name-color {
     color: #46CBF5;
+    font-weight: bold;
 }
-
+.team-name-color1 {
+    color: #2aa780;
+    
+}
 .see-team {
     color: #46CBF5;
     background-color: white;
