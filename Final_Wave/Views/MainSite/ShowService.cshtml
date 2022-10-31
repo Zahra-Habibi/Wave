@@ -8,7 +8,7 @@
 
 <!-- start of services -->
 <div class="container mt-4">
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-sm-4 col-md-4"></div>
         <div class="col-sm-4 col-md-4">
             <h3 class="service-page-title">Services you can trust</h3>
@@ -27,8 +27,8 @@
 
                         <div class="card-body">
                             <h5 class="card-title custome-service-title">@item.Name</h5>
-                            <p class="card-text">  @Html.Raw(item.Descriptions)</p>
-                            <a asp-controller="MainSite" asp-action="MyServieDetialView" asp-route-id="@item.Id" class="card-link service-detail-btn form-control">Service Detail</a>
+                            <p class="card-text">  @Html.Raw(item.ShortDescription)</p>
+                            <a asp-controller="MainSite" asp-action="ProductDetails" asp-route-id="@item.Id" class="card-link service-detail-btn form-control">Service Detail</a>
                         </div>
                     </div>
                 </div>
