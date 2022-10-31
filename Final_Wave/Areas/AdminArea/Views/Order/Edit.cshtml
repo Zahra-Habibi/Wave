@@ -48,20 +48,15 @@
                                          <input asp-for="PhoneNumber " type="text" placeholder="" class="form-control" autocomplete="off">
                                          <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                  </div>
-                            <div class="ml-3 mb-3 mr-3">
-                                 <label asp-for="ProductId" class="control-label"> Choose Product</label>
-                                <select asp-for="ProductId" class="form-select" asp-items="ViewBag.ProductId ">
-                                    <option selected>Select a product</option>
-                                </select>
-                                <span asp-validation-for="ProductId" class="text-danger"></span>
-                            </div>
-
                                  <div class="ml-3 mb-3 mr-3">
-                                         <label>UserId </label>
-                                         <input asp-for="UserId " readonly type="text" placeholder="" class="form-control" autocomplete="off">
-                                         <span asp-validation-for="User" class="text-danger"></span>
+                                     <label asp-for="ProductId" class="control-label"> Product Product</label>
+                                     <select asp-for="ProductId" class="form-select" asp-items="ViewBag.CategoryId">
+                                        <option selected>Select a product</option>
+                                    </select>
+                                   <span asp-validation-for="ProductId" class="text-danger"></span>
                                  </div>
 
+                           
                                   <div class="ml-3 mb-3 mr-3">
                                          <label>Description </label>
                                          <textarea asp-for="Description " type="text" placeholder="" class="form-control" autocomplete="off"></textarea>
