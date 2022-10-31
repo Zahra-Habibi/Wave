@@ -4,6 +4,7 @@ using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -16,12 +17,14 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         private readonly IMapper _mapper;
         private readonly INotyfService _notify;
         private readonly IProductRepasitory _productRepository;
-        public JobController(IUnitOfWork context, IMapper mapper, INotyfService notify, IProductRepasitory repasitory)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public JobController(IUnitOfWork context, IMapper mapper, INotyfService notify, IProductRepasitory repasitory,IWebHostEnvironment environment)
         {
             _context = context;
             _mapper = mapper;
             _notify = notify;
             _productRepository = repasitory;
+            _webHostEnvironment = environment;
         }
 
 
@@ -39,58 +42,53 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddJob(JobViewModel model, IFormFile file,IFormFile file1)
+        public async Task<IActionResult> AddJob(JobViewModel viewmodel)
         {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            if (file == null)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("Image", "Please choose your image .");
-                return View(model);
+                if (viewmodel.Coverphoto != null)
+                {
+                    string folder = "Img/Job/";
+                    viewmodel.Image = await UploadImage(folder, viewmodel.Coverphoto);
+                }
+                if (viewmodel.ResumePhoto != null)
+                {
+                    string folder = "Img/Resume/";
+                    viewmodel.Resume = await UploadImage(folder, viewmodel.ResumePhoto);
+                }
 
+                Job job = new Job()
+                {
+                    Name = viewmodel.Name,
+                    Image = viewmodel.Image,
+                    Description = viewmodel.Description,
+                    EmailAddress = viewmodel.EmailAddress,
+                    JobName = viewmodel.JobName,
+                    LastName = viewmodel.LastName,
+                    Resume = viewmodel.Resume,
+                    PhoneNumber = viewmodel.PhoneNumber,
+                    Date = DateTime.Now,
+
+                };
+
+                await _context.JobUW.Create(job);
+                await _context.saveAsync();
+                _notify.Success("You sucessfully send your request    !", 5);
+                return RedirectToAction(nameof(AddJob));
             }
 
-            string imgname = "Img/Job/" + UploadFiles.CreateImg(file, "Job");
-            if (imgname == "false")
-            {
-                TempData["Result"] = "false";
-                return RedirectToAction(nameof(Index));
-            }
+            return View(viewmodel);
 
-            if (file1 == null)
-            {
-                ModelState.AddModelError("Resume", "Please choose your resume.");
-                return View(model);
-
-            }
-            string imgname1 = "Img/Resume/" + UploadFiles.CreateImg(file1, "Resume");
-            if (imgname1 == "false")
-            {
-                TempData["Result"] = "false";
-                return RedirectToAction(nameof(Index));
-            }
-           
-            Job jabb = new Job
-            {
-                Name=model.Name,
-                LastName=model.LastName,
-                PhoneNumber=model.PhoneNumber,
-                EmailAddress=model.EmailAddress,
-                Image=imgname,
-                Resume=imgname1,
-                Description=model.Description,
-                JobName=model.JobName,
-        
-            
-        };
-            await _context.JobUW.Create(jabb);
-            await _context.saveAsync();
-            _notify.Success("You successfuly Added  !", 5);
-            return RedirectToAction(nameof(Index));
         }
+        private async Task<string> UploadImage(string folderPath, IFormFile file)
+        {
 
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
 
+            return "/" + folderPath;
+        }
 
 
         [HttpGet]
@@ -101,29 +99,43 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(JobViewModel model, IFormFile file)
+        public async Task<IActionResult> Edit(JobViewModel viewmodel)
         {
-
-            if (file != null)
+            if (ModelState.IsValid)
             {
-                string imgname = "Img/Job/" + UploadFiles.CreateImg(file, "Job");
-                bool DeleteImage = UploadFiles.DeleteImg("Job", model.Image);
-                model.Image = imgname;
+                if (viewmodel.Coverphoto != null)
+                {
+                    string folder = "Img/Job/";
+                    viewmodel.Image = await UploadImage(folder, viewmodel.Coverphoto);
+                }
+                if (viewmodel.ResumePhoto != null)
+                {
+                    string folder = "Img/Resume/";
+                    viewmodel.Resume = await UploadImage(folder, viewmodel.ResumePhoto);
+                }
+
+                Job job = new Job()
+                {
+                    Name = viewmodel.Name,
+                    Image = viewmodel.Image,
+                    Description = viewmodel.Description,
+                    EmailAddress = viewmodel.EmailAddress,
+                    JobName = viewmodel.JobName,
+                    LastName = viewmodel.LastName,
+                    Resume = viewmodel.Resume,
+                    PhoneNumber = viewmodel.PhoneNumber,
+                    Date = DateTime.Now,
+
+                };
+
+                await _context.JobUW.Create(job);
+                await _context.saveAsync();
+                _notify.Success("You sucessfully send your request    !", 5);
+                return RedirectToAction(nameof(AddJob));
             }
 
-          if(file != null)
-            {
-                string imgname1 = "Img/Resume/" + UploadFiles.CreateImg(file, "Resume");
-                bool DeleteImages = UploadFiles.DeleteImg("Resume", model.Resume);
-                model.Resume = imgname1;
-            }
+            return View(viewmodel);
 
-            var ser = await _context.JobUW.GetByIdAsync(model.Id);
-            var mapModel = _mapper.Map(model, ser);
-            _context.JobUW.Update(mapModel);
-            await _context.saveAsync();
-            _notify.Success("You updated  !", 5);
-            return RedirectToAction(nameof(Index));
 
         }
 
