@@ -20,19 +20,21 @@
                 </div>
                 <div class="row mt-4">
                     <!-- start of form tag -->
-                    <form class="col-md-12" asp-controller="MainSite" asp-action="AddJob" asp-antiforgery="true" enctype="multipart/form-data">
-                        <div asp-validation-summary="ModelOnly" class="text-danger">
+                    <form class="col-md-12" asp-controller="MainSite" asp-action="AddJob" asp-antiforgery="true" enctype="multipart/form-data">  
                         <div class="row">
+
                             <div class="col">
-                                <input type="text" asp-for="Name" class="form-control" placeholder="Your name" name="name" required>
+                                <input type="text" asp-for="Name" class="form-control" placeholder="Your name" >
                                  <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
+
                             <div class="col">
                                     <label><b>Job_Name</b></label>
                                     <input asp-for="JobName" type="text" placeholder="JobName" class="form-control" autocomplete="off">
                                     <span asp-validation-for="JobName" class="text-danger"></span>
                             </div>
                         </div>
+
                         <div class="row mt-3">
                             <div class="col">
                                 <input type="text" asp-for="LastName" class="form-control" placeholder="Your Last name" name="last-name" required><br>
@@ -51,20 +53,25 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col">
-                                    <label>Picture</label>
-                                    <input name="file" type="file" class="form-control">
-                                    <span asp-validation-for="Image" class="text-danger"></span>
+                                  <label asp-for="Coverphoto" class=""></label>
+                                 <div class="custom-file">
+                                     <input asp-for="Coverphoto" class="custom-file-input" id="customFile" />
+                                <label class="custom-file-label" for="customFile">choose file</label>
                             </div>
+                                 <span asp-validation-for="Coverphoto" class="text-danger"></span>
+                        </div>
 
                             <div class="col">
-                                    <label>Resume</label>
-                                    <input name="file" type="file" class="form-control">
-                                    <span asp-validation-for="Resume" class="text-danger"></span>
+                                <label asp-for="ResumePhoto" class=""></label>
+                                <div class="custom-file">
+                                    <input asp-for="ResumePhoto" class="custom-file-input" id="customFile" />
+                                    <label class="custom-file-label" for="customFile">choose file</label>
+                                </div>
+                                <span asp-validation-for="ResumePhoto" class="text-danger"></span>
                             </div>
 
                         </div>
                         <input type="submit" value="Send" class="mx-auto d-block btn-send-order mt-3">
-                      </div>
                     </form>
                     <!-- end of form tag -->
                 </div>
