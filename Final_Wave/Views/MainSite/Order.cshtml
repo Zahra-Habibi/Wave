@@ -4,7 +4,7 @@
     ViewData["Description"] = "This site is a new site , It provide diffirent software (desktop application , mobile application web application, video and image editing,banner , prototype.).";
     Layout = "_SiteLayout";
 }
-<br><br><br>
+<br><br><br><br /><br />
 <!-- start of order form -->
 <div class="container custome-bubles">
     <div class="row">
@@ -20,28 +20,37 @@
                 </div>
                 <div class="row mt-4">
                     <!-- start of form tag -->
-                    <form class="col-md-12">
+                    <form class="col-md-12"asp-controller="MainSite" asp-action="Order" method="post" class="mt-5" enctype="multipart/form-data" autocomplete="off">
                         <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Your name" name="name" required>
+
+                            <div class="col">   
+                                 <input type="text" asp-for="Name" class="form-control " placeholder="Enter your name ..." autocomplete="off" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
+
                             <div class="col">
-                                <select name="category" class="form-control" required>
-                                    <option value="category">Category</option>
-                                    <option value="web design">Web design</option>
-                                    <option value="web application">Web application</option>
-                                    <option value="Mobile application">Mobile application</option>
+                                <select asp-for="ProductId" name="category" class="form-control" asp-items="ViewBag.CategoryId">
+                                    <option selected>Select a product</option>
                                 </select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
                             </div>
+
                         </div>
                         <div class="row mt-3">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Your Last name" name="last-name" required><br>
-                                <input type="email" class="form-control" placeholder="Your Email address" name="email" required><br>
-                                <input type="number" class="form-control" placeholder="Your Phone number" name="Phone" required>
+                                <input type="text" asp-for="LastName" class="form-control" placeholder="Your Last name" name="last-name" autocomplete="off"  /><br />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+
+                                <input type="email" asp-for="EmailAddress" class="form-control " placeholder="EmailAddress ..." name="email" autocomplete="off" /><br />
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+
+                                <input type="text" asp-for="PhoneNumber" class="form-control " placeholder="PhoneNumber ..." name="Phone" autocomplete="off" /><br />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
                             </div>
                             <div class="col">
-                                <textarea class="form-control" rows="6" name="message" placeholder="Discription"></textarea>
+                                <textarea class="form-control" rows="6" asp-for="Description" placeholder="Discription" ></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                         </div>
                         <input type="submit" value="Send" class="mx-auto d-block btn-send-order mt-3">
@@ -55,5 +64,4 @@
 </div>
 <!-- end of order form -->
 
-<br>
-<br>
+<br><br>
