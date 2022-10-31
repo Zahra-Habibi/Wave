@@ -5,8 +5,10 @@ using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Drawing.Drawing2D;
 
 namespace Final_Wave.Controllers
 {
@@ -16,12 +18,14 @@ namespace Final_Wave.Controllers
         private readonly INotyfService _notify;
         private readonly IMapper _mapper;
         private readonly IProductRepasitory _product;
-        public MainSiteController(IUnitOfWork context, INotyfService noty,IMapper mapper, IProductRepasitory product)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public MainSiteController(IUnitOfWork context, INotyfService noty,IMapper mapper, IProductRepasitory product, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _notify = noty;
             _mapper = mapper;
             _product = product;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
@@ -95,7 +99,7 @@ namespace Final_Wave.Controllers
         [Authorize]
         public async Task<IActionResult> Order()
         {
-            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
             return View();
         }
 
@@ -104,25 +108,17 @@ namespace Final_Wave.Controllers
         [Authorize]
         public async Task<IActionResult> Order(OrderViewModel model)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
-            ViewBag.ProductId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
-            Order order = new Order
-            {
-                Name = model.Name,
-                LastName = model.LastName,
-                PhoneNumber = model.PhoneNumber,
-                EmailAddress = model.EmailAddress,
-               Description = model.Description,
-               OrderTime=DateTime.Now,
-               UserId = model.UserId,
-               ProductId=model.ProductId
+            if (!ModelState.IsValid)
+                return View(model);
 
-            };
-            await _context.orderUW.Create(order);
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
+            model.OrderTime = DateTime.Now;
+            var mapModel = _mapper.Map<Order>(model);
+            await _context.orderUW.Create(mapModel);
             await _context.saveAsync();
-            _notify.Success("You Have new order!", 10);
-            return RedirectToAction(nameof(Contact));
+            _notify.Success("You successfully orderd!", 5);
+            return RedirectToAction(nameof(Order));
+
         }
 
         //job
@@ -133,39 +129,55 @@ namespace Final_Wave.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddJob(JobViewModel model, IFormFile file, IFormFile file1)
+        public async Task<IActionResult> AddJob(JobViewModel viewmodel)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
 
-            if (file == null)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("Image", "Please choose an image .");
-                return View(model);
+                if (viewmodel.Coverphoto != null)
+                {
+                    string folder = "Img/Job/";
+                    viewmodel.Image = await UploadImage(folder, viewmodel.Coverphoto);
+                }
+                if (viewmodel.ResumePhoto != null)
+                {
+                    string folder = "Img/Resume/";
+                    viewmodel.Resume = await UploadImage(folder, viewmodel.ResumePhoto);
+                }
+            
+               Job job = new Job()
+               {
+                Name = viewmodel.Name,
+                Image = viewmodel.Image,   
+                Description = viewmodel.Description,
+                EmailAddress = viewmodel.EmailAddress,
+                JobName = viewmodel.JobName,
+                LastName = viewmodel.LastName,
+                Resume = viewmodel.Resume,
+                PhoneNumber = viewmodel.PhoneNumber,
+                Date=DateTime.Now,
+
+               };
+
+                await _context.JobUW.Create(job);
+                await _context.saveAsync();
+                _notify.Success("You sucessfully send your request    !", 5);
+                return RedirectToAction(nameof(AddJob));
             }
-    
 
+            return View(viewmodel);
 
-            if (file1 == null)
-            {
-                ModelState.AddModelError("Resume", "Please choose your Resume .");
-                return View(model);
-            }
-           /// ViewBag.SkillId = new SelectList(await _context.skillUW.GetEntitiesAsync(), "Id", "SkillName");
-
-            model.Date = DateTime.Now;
-            var imagename = "Img/Job/" + UploadFiles.CreateImg(file, "Job");
-            var imagname1 = "Img/Resume/" + UploadFiles.CreateImg(file1, "Resume");
-            var mapModel = _mapper.Map<Job>(model);
-            mapModel.Image = imagename;
-            mapModel.Resume = imagname1;
-            await _context.JobUW.Create(mapModel);
-            await _context.saveAsync();
-            _notify.Success("You sucessfully send your request    !", 5);
-            return RedirectToAction(nameof(AddJob));
         }
 
+        private async Task<string> UploadImage(string folderPath, IFormFile file)
+        {
 
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+            return "/" + folderPath;
+        }
 
 
 
