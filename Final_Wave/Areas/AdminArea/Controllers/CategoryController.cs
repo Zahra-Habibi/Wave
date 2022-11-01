@@ -39,8 +39,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddCategory(CategoryViewModel model, IFormFile file)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
             if (file == null)
             {
