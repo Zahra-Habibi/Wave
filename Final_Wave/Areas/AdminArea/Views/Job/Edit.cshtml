@@ -48,18 +48,18 @@
                                  </div> 
 
 
-                                  <div class="form-group my-3 d-flex align-content-center align-items-center flex-column">
+                                  @*<div class="form-group my-3 d-flex align-content-center align-items-center flex-column">
                                         <input type="hidden" asp-for="Image" />
                                         <input name="file" type="file"  class="form-control mb-3">
                                         <span asp-validation-for="Image" class="text-danger "></span>
                                         <img src="~/@Model.Image" alt="@Model.Name" title="@Model.Name" class="img-responsive img-thumbnail imgdetail "/>
-                                  </div>
+                                  </div>*@
 
-                              @*  <div class="ml-3 mb-3 mr-3">
+                                <div class="ml-3 mb-3 mr-3">
                                        <label><b>Job_Name</b></label>
                                        <input asp-for="JobName" type="text" placeholder="JobName" class="form-control" autocomplete="off">
                                       <span asp-validation-for="JobName" class="text-danger"></span>
-                                 </div>*@
+                                 </div>
 
 
                                 <div class="ml-3 mb-3 mr-3">
@@ -70,11 +70,10 @@
 
 
                               <div class="form-group my-3 d-flex align-content-center align-items-center flex-column">
-                                        <input type="hidden" asp-for="Resume" />
-                                        <input name="file" type="file"  class="form-control mb-3">
-                                        <span asp-validation-for="Resume" class="text-danger "></span>
-                                        <p  class="img-responsive img-thumbnail imgdetail ">@Model.Resume</p>
-                                  </div>
+                                <label asp-for="Resume"><strong>Resume</strong></label>
+                                <input type="file" name="file" parsley-trigger="change" class="form-control" placeholder="Image">
+                                <span asp-validation-for="Resume" class="text-danger"></span>
+                              </div>
 
                                <div class="form-group text-right m-b-0 d-flex justify-content-center">
                                   <div class="mr-3 mb-3">
