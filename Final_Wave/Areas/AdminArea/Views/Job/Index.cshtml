@@ -46,11 +46,9 @@
                                          <td class="text-center">@item.Name</td>
                                          <td class="text-center">@item.LastName</td>
                                          <td class="text-center">@item.Date.ToString("dddd, dd MMMM yyyy")</td>
-                                          <td class="text-center">
-                                             <img src="~/@item.Image" alt="@item.Name" title="@item.Name" class="imgsize img-thumbnail"/>
-                                         </td>
-                                          <td class="text-center">
-                                             <a  class="imgsize img-thumbnail" href="@item.Resume"></a>
+                                      
+                                              <td class="text-center">
+                                            <a class="btn btn-outline-primary" href="@item.Resume" target="_blank">Read now</a>
                                          </td>
                                        <td class="text-center">
                                              @if(item.IsDelete){

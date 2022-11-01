@@ -61,6 +61,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Img\Job\" />
     <Folder Include="wwwroot\Img\Resume\" />
     <Folder Include="wwwroot\Img\UserProfile\" />
     <Folder Include="wwwroot\Img\Slider\" />
