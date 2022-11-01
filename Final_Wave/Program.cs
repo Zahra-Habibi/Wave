@@ -48,10 +48,7 @@ builder.Services.AddAutoMapper(typeof(AutoMapping).Assembly);
 #endregion
 
 //end cors
-builder.Services.AddSignalR(options =>
-{
-    options.EnableDetailedErrors = true;
-});//on signalR
+builder.Services.AddSignalR();// on signalR
 
 // for taostr
 builder.Services.AddNotyf(config =>
@@ -102,5 +99,5 @@ app.MapAreaControllerRoute(
  "UserArea/{controller=Chat}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=MainSite}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 app.Run();

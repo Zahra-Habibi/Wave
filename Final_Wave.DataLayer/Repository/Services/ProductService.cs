@@ -27,9 +27,10 @@ namespace Final_Wave.DataLayer.Repository.Services
         }
 
 
-        public List<Product> Search(string text, List<int> categoryid, int sort = 1)
+        public List<Product> Search(string text, List<int> categoryid)
         {
             IQueryable<Product> products = _context.products.Where(x => x.ProductName.Contains(text));
+
 
             if (categoryid.Count() > 0)
             {
@@ -41,6 +42,7 @@ namespace Final_Wave.DataLayer.Repository.Services
                          {
                              id = p.Id,
                              name = p.ProductName,
+                             description = p.ShortDescription,
                              image = p.ProductImage
                          });
 
@@ -51,6 +53,7 @@ namespace Final_Wave.DataLayer.Repository.Services
                 {
                     Id = product.Id,
                     ProductName = product.ProductName,
+                   ShortDescription  = product.ShortDescription,
                     ProductImage = product.ProductImage
                 });
             }

@@ -47,12 +47,6 @@
                                       <span asp-validation-for="EmailAddress" class="text-danger"></span>
                                  </div> 
 
-
-                                  <div class="ml-3 mb-3 mr-3">
-                                      <label><b>Your_Picture</b></label>
-                                     <input type="file" asp-for="Coverphoto" class="form-control">
-                                     <span asp-validation-for="Coverphoto" class="text-danger"></span>
-                                 </div>
                                    
                                   <div class="ml-3 mb-3 mr-3">
                                        <label><b>Job_Name</b></label>
@@ -68,12 +62,9 @@
 
 
                               <div class="ml-3 mb-3 mr-3">
-                                <label asp-for="ResumePhoto" class=""></label>
-                                <div class="custom-file">
-                                    <input asp-for="ResumePhoto" class="custom-file-input" id="customFile" />
-                                    <label class="custom-file-label" for="customFile">choose file</label>
-                                </div>
-                                <span asp-validation-for="ResumePhoto" class="text-danger"></span>
+                                <label ><b>Resume</b></label>
+                                <input type="file" name="file" parsley-trigger="change" class="form-control" placeholder="Image">
+                                <span asp-validation-for="Resume" class="text-danger"></span>
                               </div>
 
 
@@ -84,7 +75,7 @@
                                       </button>
                                   </div>&nbsp;
                                    <div class="ml-3 mb-3">
-                                        <a asp-action="ShowProduct" class="btn btn-back btn-primary">
+                                        <a asp-action="Index" class="btn btn-back btn-primary">
                                          Cancel
                                         </a>
                                    </div>

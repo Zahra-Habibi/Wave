@@ -35,5 +35,9 @@
         <ul id="messagesList"></ul>
     </div>
 </div>
-<script src="~/signalr/signalr.js"></script>
-<script src="~/js/chat.js"></script>   
+ 
+@section Scripts
+    {
+    <script src="~/signalr/signalr.js"></script>
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+}

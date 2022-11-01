@@ -20,6 +20,11 @@
             </div>
             <br><br><br>
         </div>
+
+    <div class="row mt-5">
+        @(await Component.InvokeAsync("GalleryComponent", @ViewBag.ProductId))
+    </div>
+
         <!-- End of product detail -->
 
         <!-- Start of similer products -->

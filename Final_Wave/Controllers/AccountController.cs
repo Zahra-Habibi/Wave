@@ -115,7 +115,7 @@ namespace Final_Wave.Controllers
                     else if (user.IsAdmin == 2)
                     {
                         //User
-                        return Redirect("/userArea/UserHome/Index");
+                        return Redirect("/MainSite/Home");
                     }
 
                 }

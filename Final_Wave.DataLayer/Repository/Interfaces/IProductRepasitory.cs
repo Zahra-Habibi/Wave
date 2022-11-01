@@ -11,7 +11,7 @@ namespace Final_Wave.DataLayer.Repository.Interfaces
     {
         Task<bool> GetProductByProductNameAsync(string productName, int id);
 
-        List<Product> Search(string text, List<int> categoryid, int sort = 1);
+        List<Product> Search(string text, List<int> categoryid);
 
         Task<Product> GetProductById(int productId);
         Task<List<Skills>> GetJobs();

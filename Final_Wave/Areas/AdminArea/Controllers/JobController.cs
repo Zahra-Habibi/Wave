@@ -18,7 +18,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         private readonly INotyfService _notify;
         private readonly IProductRepasitory _productRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public JobController(IUnitOfWork context, IMapper mapper, INotyfService notify, IProductRepasitory repasitory,IWebHostEnvironment environment)
+        public JobController(IUnitOfWork context, IMapper mapper, INotyfService notify, IProductRepasitory repasitory, IWebHostEnvironment environment)
         {
             _context = context;
             _mapper = mapper;
@@ -42,53 +42,29 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddJob(JobViewModel viewmodel)
+        public async Task<IActionResult> AddJob(JobViewModel viewmodel, IFormFile file)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(viewmodel);
+
+            if (file == null)
             {
-                if (viewmodel.Coverphoto != null)
-                {
-                    string folder = "Img/Job/";
-                    viewmodel.Image = await UploadImage(folder, viewmodel.Coverphoto);
-                }
-                if (viewmodel.ResumePhoto != null)
-                {
-                    string folder = "Img/Resume/";
-                    viewmodel.Resume = await UploadImage(folder, viewmodel.ResumePhoto);
-                }
+                ModelState.AddModelError("Image", "Please choose an image for product.");
+                return View(viewmodel);
 
-                Job job = new Job()
-                {
-                    Name = viewmodel.Name,
-                    Image = viewmodel.Image,
-                    Description = viewmodel.Description,
-                    EmailAddress = viewmodel.EmailAddress,
-                    JobName = viewmodel.JobName,
-                    LastName = viewmodel.LastName,
-                    Resume = viewmodel.Resume,
-                    PhoneNumber = viewmodel.PhoneNumber,
-                    Date = DateTime.Now,
-
-                };
-
-                await _context.JobUW.Create(job);
-                await _context.saveAsync();
-                _notify.Success("You sucessfully send your request    !", 5);
-                return RedirectToAction(nameof(AddJob));
             }
 
-            return View(viewmodel);
 
+            viewmodel.Date = DateTime.Now;
+            var imagename = "Img/Job/" + UploadFiles.CreateImg(file, "Job");
+            var mapModel = _mapper.Map<Job>(viewmodel);
+            mapModel.Image = imagename;
+            await _context.JobUW.Create(mapModel);
+            await _context.saveAsync();
+            _notify.Success("You successfully Requested!", 5);
+            return RedirectToAction(nameof(AddJob));
         }
-        private async Task<string> UploadImage(string folderPath, IFormFile file)
-        {
 
-            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
-            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
-            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-
-            return "/" + folderPath;
-        }
 
 
         [HttpGet]
@@ -103,16 +79,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (viewmodel.Coverphoto != null)
-                {
-                    string folder = "Img/Job/";
-                    viewmodel.Image = await UploadImage(folder, viewmodel.Coverphoto);
-                }
-                if (viewmodel.ResumePhoto != null)
-                {
-                    string folder = "Img/Resume/";
-                    viewmodel.Resume = await UploadImage(folder, viewmodel.ResumePhoto);
-                }
+              
 
                 Job job = new Job()
                 {

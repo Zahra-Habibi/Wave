@@ -46,12 +46,12 @@ namespace Final_Wave.Core.ViewModels
         public string Description { get; set; }
 
         [Display(Name = "UserPhoto")]
-        public IFormFile Coverphoto { get; set; }
-        public string Image { get; set; }
+        //public IFormFile Coverphoto { get; set; }
+        public string? Image { get; set; }
 
         [Display(Name = ("Resume"))]
-        public IFormFile ResumePhoto { get; set; }
-        public string Resume { get; set; }
+        //public IFormFile ResumePhoto { get; set; }
+        public string? Resume { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; } = DateTime.UtcNow;
