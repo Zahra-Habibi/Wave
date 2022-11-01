@@ -22,14 +22,12 @@
                     <!-- start of form tag -->
                     <form class="col-md-12" asp-controller="MainSite" asp-action="AddJob" asp-antiforgery="true" enctype="multipart/form-data">  
                         <div class="row">
-
                             <div class="col">
-                                <input type="text" asp-for="Name" class="form-control" placeholder="Your name" >
+                                <input type="text" asp-for="Name" class="form-control" placeholder="Your name" autocomplete="off" >
                                  <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
 
                             <div class="col">
-                                    <label><b>Job_Name</b></label>
                                     <input asp-for="JobName" type="text" placeholder="JobName" class="form-control" autocomplete="off">
                                     <span asp-validation-for="JobName" class="text-danger"></span>
                             </div>
@@ -37,40 +35,25 @@
 
                         <div class="row mt-3">
                             <div class="col">
-                                <input type="text" asp-for="LastName" class="form-control" placeholder="Your Last name" name="last-name" required><br>
+                                <input type="text" asp-for="LastName" class="form-control" placeholder="Your Last name" ><br>
                                 <span asp-validation-for="LastName" class="text-danger"></span>
                                
-                                <input type="email" asp-for="EmailAddress" class="form-control" placeholder="Your Email address" name="email" required><br>
+                                <input type="email" asp-for="EmailAddress" class="form-control" placeholder="Your Email address" ><br>
                                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
                                 
-                                <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Your Phone number" name="Phone" required>
+                                <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Your Phone number" ><br />
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
                             <div class="col">
-                                <textarea class="form-control" asp-for="Description" rows="6" name="message" placeholder="Discription"></textarea>
+                                <textarea type="text" cols="6" asp-for="Description" class="form-control " placeholder="Job Description..." autocomplete="off"></textarea><br />
                                 <span asp-validation-for="Description" class="text-danger"></span>
+
+                                <label asp-for="Resume"><strong>Resume</strong></label>
+                                <input type="file" name="file" parsley-trigger="change" class="form-control" placeholder="Image">
+                                <span asp-validation-for="Resume" class="text-danger"></span>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                  <label asp-for="Coverphoto" class=""></label>
-                                 <div class="custom-file">
-                                     <input asp-for="Coverphoto" class="custom-file-input" id="customFile" />
-                                <label class="custom-file-label" for="customFile">choose file</label>
-                            </div>
-                                 <span asp-validation-for="Coverphoto" class="text-danger"></span>
                         </div>
 
-                            <div class="col">
-                                <label asp-for="ResumePhoto" class=""></label>
-                                <div class="custom-file">
-                                    <input asp-for="ResumePhoto" class="custom-file-input" id="customFile" />
-                                    <label class="custom-file-label" for="customFile">choose file</label>
-                                </div>
-                                <span asp-validation-for="ResumePhoto" class="text-danger"></span>
-                            </div>
-
-                        </div>
                         <input type="submit" value="Send" class="mx-auto d-block btn-send-order mt-3">
                     </form>
                     <!-- end of form tag -->
