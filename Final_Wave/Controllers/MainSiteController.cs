@@ -19,7 +19,7 @@ namespace Final_Wave.Controllers
         private readonly IMapper _mapper;
         private readonly IProductRepasitory _product;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public MainSiteController(IUnitOfWork context, INotyfService noty,IMapper mapper, IProductRepasitory product, IWebHostEnvironment webHostEnvironment)
+        public MainSiteController(IUnitOfWork context, INotyfService noty, IMapper mapper, IProductRepasitory product, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _notify = noty;
@@ -64,6 +64,20 @@ namespace Final_Wave.Controllers
             return View(product);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ProductSearch(string text, List<int> categoryid)
+        {
+            ViewBag.categories = await _context.categoryUW.GetEntitiesAsync();
+            ViewBag.text = text;
+            ViewBag.categoryid = categoryid;
+            if (text == null || text == "")
+            {
+                var product = await _context.productUW.GetEntitiesAsync();
+                return View(product);
+            }
+            var products = _product.Search(text, categoryid);
+            return View(products);
+        }
 
         //team
         public async Task<IActionResult> Team()
@@ -129,57 +143,40 @@ namespace Final_Wave.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddJob(JobViewModel viewmodel)
+        public async Task<IActionResult> AddJob(JobViewModel viewmodel, IFormFile file)
         {
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(viewmodel);
+
+            string imgname = "Img/Resume/" + UploadFiles.CreateImg(file, "Resume");
+            if (imgname == "false")
             {
-                if (viewmodel.Coverphoto != null)
-                {
-                    string folder = "Img/Job/";
-                    viewmodel.Image = await UploadImage(folder, viewmodel.Coverphoto);
-                }
-                if (viewmodel.ResumePhoto != null)
-                {
-                    string folder = "Img/Resume/";
-                    viewmodel.Resume = await UploadImage(folder, viewmodel.ResumePhoto);
-                }
-            
-               Job job = new Job()
-               {
-                Name = viewmodel.Name,
-                Image = viewmodel.Image,   
-                Description = viewmodel.Description,
-                EmailAddress = viewmodel.EmailAddress,
-                JobName = viewmodel.JobName,
-                LastName = viewmodel.LastName,
-                Resume = viewmodel.Resume,
-                PhoneNumber = viewmodel.PhoneNumber,
-                Date=DateTime.Now,
+                TempData["Result"] = "false";
+                return RedirectToAction(nameof(Index));
 
-               };
-
-                await _context.JobUW.Create(job);
-                await _context.saveAsync();
-                _notify.Success("You sucessfully send your request    !", 5);
-                return RedirectToAction(nameof(AddJob));
             }
+                    Job slider = new Job
+                    {
+                        Name = viewmodel.Name,
+                        LastName = viewmodel.LastName,
+                        Date = DateTime.Now,
+                        Description = viewmodel.Description,
+                        EmailAddress = viewmodel.EmailAddress,
+                        JobName = viewmodel.JobName,
+                        PhoneNumber = viewmodel.PhoneNumber,
+                        Resume = imgname,
+                    };
+                    await _context.JobUW.Create(slider);
+                    await _context.saveAsync();
+                    _notify.Success("You successfuly Added  a slider !", 5);
+                    return RedirectToAction(nameof(AddJob));
 
-            return View(viewmodel);
-
-        }
-
-        private async Task<string> UploadImage(string folderPath, IFormFile file)
-        {
-
-            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
-            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
-            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-
-            return "/" + folderPath;
-        }
+                }
 
 
 
+
+            
     }
 }
