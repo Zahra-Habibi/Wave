@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Final_Wave.DataLayer.Entites.ProductGallery>
+
+@foreach (var item in Model)
+{
+
+        <div class="col-sm-6 col-md-3 mt-2 ">
+            <div class="card silimar-product-item">
+                <img src="~/@item.ImageUrl" class="silimar-product-img img-responsive" title="@item.Title" alt="@item.Alt">
+             </div>
+        </div>
+
+
+}
+
+

@@ -45,8 +45,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [HttpPost]
         public async Task<ActionResult> AddPhoto(IFormFile file, ProductGalleryViewModel gallery)
         {
-            //if (!ModelState.IsValid)
-            //    return View(gallery);
+            if (!ModelState.IsValid)
+                return View(gallery);
 
             if (file != null)
             {

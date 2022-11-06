@@ -59,7 +59,6 @@ namespace Final_Wave.Core.ViewModels
     {
         [Display(Name = "curremt Password")]
         [Required(ErrorMessage ="Please enter the old password!")]
-       
         public string CurrentPassword { get; set; }
 
         [Display(Name = "New Password")]

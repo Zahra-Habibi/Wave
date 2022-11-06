@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Wave.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221031125048_new1111")]
-    partial class new1111
+    [Migration("20221102154959_skil11")]
+    partial class skil11
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

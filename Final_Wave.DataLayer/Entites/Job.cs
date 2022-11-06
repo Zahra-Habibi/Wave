@@ -26,5 +26,6 @@ namespace Final_Wave.DataLayer.Entites
 
 
 
+
     }
 }

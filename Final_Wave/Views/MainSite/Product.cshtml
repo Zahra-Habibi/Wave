@@ -43,10 +43,10 @@
                     <div class="col-sm-6 col-md-3 mt-2 ">
                         <div class="card silimar-product-item">
                            <img src="~/@item.ProductImage" alt="@item.Alt" title="@item.Title" class="   product-img img-responsive" asp-append-version="true">
-                           <div class="card-body text-center">
+                           <div class="card-body ">
                               <h5 class="custome-service-title ">@item.ProductName</h5>
-                              <p class="card-text"> @Html.Raw(item.ShortDescription)</p>
-                                <a asp-action="ProductDetails" asp-controller="MainSite" asp-route-Id="@item.Id" class="card-link service-detail-btn form-control text-center">product Detail</a>
+                              <p class="card-text" style=""> @Html.Raw(item.ShortDescription)</p>
+                                <a asp-action="ProductDetails" asp-controller="MainSite" asp-route-id="@item.Id" class="card-link service-detail-btn form-control text-center">product Detail</a>
                            </div>
                          </div>
                      </div>

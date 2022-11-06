@@ -113,7 +113,7 @@ namespace Final_Wave.Controllers
         [Authorize]
         public async Task<IActionResult> Order()
         {
-            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
             return View();
         }
 
@@ -125,7 +125,7 @@ namespace Final_Wave.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
             model.OrderTime = DateTime.Now;
             var mapModel = _mapper.Map<Order>(model);
             await _context.orderUW.Create(mapModel);
@@ -133,6 +133,7 @@ namespace Final_Wave.Controllers
             _notify.Success("You successfully orderd!", 5);
             return RedirectToAction(nameof(Order));
 
+            
         }
 
         //job
