@@ -65,18 +65,21 @@ namespace Final_Wave.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ProductSearch(string text, List<int> categoryid)
+        public async Task<IActionResult> ProductSearch(string text)
         {
-            ViewBag.categories = await _context.categoryUW.GetEntitiesAsync();
-            ViewBag.text = text;
-            ViewBag.categoryid = categoryid;
-            if (text == null || text == "")
+
+            if (text != null)
+            {
+                var product = await _context.productUW.GetEntitiesAsync(x => x.ProductName.Contains(text));
+                ViewBag.text = text;
+                return View(product);
+            }
+            else
             {
                 var product = await _context.productUW.GetEntitiesAsync();
                 return View(product);
             }
-            var products = _product.Search(text, categoryid);
-            return View(products);
+
         }
 
         //team
@@ -156,27 +159,23 @@ namespace Final_Wave.Controllers
                 return RedirectToAction(nameof(Index));
 
             }
-                    Job slider = new Job
-                    {
-                        Name = viewmodel.Name,
-                        LastName = viewmodel.LastName,
-                        Date = DateTime.Now,
-                        Description = viewmodel.Description,
-                        EmailAddress = viewmodel.EmailAddress,
-                        JobName = viewmodel.JobName,
-                        PhoneNumber = viewmodel.PhoneNumber,
-                        Resume = imgname,
-                    };
-                    await _context.JobUW.Create(slider);
-                    await _context.saveAsync();
-                    _notify.Success("You successfuly Added  a slider !", 5);
-                    return RedirectToAction(nameof(AddJob));
+            Job slider = new Job
+            {
+                Name = viewmodel.Name,
+                LastName = viewmodel.LastName,
+                Date = DateTime.Now,
+                Description = viewmodel.Description,
+                EmailAddress = viewmodel.EmailAddress,
+                JobName = viewmodel.JobName,
+                PhoneNumber = viewmodel.PhoneNumber,
+                Resume = imgname,
+            };
+            await _context.JobUW.Create(slider);
+            await _context.saveAsync();
+            _notify.Success("You successfuly Added  a slider !", 5);
+            return RedirectToAction(nameof(AddJob));
 
-                }
+        }
 
-
-
-
-            
     }
 }
