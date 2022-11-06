@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Drawing.Drawing2D;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Final_Wave.Controllers
 {
@@ -52,10 +53,20 @@ namespace Final_Wave.Controllers
         }
 
         //product
-        public async Task<IActionResult> Product()
+        public async Task<IActionResult> Product(string text)
         {
-            var product = await _context.productUW.GetEntitiesAsync();
-            return View(product);
+            if (text != null)
+            {
+                var product = await _context.productUW.GetEntitiesAsync(x => x.ProductName.Contains(text));
+                ViewBag.text = text;
+                return View(product);
+            }
+            else
+            {
+                var product = await _context.productUW.GetEntitiesAsync();
+                return View(product);
+            }
+          
         }
 
         public async Task<IActionResult> ProductDetails(int Id)
@@ -102,10 +113,10 @@ namespace Final_Wave.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Contact(ContactViewModel contact)
         {
-            //if (!ModelState.IsValid) return View(contact);
+            if (!ModelState.IsValid) return View(contact);
             var mapModel = _mapper.Map<ContactUs>(contact);
             await _context.conductUW.Create(mapModel);
             await _context.saveAsync();
@@ -141,12 +152,14 @@ namespace Final_Wave.Controllers
 
         //job
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> AddJob()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddJob(JobViewModel viewmodel, IFormFile file)
         {
 

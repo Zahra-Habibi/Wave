@@ -3,26 +3,22 @@
     ViewData["Title"] = "Wave software service";
     ViewData["Description"] = "This site is a new site , It provide diffirent software (desktop application , mobile application web application, video and image editing,banner , prototype.).";
     Layout = "_SiteLayout";
+    string text = ViewBag.text;
 }
         <br><br><br><br>
 
         <!-- start of search  -->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-2 col-md-2"></div>
-                <div class="col-sm-8 col-md-8 custome-search">
-                    <form class="" action="">
-                        <div class="input-group mb-3 mt-4">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <div class="input-group-append">
-                                <button class="btn custome-search-btn" type="submit">Search</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-sm-2 col-md-2"></div>
-            </div>
+<div class="container-fluid my-3 search-box">
+    <form class="d-flex justify-content-center align-items-center border-2" asp-action="Product" asp-controller="MainSite" method="get">
+        <input class="form-control w-50 search-box"
+               type="search"
+               placeholder="every thing we want are here"
+               aria-label="Search" name="text" id="text" value="@ViewBag.text" />
+        <div class="input-group-append">
+            <button class="btn search-icon" type="submit">Search</button>
         </div>
+    </form>
+</div>
         <!-- end of search -->
         <!-- Start of products card -->
         <div class="container mt-5 custome-bubles">
@@ -45,7 +41,7 @@
                            <img src="~/@item.ProductImage" alt="@item.Alt" title="@item.Title" class="   product-img img-responsive" asp-append-version="true">
                            <div class="card-body ">
                               <h5 class="custome-service-title ">@item.ProductName</h5>
-                              <p class="card-text" style=""> @Html.Raw(item.ShortDescription)</p>
+                              <p class="card-text" style=" overflow:hidden; text-overflow:ellipsis; display:inline-block;"> @Html.Raw(item.ShortDescription)</p>
                                 <a asp-action="ProductDetails" asp-controller="MainSite" asp-route-id="@item.Id" class="card-link service-detail-btn form-control text-center">product Detail</a>
                            </div>
                          </div>
@@ -53,7 +49,6 @@
                 } 
                     }
                 </div>
-
             </div>
         </div>
         <!-- End of products card -->

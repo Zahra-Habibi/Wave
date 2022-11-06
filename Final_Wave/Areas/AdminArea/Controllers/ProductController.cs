@@ -4,12 +4,14 @@ using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _context;

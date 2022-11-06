@@ -4,7 +4,7 @@
 
 namespace Final_Wave.DataLayer.Migrations
 {
-    public partial class skil111 : Migration
+    public partial class reminder : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

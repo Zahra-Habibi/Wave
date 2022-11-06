@@ -388,6 +388,39 @@ namespace Final_Wave.DataLayer.Migrations
                     b.ToTable("productGalleries");
                 });
 
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.Reminder", b =>
+                {
+                    b.Property<int>("ReminderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReminderID"), 1L, 1);
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ReminderContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReminderCreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ReminderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReminderTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ReminderID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("reminder");
+                });
+
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Service", b =>
                 {
                     b.Property<int>("Id")
@@ -842,6 +875,15 @@ namespace Final_Wave.DataLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.Reminder", b =>
+                {
+                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "Users")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -18,7 +18,12 @@
                     <a href="#" class="want-product ml-3">Want This Product</a>
                 </div>
             </div>
-            <br><br><br>
+            <br><br>
+    <div class="row">
+
+        @(await Component.InvokeAsync("GalleyComponent", Model.Id))
+
+    </div>
         </div>
 
         <!-- End of product detail -->

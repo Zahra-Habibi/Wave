@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Wave.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221102154959_skil11")]
-    partial class skil11
+    [Migration("20221106155715_reminder")]
+    partial class reminder
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -761,6 +761,9 @@ namespace Final_Wave.DataLayer.Migrations
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

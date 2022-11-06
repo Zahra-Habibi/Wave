@@ -1,11 +1,13 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
+    [Authorize]
     public class ConductController : Controller
     {
 
