@@ -31,7 +31,7 @@ namespace Final_Wave.Areas.UserArea.Controllers
         }
 
         [HttpPost]
-        public async Task< IActionResult> CreateLetter(LetterViewModel model, string newfilePathName, string LetterNo, string LetterDate)
+        public async Task< IActionResult> CreateLetter(LetterViewModel model, string newfilePathName)
         {
             if (ModelState.IsValid)
             {
@@ -43,20 +43,16 @@ namespace Final_Wave.Areas.UserArea.Controllers
                 {
                     model.AttachmentFile = newfilePathName;
                 }
+
                 model.UserId = _usermanager.GetUserId(HttpContext.User);
                 model.CreatLetterDate = DateTime.Now;
                 await _context.LetterUW.Create(_mapper.Map<Latter>(model));
                 await _context.saveAsync();
-                return RedirectToAction("Index", "Draft");
+                return RedirectToAction(nameof(CreatLetter));
             }
-            if (model.ClassificationStatus == 2)
-            {
-                ViewBag.msg = "The answer of letter with the number of " + LetterNo + "and date " + LetterDate;
-            }
+
             ViewBag.LetterType = model.ClassificationStatus;
             //ViewBag.MainLetterID = model.MainLetterID;
-            ViewBag.LetterNo = LetterNo;
-            ViewBag.LetterDate = LetterDate;
             return View(model);
         }
  
