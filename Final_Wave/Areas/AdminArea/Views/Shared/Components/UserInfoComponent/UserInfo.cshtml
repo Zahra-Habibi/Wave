@@ -1,0 +1,20 @@
+﻿@model ApplicationUser
+@{
+   string Role = "";
+}
+<div class="main-menu-header">
+    <img class="img-80 img-radius" src="~/@Model.usrimag" alt="User-Profile-Image">
+    <div class="user-details">
+        <span id="more-details">@Model.FullName </span>
+        <span style="color:green; font-weight:bold;">
+            @if (Model.IsAdmin== 1)
+            {
+                Role = "Admin";
+            }else
+            {
+                Role = "User";
+            }
+            @Role
+        </span>
+    </div>
+</div>

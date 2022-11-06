@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Wave.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221030184155_newjob2")]
-    partial class newjob2
+    [Migration("20221106055449_mig-User2")]
+    partial class migUser2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -338,9 +338,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ProductCreate")
                         .HasColumnType("datetime2");
 
@@ -414,6 +411,9 @@ namespace Final_Wave.DataLayer.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -762,6 +762,9 @@ namespace Final_Wave.DataLayer.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -806,8 +809,8 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Order", b =>
                 {
-                    b.HasOne("Final_Wave.DataLayer.Entites.Product", "Product")
-                        .WithMany("orders")
+                    b.HasOne("Final_Wave.DataLayer.Entites.Product", "product")
+                        .WithMany("Orders")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -816,9 +819,9 @@ namespace Final_Wave.DataLayer.Migrations
                         .WithMany("orders")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Product");
-
                     b.Navigation("User");
+
+                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Product", b =>
@@ -901,9 +904,9 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Product", b =>
                 {
-                    b.Navigation("ProductGalleries");
+                    b.Navigation("Orders");
 
-                    b.Navigation("orders");
+                    b.Navigation("ProductGalleries");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.ApplicationUser", b =>

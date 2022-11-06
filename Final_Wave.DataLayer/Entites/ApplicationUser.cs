@@ -9,6 +9,7 @@ namespace Final_Wave.DataLayer.Entites
 {
     public class ApplicationUser: IdentityUser
     {
+        public string FullName { get; set; }
         public bool IsActive { get; set; }
         public byte IsAdmin { get; set; }
         public string? usrimag { get;set; }

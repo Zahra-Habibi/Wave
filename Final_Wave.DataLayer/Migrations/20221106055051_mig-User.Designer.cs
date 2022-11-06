@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Wave.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221031125048_new1111")]
-    partial class new1111
+    [Migration("20221106055051_mig-User")]
+    partial class migUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -762,11 +762,17 @@ namespace Final_Wave.DataLayer.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<byte>("IsAdmin")
                         .HasColumnType("tinyint");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("datetime2");

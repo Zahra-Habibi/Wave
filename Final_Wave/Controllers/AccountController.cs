@@ -44,13 +44,14 @@ namespace Final_Wave.Controllers
                 return RedirectToAction(nameof(Register));
             }
 
-            if (await _usermanager.FindByNameAsync(model.UserName) != null)
+            if (await _usermanager.FindByNameAsync(model.Email) != null)
             {
                 ModelState.AddModelError("UserName", "The username is invalid!");
             }
             var user = new ApplicationUser
             {
-                UserName = model.UserName,
+                FullName = model.FullName,
+                UserName = model.Email,
                 Email = model.Email,
                 PasswordHash = model.PasswordHash,
                 IsActive = true,
