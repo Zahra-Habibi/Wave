@@ -31,6 +31,7 @@ namespace Final_Wave.DataLayer.Contexxt
      
         public DbSet<Latter> letters { get; set; }
         public DbSet<Information> information { get; set; }
+        public DbSet<Reminder> reminder { get; set; }
 
  
 

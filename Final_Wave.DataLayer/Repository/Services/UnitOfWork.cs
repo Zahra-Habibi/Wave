@@ -32,8 +32,21 @@ namespace Final_Wave.DataLayer.Repository.Services
         private GenericCLass<ApplicationUser> _user;
         private GenericCLass<Latter> _letters;
         private GenericCLass<AdministrativeForm> _administrative;
+        private GenericCLass<Reminder> _Reminder;
+        
 
-
+        //AdministrativeFormUW
+        public GenericCLass<Reminder> ReminderUW
+        {
+            get
+            {
+                if (_Reminder == null)
+                {
+                    _Reminder = new GenericCLass<Reminder>(_context);
+                }
+                return _Reminder;
+            }
+        }
 
         //AdministrativeFormUW
         public GenericCLass<AdministrativeForm> AdministrativeFormUW

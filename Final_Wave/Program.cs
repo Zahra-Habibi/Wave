@@ -51,10 +51,9 @@ builder.Services.AddAutoMapper(typeof(AutoMapping).Assembly);
 builder.Services.AddSignalR();// on signalR
 
 // for taostr
+// for taostr
 builder.Services.AddNotyf(config =>
 { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
- 
-
 
 var app = builder.Build();
 

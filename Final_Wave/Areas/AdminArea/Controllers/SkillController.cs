@@ -3,12 +3,14 @@ using AutoMapper;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
+    [Authorize]
     public class SkillController : Controller
     {
         private readonly IUnitOfWork _context;

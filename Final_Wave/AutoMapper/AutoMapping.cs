@@ -23,6 +23,7 @@ namespace Final_Wave.AutoMapper
             CreateMap<ApplicationUser, UserViewModel>().ReverseMap();
             CreateMap<Latter, LetterViewModel>().ReverseMap();
             CreateMap<ContactUs, ContactViewModel>().ReverseMap();
+            CreateMap<Reminder, ReminderViewModel>().ReverseMap();
 
 
         }

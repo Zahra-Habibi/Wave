@@ -4,6 +4,7 @@ using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
@@ -11,6 +12,7 @@ using Microsoft.Win32;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
+    [Authorize]
     public class UserManagerController : Controller
     {
         private readonly IUnitOfWork _context;

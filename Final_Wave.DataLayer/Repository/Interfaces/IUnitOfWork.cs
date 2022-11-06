@@ -25,6 +25,7 @@ namespace Final_Wave.DataLayer.Repository.Interfaces
         public GenericCLass<ApplicationUser> UserUW { get; }
         public GenericCLass<Latter> LetterUW { get; }
         public GenericCLass<AdministrativeForm> AdministrativeFormUW { get; }
+        public GenericCLass<Reminder> ReminderUW { get; }
         Task saveAsync();
         void Dispose();
     }

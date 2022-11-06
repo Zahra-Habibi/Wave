@@ -2,14 +2,12 @@
 
 @foreach (var item in Model)
 {
+    <div class="col-1">
+        <a asp-action="ProductDetails" asp-controller="MainSite" asp-route-Id="@item.Id">
+                <img src="~/@item.ImageUrl" alt="@item.Alt" title="@item.Title" style=" height:90px;" class="img-fluid mb-2" />
+        </a>
 
-        <div class="col-sm-6 col-md-3 mt-2 ">
-            <div class="card silimar-product-item">
-                <img src="~/@item.ImageUrl" class="silimar-product-img img-responsive" title="@item.Title" alt="@item.Alt">
-             </div>
-        </div>
-
-
+    </div>
 }
 
 

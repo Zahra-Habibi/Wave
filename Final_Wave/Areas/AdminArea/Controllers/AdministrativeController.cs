@@ -2,12 +2,14 @@
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
+    [Authorize]
     public class AdministrativeController : Controller
     {
         private readonly IUnitOfWork _context;

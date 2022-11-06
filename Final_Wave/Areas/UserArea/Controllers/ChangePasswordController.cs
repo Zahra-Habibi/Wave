@@ -1,5 +1,9 @@
-﻿using Final_Wave.Core.ViewModels;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using AutoMapper;
+using Final_Wave.Core.PulicClasses;
+using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
+using Final_Wave.DataLayer.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +13,15 @@ namespace Final_Wave.Areas.UserArea.Controllers
     public class ChangePasswordController : Controller
     {
         private readonly UserManager<ApplicationUser> _usermanager;
-        public ChangePasswordController(UserManager<ApplicationUser> usermanager)
+        private readonly IUnitOfWork _context;
+        private readonly IMapper _mapper;
+        private readonly INotyfService _notify;
+        public ChangePasswordController(UserManager<ApplicationUser> usermanager,IUnitOfWork context,IMapper map,INotyfService noty)
         {
             _usermanager = usermanager;
-        }
+            _context = context;
+            _mapper = map;
+            _notify = noty;        }
 
         public IActionResult ChangePassword()
         {
@@ -51,5 +60,8 @@ namespace Final_Wave.Areas.UserArea.Controllers
             }
             return View(model);
         }
+
+      
     }
+
 }
