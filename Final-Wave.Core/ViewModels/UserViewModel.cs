@@ -11,6 +11,7 @@ namespace Final_Wave.Core.ViewModels
     public class UserViewModel
     {
 
+        public string FullName { get; set; }
         public string Id { get; set; }
 
         [Display(Name = "userName:")]
