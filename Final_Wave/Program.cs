@@ -12,7 +12,6 @@ using AspNetCoreHero.ToastNotification.Extensions;
 using static System.Net.Mime.MediaTypeNames;
 using Polly;
 using Final_Wave.Hubs;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -85,6 +84,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.MapHub<ChatHub>("/ChatHub");
+app.MapHub<BasicChatHub>("/hubs/basicchat");
+app.MapHub<JobHub>("/hubs/Job");
 
 
 app.MapAreaControllerRoute(
