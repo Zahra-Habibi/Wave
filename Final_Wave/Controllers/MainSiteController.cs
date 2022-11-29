@@ -132,7 +132,6 @@ namespace Final_Wave.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> Contact(ContactViewModel contact)
         {
             if (!ModelState.IsValid) return View(contact);
