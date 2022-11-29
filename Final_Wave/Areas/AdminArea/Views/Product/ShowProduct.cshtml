@@ -32,6 +32,7 @@
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Created</th>
+                                <th scope="col">Orginal</th>
                                 <th scope="col">IsDelete</th>
                                 <th scope="col">Operation</th>
                             </tr>
@@ -46,6 +47,12 @@
                                              <img src="~/@item.ProductImage" alt="@item.Alt" title="@item.Title" class="imgsize img-thumbnail"/>
                                          </td>
                                          <td class="text-center">@item.ProductCreate.ToString("dddd, dd MMMM yyyy")</td>
+                                        <td class="text-center checkbox text-info ">
+                                            <input value="@item.IsOrginal" id="checkbox10" class="check-box" type="checkbox" disabled="" @(item.IsOrginal? "checked" : "")>
+                                            <label for="checkbox10">
+                                               
+                                            </label>
+                                        </td>
                                          <td class="text-center">
                                              @if(item.IsDelete){
                                                <h5 class="text-danger text-center">Deleted</h5>
@@ -67,6 +74,7 @@
                                              }
                                               <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" asp-controller="Product" class="btn-coloredit btn mr-3 mb-1"><i class="fa fa-edit "></i></a>
                                               <a asp-action="Detials" asp-route-id="@item.Id" title="details" asp-controller="Product" class="btn-coloredit1 btn mr-3 mb-1"><i class="fa fa-book"></i></a>
+                                            <a asp-action="ShowAllPrice" asp-route-id="@item.Id" title="price" asp-controller="Product" class="btn-success btn mr-3 mb-1"><i class="fa fa-money"></i></a>
                                           </td>
                                          
                                      </tr>

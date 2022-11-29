@@ -18,19 +18,47 @@
                <div class="container mt-5">
                  <div class="divstyle-detail">
                      <div class="row p-5">
-                        <p> <strong>ProductName : </strong>@Model.ProductName </p>
-                        <p><strong>Description : </strong>@Html.Raw(Model.ShortDescription)</p>
-                            <p><strong>Description : </strong>@Html.Raw(Model.FullDescription)</p>
-                        <p> <strong>IsActive : </strong> @Model.IsActive</p>
-                        <p> <strong>IsDelete : </strong> @Model.IsDelete</p>
-                        <p> <strong>CategoryId : </strong> @Model.CategoryId</p>
-                        <p> <strong>Count : </strong>@Model.count</p>
-                        <p>
-                           <strong>ProductImage :&nbsp;</strong> 
-                           <img  controls  class="imgdetail " alt="@Model.Alt" title="@Model.Title" src="~/@Model.ProductImage" />
-                        </p>
-                         <p> <strong>Alt : </strong>@Model.Alt</p>
-                          <p> <strong>Title : </strong>@Model.Title</p>
+                         <div class="col-6">
+                                <p> <strong>ProductName : </strong>@Model.ProductName </p>
+                                <p><strong>Description : </strong>@Html.Raw(Model.ShortDescription)</p>
+                                <p> <strong>IsActive : </strong> @Model.IsActive</p>
+                                <p> <strong>IsDelete : </strong> @Model.IsDelete</p>
+                                <p> <strong>MainPrice : </strong> @Model.MainPrice</p>
+                                <p> <strong>SpecialPrice : </strong> @Model.SpecialPrice</p>
+                                <p> <strong>Alt : </strong>@Model.Alt</p>
+                                <p> <strong>Title : </strong>@Model.Title</p>
+                               
+                         </div>
+                         <div class="col-6">
+                                <p> <strong>CategoryId : </strong> @Model.CategoryId</p>
+                                <p><strong>Description : </strong>@Html.Raw(Model.FullDescription)</p>
+                                <p> <strong>IsOrginal : </strong> @Model.IsOrginal</p>
+                                <p> <strong>Count : </strong> @Model.count</p>
+                                <p> <strong>ProductStar : </strong> @Model.ProductStar</p>
+                                <p> <strong>MaxOrderCount : </strong> @Model.MaxOrderCount</p>
+                                <p> <strong>EndDateDiscount : </strong> @Model.EndDateDiscount.ToString("yyyy/mm/dd")</p>
+                             
+                            </div>
+                            <p>
+                                <strong></strong>
+                                <img controls class="imgdetail txt-center " alt="@Model.Alt" title="@Model.Title" src="~/@Model.ProductImage" />
+                            </p>
+                          
+                           
+                       
+                       
+                      
+                              
+                       
+                       
+                      
+                        
+                       
+                      
+               
+                       
+                        
+                       
                      </div>
                      <div class="form-group text-right m-b-0 d-flex justify-content-center">
                            <a asp-action="ShowProduct" class="btn btn-back mb-3"> Dack</a>

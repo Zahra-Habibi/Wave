@@ -27,6 +27,7 @@ namespace Final_Wave.DataLayer.Entites
         public ApplicationUser User { get; set; }
 
         public int ProductId { get; set; }
+
         [ForeignKey("ProductId")]
         public Product product { get; set; }
 

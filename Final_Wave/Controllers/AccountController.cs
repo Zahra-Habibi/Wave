@@ -30,9 +30,10 @@ namespace Final_Wave.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task< IActionResult> Register(RegisterViewModel model, IFormFile file)
+        public async Task<IActionResult> Register(RegisterViewModel model, IFormFile file)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -58,14 +59,16 @@ namespace Final_Wave.Controllers
                 IsAdmin = 2,
                 usrimag = imgname,
             };
+            //your whatsapp is off, I am calling
+
             IdentityResult result = await _usermanager.CreateAsync(user, model.PasswordHash);
             if (result.Succeeded)
             {
-                return RedirectToAction(nameof(Login));   
-            }
             _notify.Success("You successfuly Registerd  !");
-            return RedirectToAction(nameof(Login));
-            
+                return RedirectToAction(nameof(Login));
+            }
+            return View(model);
+
         }
 
 
@@ -94,6 +97,7 @@ namespace Final_Wave.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 var user = await _usermanager.FindByNameAsync(model.UserName);
@@ -108,18 +112,18 @@ namespace Final_Wave.Controllers
                     if (result.Succeeded)
                     {
 
-                    if (user.IsAdmin == 1)
-                    {
+                       if (user.IsAdmin == 1)
+                       {
                         //Admin
-                        return Redirect("/AdminArea/DashBoard/Index");
-                    }
-                    else if (user.IsAdmin == 2)
-                    {
+                          return Redirect("/AdminArea/DashBoard/Index");
+                       }
+                       else if (user.IsAdmin == 2)
+                       {
                         //User
                         return Redirect("/MainSite/Home");
-                    }
+                        }
 
-                }
+                    }
                     else
                     {
                         ModelState.AddModelError("Password" ,"Oops, your information is invalid!  ");

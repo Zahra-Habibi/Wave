@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Final_Wave.Core.ViewModels.SpecialProductViewModel>
+
+    <div class="col-lg-7 col-xs-12 pl mt-5 d-block">
+        <section class="product-info">
+            <div class="product-headline">
+                <h1 class="product-title">
+                    @Model.First().ProductName
+                </h1>
+                <div class="product-guaranteed text-success">
+                    @Model.First().Productsell
+                    <span>فروش موفق</span>
+                </div>
+            </div>
+            <div class="product-attributes">
+                <div class="product-config">
+                  \>
+                    <div class="product-rate">
+                        @for (int i = 1; i < Model.First().productstar; i++)
+                        {
+                            <i class="fa fa-star active"></i>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+   
+                <div class="col=lg-6 col-md-6 col-xs-12 pr">
+                    <div class="product-seller-info">
+                        <div class="seller-info-changable">
+                            <div class="product-seller-row vendor">
+                                <span class="title"> فروشنده:</span>
+                                <a href="#" class="product-name">دیجی اسمارت</a>
+                            </div>
+                            <div class="product-seller-row guarantee">
+                                <span class="title"> گارانتی:</span>
+                                <a href="#" class="product-name gurantee"></a>
+                            </div>
+                            <div class="product-seller-row price">
+                                <span class="title"> قیمت:</span>
+
+                                <a href="#" class="product-name">
+                                    <span class="amount MainPrice">
+
+                                        <span>تومان</span>
+                                    </span>
+                                </a>
+
+                                <a href="#" class="product-name">
+                                    <del class="amount  sepcial">
+
+                                    </del>
+                                </a>
+                            </div>
+                            <div class="product-seller-row guarantee">
+                                <span class="title mt-3"> تعداد:</span>
+                                <div class="quantity pl">
+                                    <input type="number" min="1" max="100" step="1" value="1">
+                                    <div class="quantity-nav">
+                                        <div class="quantity-button quantity-up">+</div>
+                                        <div class="quantity-button quantity-down">-</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-seller-row add-to-cart">
+                                <a href="#" class="btn-add-to-cart btn btn-primary addcart">
+                                    <span class="btn-add-to-cart-txt">افزودن به سبد خرید</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

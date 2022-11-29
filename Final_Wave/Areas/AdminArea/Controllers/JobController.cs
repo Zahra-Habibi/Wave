@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+   // [Authorize]
     public class JobController : Controller
     {
         private readonly IUnitOfWork _context;
@@ -64,7 +64,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             await _context.JobUW.Create(mapModel);
             await _context.saveAsync();
             _notify.Success("You successfully Requested!", 5);
-            return RedirectToAction(nameof(AddJob));
+            return RedirectToAction(nameof(Index));
         }
 
 

@@ -21,21 +21,36 @@ namespace Final_Wave.DataLayer.Entites
 
         public string FullDescription { get; set; }
 
-        public DateTime ProductCreate { get; set; }
-       = DateTime.UtcNow;
+        public DateTime ProductCreate { get; set; } = DateTime.UtcNow;
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
+        public int ProductSell { get; set; }
+        public byte ProductStar { get; set; }
+        public bool IsOrginal { get; set; }
         public int CategoryId { get; set; }
-       
+
+        [Display(Name = "MainPrice")]
+        public int MainPrice { get; set; }
+
+        [Display(Name = "SpecialPrice")]
+        public int SpecialPrice { get; set; }
+
+        [Display(Name = "MaxOrderCount")]
+        [Required]
+        public int MaxOrderCount { get; set; }
+
         public int count { get; set; }
+        public DateTime CreatDate { get; set; }
+        public DateTime EndDateDiscount { get; set; }
+
 
         [ForeignKey("CategoryId")]
         public Category Categories { get; set; }
 
      
-         public ICollection<ProductGallery> ProductGalleries { get; set; }
-
+        public ICollection<ProductGallery> ProductGalleries { get; set; }
         public List<Order> Orders { get; set; }
+        public List<ProductPrice> productPrices { get; set; }
 
 
     }

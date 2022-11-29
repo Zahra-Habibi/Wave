@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+    //[Authorize]
     public class AdministrativeController : Controller
     {
         private readonly IUnitOfWork _context;

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+    //[Authorize]
     public class ConductController : Controller
     {
 

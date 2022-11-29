@@ -17,7 +17,7 @@ namespace Final_Wave.DataLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -112,6 +112,23 @@ namespace Final_Wave.DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("categories");
+                });
+
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ChatRoom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("chatRooms");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.ContactUs", b =>
@@ -327,6 +344,12 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDateDiscount")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FullDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -335,6 +358,15 @@ namespace Final_Wave.DataLayer.Migrations
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("IsOrginal")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MainPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxOrderCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ProductCreate")
                         .HasColumnType("datetime2");
@@ -345,8 +377,17 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ProductSell")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("ProductStar")
+                        .HasColumnType("tinyint");
+
                     b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SpecialPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -386,6 +427,42 @@ namespace Final_Wave.DataLayer.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("productGalleries");
+                });
+
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ProductPrice", b =>
+                {
+                    b.Property<int>("ProductPriceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductPriceId"), 1L, 1);
+
+                    b.Property<DateTime>("CreatDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndDateDiscount")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MainPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxOrderCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpecialPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("count")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductPriceId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductPrice");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Reminder", b =>
@@ -877,6 +954,17 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ProductPrice", b =>
+                {
+                    b.HasOne("Final_Wave.DataLayer.Entites.Product", "product")
+                        .WithMany("productPrices")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("product");
+                });
+
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Reminder", b =>
                 {
                     b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "Users")
@@ -947,6 +1035,8 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Navigation("Orders");
 
                     b.Navigation("ProductGalleries");
+
+                    b.Navigation("productPrices");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.ApplicationUser", b =>

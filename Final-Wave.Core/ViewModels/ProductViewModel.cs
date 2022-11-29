@@ -37,14 +37,38 @@ namespace Final_Wave.Core.ViewModels
 
         public DateTime ProductCreate { get; set; }
 
-        [Display(Name = "AmountProduct")]
-        [Required(ErrorMessage = "please enter the anoumt of product")]
-        public int count { get; set; }
+     
         public bool IsActive { get; set; }
         public bool IsDelete { get; set; }
         [Display(Name ="fullDescription")]
         public string FullDescription { get; set; }
+
+        [Display(Name ="ProductSell")]
+        public int ProductSell { get; set; }
+
+        [Display(Name ="ProductStar")]
+        public byte ProductStar { get; set; }
+
+        public bool IsOrginal { get; set; }
+
         public int CategoryId { get; set; }
+
+
+        [Display(Name = "MainPrice")]
+        public int MainPrice { get; set; }
+
+        [Display(Name = "SpecialPrice")]
+        public int SpecialPrice { get; set; }
+
+        [Display(Name = "MaxOrderCount")]
+        [Required]
+        public int MaxOrderCount { get; set; }
+
+        public int count { get; set; }
+        public DateTime CreatDate { get; set; }
+        public DateTime EndDateDiscount { get; set; }
+
+        public int ProductPriceId { get; set; }
         public ICollection<ProductGalleryViewModel> Photos { get; set; }
        
  

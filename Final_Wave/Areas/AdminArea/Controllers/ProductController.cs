@@ -4,6 +4,7 @@ using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Final_Wave.DataLayer.Repository.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,19 +12,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+    //[Authorize]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
         private readonly INotyfService _notify;
         private readonly IProductRepasitory _productRepository;
-        public ProductController(IUnitOfWork context, IMapper mapper, INotyfService notify, IProductRepasitory productRepository)
+        private readonly IProductPrice _productservice;
+        public ProductController(IUnitOfWork context, IMapper mapper, INotyfService notify, IProductRepasitory productRepository, IProductPrice productservice)
         {
             _context = context;
             _mapper = mapper;
             _notify = notify;
             _productRepository = productRepository;
+            _productservice = productservice;
         }
 
         public async Task<IActionResult> ShowProduct()
@@ -162,5 +165,34 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             return View(product);
         }
 
+
+        //add pricce
+
+        public IActionResult ShowAllPrice(int id)
+        {
+            ViewBag.id = id;
+            return View(_productservice.ShowAllPriceForProduct(id));
+        }
+
+        public IActionResult AddPrice(int id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddPrice(ProductPrice productPrice)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.id = productPrice.ProductId;
+                return View(productPrice);
+            }
+            productPrice.CreatDate = DateTime.Now;
+            int priceid = _productservice.AddPriceForProduct(productPrice);
+            TempData["Result"] = priceid > 0 ? "true" : "false";
+            return RedirectToAction(nameof(ShowProduct));
+
+        }
     }
 }

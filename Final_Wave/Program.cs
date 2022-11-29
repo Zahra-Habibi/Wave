@@ -12,6 +12,10 @@ using AspNetCoreHero.ToastNotification.Extensions;
 using static System.Net.Mime.MediaTypeNames;
 using Polly;
 using Final_Wave.Hubs;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.SignalR;
+using Final_Wave.DataLayer.Migrations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,6 +28,12 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddIdentityCore<IdentityUser>(options => 
+options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationContext>();
+
+
+builder.Services.AddControllersWithViews();
 
 
 //Identity Methods
@@ -42,6 +52,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
 ////Recognizing the interface
 builder.Services.AddScoped<IUploadFiels, UploadFiel>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductPrice,ProductPriceService>();
 builder.Services.AddScoped<IProductRepasitory, ProductService>();
 builder.Services.AddAutoMapper(typeof(AutoMapping).Assembly);
 #endregion
@@ -83,9 +94,10 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.MapHub<ChatHub>("/ChatHub");
-app.MapHub<BasicChatHub>("/hubs/basicchat");
+app.MapHub<UserCountHub>("/UserCountHub");
 app.MapHub<JobHub>("/hubs/Job");
+app.MapHub<BasicChatHub>("/hubs/basicchat");
+app.MapHub<ChatHub>("/hubs/chat");
 
 
 app.MapAreaControllerRoute(

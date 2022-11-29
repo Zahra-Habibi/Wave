@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+   // [Authorize]
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _context;

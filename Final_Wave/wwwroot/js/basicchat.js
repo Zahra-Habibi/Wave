@@ -1,4 +1,5 @@
-﻿var connectionChat = new signalR.HubConnectionBuilder().withUrl("/hubs/basicchat").build();
+﻿
+var connectionChat = new signalR.HubConnectionBuilder().withUrl("/hubs/basicchat").build();
 
 document.getElementById("sendMessage").disabled = true;
 
@@ -30,3 +31,4 @@ document.getElementById("sendMessage").addEventListener("click", function (event
 connectionChat.start().then(function () {
     document.getElementById("sendMessage").disabled = false;
 });
+
