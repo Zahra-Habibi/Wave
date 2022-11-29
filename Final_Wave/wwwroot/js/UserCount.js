@@ -1,5 +1,5 @@
 ﻿//create connection 
-var connectionUserCount = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+var connectionUserCount = new signalR.HubConnectionBuilder().withUrl("/UserCountHub").build();
 
 
 //connection with hub method

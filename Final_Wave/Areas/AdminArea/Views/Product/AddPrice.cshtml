@@ -1,0 +1,86 @@
+﻿
+@model ProductPrice
+@{
+    ViewData["Title"] = "AddProduct";
+}
+
+
+<div class="mt-5"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-plus "> Product </i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-8  offset-2 card-box">
+                            <form asp-controller="Product" asp-action="AddPrice" method="post" class="mt-5" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="ProductId" value="@ViewBag.id" />
+                                <div class="ml-3 mb-3 mr-3 ">
+                                    <label>Main_Price</label>
+                                    <input asp-for="MainPrice" type="text" placeholder="Mainprice " class="form-control" autocomplete="off">
+                                    <span asp-validation-for="MainPrice" class="text-danger"></span>
+                               </div>
+                                                     
+                                  <div class="ml-3 mb-3 mr-3">
+                                       <label>SpecialPrice</label>
+                                       <input asp-for="SpecialPrice" type="text" placeholder="SprcialPrice" class="form-control" autocomplete="off">
+                                      <span asp-validation-for="SpecialPrice" class="text-danger"></span>
+                                 </div>
+
+                                 
+                                  <div class="ml-3 mb-3 mr-3">
+                                       <label>Product_count</label>
+                                       <input asp-for="count" type="text" placeholder="count" class="form-control" autocomplete="off">
+                                      <span asp-validation-for="count" class="text-danger"></span>
+                                 </div>
+
+                                  <div class="ml-3 mb-3 mr-3">
+                                       <label>MaxorderCount</label>
+                                       <input asp-for="MaxOrderCount" type="text" placeholder="Maxordercount" class="form-control" autocomplete="off">
+                                      <span asp-validation-for="MaxOrderCount" class="text-danger"></span>
+                                 </div>
+
+
+
+                                 <div class="ml-3 mb-3 mr-3">
+                                     <label>EndDateDisCount</label>
+                                     <input asp-for="EndDateDiscount" type="date" placeholder="EndDateDiscount" class="form-control" autocomplete="off">
+                                     <span asp-validation-for="EndDateDiscount" class="text-danger"></span>
+                                 </div>
+               
+                               <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                  <div class="mr-3 mb-3">
+                                      <button class="btn btn-success btn-colorsave " type="submit">
+                                         Save  <i class="fa fa-plus"></i>
+                                      </button>
+                                  </div>&nbsp;
+                                   <div class="ml-3 mb-3">
+                                        <a asp-action="ShowProduct" class="btn btn-back btn-primary">
+                                         Cancel
+                                        </a>
+                                   </div>
+                                </div>
+                            </form>
+                      </div>
+                </div>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

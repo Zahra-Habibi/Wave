@@ -41,24 +41,59 @@
                                  </div>
                                  
                                   <div class="ml-3 mb-3 mr-3">
-                                       <label>Alt</label>
+                                       <label>Img_Alt</label>
                                        <input asp-for="Alt" type="text" placeholder="Alt" class="form-control" autocomplete="off">
                                       <span asp-validation-for="Alt" class="text-danger"></span>
                                  </div>
 
                                  
                                   <div class="ml-3 mb-3 mr-3">
-                                       <label>Title</label>
+                                       <label>Img_Title</label>
                                        <input asp-for="Title" type="text" placeholder="Title" class="form-control" autocomplete="off">
                                       <span asp-validation-for="Title" class="text-danger"></span>
                                  </div>
 
-                                  <div class="ml-3 mb-3 mr-3">
-                                       <label>Count</label>
-                                       <input asp-for="count" type="text" placeholder="Count" class="form-control" autocomplete="off">
-                                      <span asp-validation-for="count" class="text-danger"></span>
-                                 </div>
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>Main_Price</label>
+                                <input asp-for="MainPrice" type="text" placeholder="Maniprice" class="form-control" autocomplete="off">
+                                <span asp-validation-for="MainPrice" class="text-danger"></span>
+                            </div>
 
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>Special_Price</label>
+                                <input asp-for="SpecialPrice" type="text" placeholder="Specialprice" class="form-control" autocomplete="off">
+                                <span asp-validation-for="SpecialPrice" class="text-danger"></span>
+                            </div>
+
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>Count</label>
+                                <input asp-for="count" type="text" placeholder="Count" class="form-control" autocomplete="off">
+                                <span asp-validation-for="count" class="text-danger"></span>
+                            </div>
+
+                             <div class="ml-3 mb-3 mr-3">
+                                   <label>MaxOrderCount</label>
+                                    <input asp-for="MaxOrderCount" type="text" placeholder="maxordercount" class="form-control" autocomplete="off">
+                                    <span asp-validation-for="MaxOrderCount" class="text-danger"></span>
+                             </div>
+
+
+                                <div class="ml-3 mb-3 mr-3">
+                                   <select class="form-control" asp-for="ProductStar">
+                                       <option value="1">1</option>
+                                       <option value="2">2</option>
+                                       <option value="3">3</option>
+                                       <option value="4">4</option>
+                                       <option value="5">5</option>
+                                   </select>
+                                </div>
+
+
+                              <div class="ml-3 mb-3 mr-3">
+                                <label>EndDateDiscount</label>
+                                <input asp-for="EndDateDiscount" type="date" placeholder="EndDateDiscount" class="form-control" autocomplete="off">
+                                <span asp-validation-for="EndDateDiscount" class="text-danger"></span>
+                              </div>
 
                                  <div class="ml-3 mb-3 mr-3">
                                     <div class="checkbox">
@@ -66,6 +101,13 @@
                                        <label asp-for="IsActive" for="remember-1"> Keep Active </label>
                                     </div>
                                  </div>
+
+                            <div class="ml-3 mb-3 mr-3">
+                                <div class="checkbox">
+                                    <input asp-for="IsOrginal" class="check-box" id="remember-1" type="checkbox" class="mr-4">
+                                    <label asp-for="IsOrginal" for="remember-1">IsOrginal </label>
+                                </div>
+                            </div>
 
 
                               <div class="ml-3 mb-3 mr-3">

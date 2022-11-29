@@ -31,7 +31,7 @@
                         <thead class="bgcolor   ">
                             <tr class="text-center">
                                 <th scope="col">#</th>
-                                <th scope="col">UserName</th>
+                                <th scope="col">Full_Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Register_Date</th>
                                 <th scope="col">IsActive</th>
@@ -45,7 +45,7 @@
                                 {
                                      <tr>
                                          <td class="text-center">@counter</td>
-                                         <td class="text-center">@item.UserName</td>
+                                         <td class="text-center">@item.FullName</td>
                                          <td class="text-center">@item.Email</td>
                                           <td class="text-center">@item.RegisterDate</td> 
                                          <td style="color:@(item.IsActive? "green": "darkred"); font-weight:bold; ">@(item.IsActive? "Active" : "InActive")</td>

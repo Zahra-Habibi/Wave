@@ -23,6 +23,10 @@ namespace Final_Wave.Areas.UserArea.Controllers
         {
             return View();
         }
+        public IActionResult FirstChat()
+        {
+            return View();
+        }
  
 
     }

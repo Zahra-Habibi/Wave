@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace Final_Wave.Hubs
 {
-    public class BasicChatHub: Hub
+    public class BasicChatHub : Hub
     {
         private readonly ApplicationContext _db;
         public BasicChatHub(ApplicationContext db)
@@ -27,6 +27,6 @@ namespace Final_Wave.Hubs
             }
 
         }
-    }
-    
+
+    } 
 }

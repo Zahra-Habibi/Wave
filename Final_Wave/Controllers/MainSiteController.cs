@@ -1,14 +1,19 @@
-﻿using AspNetCoreHero.ToastNotification.Abstractions;
+﻿
+using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
 using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
+using Final_Wave.DataLayer.Contexxt;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Final_Wave.DataLayer.Repository.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System.Drawing.Drawing2D;
+using System.Security.Claims;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Final_Wave.Controllers
@@ -20,13 +25,17 @@ namespace Final_Wave.Controllers
         private readonly IMapper _mapper;
         private readonly IProductRepasitory _product;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public MainSiteController(IUnitOfWork context, INotyfService noty, IMapper mapper, IProductRepasitory product, IWebHostEnvironment webHostEnvironment)
+        private readonly ApplicationContext _contexts;
+        private IProductPrice _productservice;
+        public MainSiteController(IUnitOfWork context, INotyfService noty, IMapper mapper, IProductRepasitory product, IWebHostEnvironment webHostEnvironment,ApplicationContext c, IProductPrice productservice)
         {
             _context = context;
             _notify = noty;
             _mapper = mapper;
             _product = product;
             _webHostEnvironment = webHostEnvironment;
+            _contexts = c;
+            _productservice = productservice;
         }
 
         [HttpGet]
@@ -73,6 +82,16 @@ namespace Final_Wave.Controllers
         {
             var product = await _context.productUW.GetByIdAsync(Id);
             return View(product);
+       
+        }
+        public IActionResult SpecialProduct(int id)
+        {
+            var b = _productservice.ShowDetailsProduct(id);
+            if (b.Count() <= 0)
+            {
+                return NotFound();
+            }
+            return View(b);
         }
 
         [HttpGet]
@@ -127,7 +146,7 @@ namespace Final_Wave.Controllers
         [Authorize]
         public async Task<IActionResult> Order()
         {
-            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
             return View();
         }
 
@@ -139,10 +158,10 @@ namespace Final_Wave.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ");
+            ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
             model.OrderTime = DateTime.Now;
             var mapModel = _mapper.Map<Order>(model);
-            await _context.orderUW.Create(mapModel);
+             _context.orderUW.Create(mapModel);
             await _context.saveAsync();
             _notify.Success("You successfully orderd!", 5);
             return RedirectToAction(nameof(Order));
@@ -189,6 +208,35 @@ namespace Final_Wave.Controllers
             _notify.Success("You successfuly Added  a slider !", 5);
             return RedirectToAction(nameof(AddJob));
 
+        }
+
+        [Authorize]
+        public IActionResult Chat()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ChatVM chatVm = new()
+            {
+                Rooms = _contexts.chatRooms.ToList(),
+                MaxRoomAllowed = 4,
+                UserId = userId,
+            };
+            return View(chatVm);
+        }
+
+        public IActionResult AdvancedChat()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ChatVM chatVm = new()
+            {
+                Rooms = _contexts.chatRooms.ToList(),
+                MaxRoomAllowed = 4,
+                UserId = userId,
+            };
+            return View(chatVm);
+        }
+        public IActionResult BasicChat()
+        {
+            return View();
         }
 
     }

@@ -12,7 +12,7 @@ using Microsoft.Win32;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+    //[Authorize]
     public class UserManagerController : Controller
     {
         private readonly IUnitOfWork _context;
@@ -46,8 +46,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddUser(UserViewModel model, IFormFile file)
         {
-            //if (!ModelState.IsValid)
-            //    return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
             string imgname = "Img/UserProfile/" + UploadFiles.CreateImg(file, "UserProfile");
             if (imgname == "false")
@@ -62,12 +62,13 @@ namespace Final_Wave.Areas.AdminArea.Controllers
                 }
                 var user = new ApplicationUser
                 {
-                    UserName = model.UserName,
+                    UserName = model.Email,
                     Email = model.Email,
                     PasswordHash = model.PasswordHash,
                     IsActive = true,
                     IsAdmin = model.IsAdmin,
                     usrimag = imgname,
+                    FullName=model.FullName,
                 };
                 IdentityResult result = await _usermanager.CreateAsync(user, model.PasswordHash);
                 if (!result.Succeeded)
