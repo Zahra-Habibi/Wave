@@ -1,4 +1,5 @@
-﻿using Final_Wave.DataLayer.Entites;
+﻿using Final_Wave.Core.ViewModels;
+using Final_Wave.DataLayer.Entites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Final_Wave.DataLayer.Repository.Interfaces
 
         Task<Product> GetProductById(int productId);
         Task<List<Skills>> GetJobs();
+        bool ExistEmail(string email, string id);
+        List<OrderViewModel> ShowAllCommentForProduct(int productid);
 
     }
 }

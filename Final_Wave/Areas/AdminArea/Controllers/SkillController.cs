@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-   // [Authorize]
+    [Authorize]
     public class SkillController : Controller
     {
         private readonly IUnitOfWork _context;

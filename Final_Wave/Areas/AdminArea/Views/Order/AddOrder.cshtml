@@ -20,6 +20,7 @@
                 <div class="row">
                     <div class="mb-1 mt-3 col-8  offset-2 card-box">
                         <form asp-controller="Order" asp-action="AddOrder" method="post" class="mt-5" enctype="multipart/form-data">
+                           
                             <div class="ml-3 mb-3 mr-3 ">
                                 <label> Prodcut Name</label>
                                 <input asp-for="Name" type="text" placeholder="Product Name " class="form-control" autocomplete="off">
@@ -42,13 +43,13 @@
 
 
                             <div class="ml-3 mb-3 mr-3">
-                                <label>Title</label>
+                                <label>PhoneNumber</label>
                                 <input asp-for="PhoneNumber" type="text" placeholder="Title" class="form-control" autocomplete="off">
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
-                            <input  asp-for="UserId"/>
+                            <input  asp-for="UserId" hidden/>
                             <div class="ml-3 mb-3 mr-3">
-                                <label>Count</label>
+                                <label>Email</label>
                                 <input asp-for="EmailAddress" type="email" placeholder="Count" class="form-control" autocomplete="off">
                                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
                             </div>

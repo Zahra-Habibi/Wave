@@ -16,10 +16,11 @@
                     <p class="mt-2 ml-3">@Html.Raw(Model.ShortDescription)</p>
                     <p class="mt-2 ml-3">@Html.Raw(Model.FullDescription)</p>
                     <p>
-                    @* <h6 class="text-left "> Price:&nbsp;<s class="text-danger">@Model.MainPrice</s> <i>@Model.SpecialPrice</i> </h6>*@
+                     <h6 class="text-left "> Price:&nbsp;<b class="text-danger">@Model.MainPrice $</b> <i>(@Model.SpecialPrice $)</i> </h6>
                     </p>
-                   
-                    <a href="#" class="want-product ml-3">Want This Product</a>
+
+                       <a asp-action="Order" asp-controller="MainSite"  class="want-product ml-3">Order This Product</a>
+                       <a asp-action="AdvancedChat" asp-controller="UserHome" asp-area="UserArea" asp-route-id="@Model.Id" class="want-product ml-3">Chat with admin</a>
                    
 
                 </div>

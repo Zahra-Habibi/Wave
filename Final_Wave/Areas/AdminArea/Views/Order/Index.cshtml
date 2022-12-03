@@ -30,6 +30,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Date</th>
+                                <th scope="col">Answare</th>
                                 <th scope="col">Operation</th>
                             </tr>
                         </thead>
@@ -44,9 +45,21 @@
                                          <td class="text-center">@item.PhoneNumber</td>
                                          <td class="text-center">@item.OrderTime.ToString("dddd, dd MMMM yyyy")</td>
                                         <td class="text-center">
+                                                @if (item.IsSend)
+                                                {
+                                                <a asp-action="Message" asp-route-id="@item.Id" asp-controller="Order" title=" Readed" class="btn-success btn mr-3 mb-1 btn-color-del"><i class="fa fa-edit">Accepted</i></a>
+                                                }
+                                                else
+                                                {
+                                                <a asp-action="Message" asp-route-id="@item.Id" asp-controller="Order" title="No_Read" class="btn-primary btn mr-3 mb-1 btn-color-del"><i class="fa fa-book">New</i></a>
+                                                }
+
+                                        </td>
+                                        <td class="text-center">
                                               <a asp-action="Details" asp-route-id="@item.Id" title="Details" asp-controller="Order" class="btn-success btn mr-3 mb-1 "><i class="fa fa-book "></i></a>
-                                               <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" asp-controller="Order" class="btn-coloredit btn mr-3 mb-1"><i class="fa fa-edit"></i></a>
-                                          </td>
+                                              <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" asp-controller="Order" class="btn-coloredit btn mr-3 mb-1"><i class="fa fa-edit"></i></a>
+                                              <a asp-action="Index" asp-route-id="@item.Id" title="prograss" asp-controller="Notation" class="btn-coloredit btn mr-3 mb-1"><i class="fa fa-edit">notation</i></a>
+                                           </td>
                                          
                                      </tr>
                                           counter++;

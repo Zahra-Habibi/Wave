@@ -13,8 +13,8 @@ connection.start().then(function () {
 }).catch(function (err) {
     return console.error(err.toString());
 });
-U
-connection.on("ReceiveOnlinesers", function (response) {
+
+connection.on("ReceiveOnlineUsers", function (response) {
 
     for (i = 0; i < response.length; i++) {
         var spanOnline = document.getElementById(`spanOnline${response[i]}`);

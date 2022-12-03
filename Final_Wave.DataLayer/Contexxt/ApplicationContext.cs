@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Final_Wave.DataLayer.Contexxt
 {
-    public class ApplicationContext : IdentityDbContext
+    public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -34,8 +34,10 @@ namespace Final_Wave.DataLayer.Contexxt
         public DbSet<Reminder> reminder { get; set; }
         public DbSet<ChatRoom> chatRooms { get; set; }
         public DbSet<ProductPrice> ProductPrice { get; set; }
+        public DbSet<PrograssBar> prograssBars { get; set; }
+        public DbSet<Notation> Notation_tbl { get; set; }
 
- 
+
 
 
 

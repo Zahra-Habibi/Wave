@@ -86,6 +86,89 @@ namespace Final_Wave.DataLayer.Migrations
                     b.ToTable("administrativeForms");
                 });
 
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<byte>("IsAdmin")
+                        .HasColumnType("tinyint");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("RegisterDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("usrimag")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -195,6 +278,9 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
                     b.Property<string>("JobName")
                         .HasColumnType("nvarchar(max)");
 
@@ -265,28 +351,60 @@ namespace Final_Wave.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("SenderId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<DateTime>("CreatMessage")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("When")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("userId_reciever")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("userId_sender")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SenderId");
+                    b.HasIndex("userId_reciever");
 
                     b.ToTable("Message");
+                });
+
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.Notation", b =>
+                {
+                    b.Property<int>("NotationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotationID"), 1L, 1);
+
+                    b.Property<string>("NotationContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NotationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NotationTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID_Creator")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserID_Reciever")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("NotationID");
+
+                    b.HasIndex("UserID_Creator");
+
+                    b.HasIndex("UserID_Reciever");
+
+                    b.ToTable("Notation_tbl");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Order", b =>
@@ -303,6 +421,9 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsSend")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -317,6 +438,9 @@ namespace Final_Wave.DataLayer.Migrations
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ShortDescription")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -347,9 +471,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<DateTime>("CreatDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EndDateDiscount")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("FullDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -365,9 +486,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<int>("MainPrice")
                         .HasColumnType("int");
 
-                    b.Property<int>("MaxOrderCount")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("ProductCreate")
                         .HasColumnType("datetime2");
 
@@ -376,12 +494,6 @@ namespace Final_Wave.DataLayer.Migrations
 
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductSell")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("ProductStar")
-                        .HasColumnType("tinyint");
 
                     b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(max)");
@@ -463,6 +575,47 @@ namespace Final_Wave.DataLayer.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductPrice");
+                });
+
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.PrograssBar", b =>
+                {
+                    b.Property<int>("PrograssId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrograssId"), 1L, 1);
+
+                    b.Property<int>("Codind")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Design")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Maintenance")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("OrderTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Requirement")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Testing")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("orderid")
+                        .HasColumnType("int");
+
+                    b.HasKey("PrograssId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("orderid");
+
+                    b.ToTable("prograssBars");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Reminder", b =>
@@ -714,77 +867,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -866,28 +948,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<byte>("IsAdmin")
-                        .HasColumnType("tinyint");
-
-                    b.Property<DateTime>("RegisterDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("usrimag")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.AdministrativeForm", b =>
                 {
                     b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "Users")
@@ -909,10 +969,25 @@ namespace Final_Wave.DataLayer.Migrations
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Message", b =>
                 {
                     b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "Sender")
-                        .WithMany("Messages")
-                        .HasForeignKey("SenderId");
+                        .WithMany("messages")
+                        .HasForeignKey("userId_reciever");
 
                     b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.Notation", b =>
+                {
+                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "User_Creator")
+                        .WithMany()
+                        .HasForeignKey("UserID_Creator");
+
+                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "User_Reciever")
+                        .WithMany()
+                        .HasForeignKey("UserID_Reciever");
+
+                    b.Navigation("User_Creator");
+
+                    b.Navigation("User_Reciever");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Order", b =>
@@ -965,6 +1040,23 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Navigation("product");
                 });
 
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.PrograssBar", b =>
+                {
+                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "user")
+                        .WithMany("prograssBars")
+                        .HasForeignKey("UserId");
+
+                    b.HasOne("Final_Wave.DataLayer.Entites.Order", "order")
+                        .WithMany("prograssBars")
+                        .HasForeignKey("orderid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("order");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Reminder", b =>
                 {
                     b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "Users")
@@ -985,7 +1077,7 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -994,7 +1086,7 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1009,7 +1101,7 @@ namespace Final_Wave.DataLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1018,16 +1110,30 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ApplicationUser", b =>
+                {
+                    b.Navigation("messages");
+
+                    b.Navigation("orders");
+
+                    b.Navigation("prograssBars");
+                });
+
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Category", b =>
                 {
                     b.Navigation("products");
+                });
+
+            modelBuilder.Entity("Final_Wave.DataLayer.Entites.Order", b =>
+                {
+                    b.Navigation("prograssBars");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Product", b =>
@@ -1037,13 +1143,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Navigation("ProductGalleries");
 
                     b.Navigation("productPrices");
-                });
-
-            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ApplicationUser", b =>
-                {
-                    b.Navigation("Messages");
-
-                    b.Navigation("orders");
                 });
 #pragma warning restore 612, 618
         }

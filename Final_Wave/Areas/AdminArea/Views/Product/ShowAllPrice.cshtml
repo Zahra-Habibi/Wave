@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProductPriceViewModel>
+﻿@model Product
 
 @{
     ViewData["Title"] = "ShowAllPrice";
@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="m-b-30 mb-3">
-                                    <a   href="/AdminArea/Product/AddPrice/@ViewBag.id" id="addToTable" class="btn btn-primary waves-effect waves-light">افزودن <i class="fa fa-plus"></i></a>
+                                    <a asp-action="ShowProduct" class="btn btn-back mb-3"> Dack</a>
                                 </div>
                             </div>
                         </div>
@@ -61,53 +61,25 @@
                                 <table class="table table-bordered table-hover table-striped mt-4   " id="datatable-editable"  >
                                     <thead class="bgcolor   ">
                                         <tr role="row">
-                                            <th scope="col">#</th>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">ProductName</th>
                                             <th scope="col">MainPrice</th>
                                             <th scope="col">SpecialPrice</th>
                                             <th scope="col">Count</th>
-                                            <th scope="col">MaxOrderCount</th>
-                                            <th scope="col">Created</th>
-                                            <th scope="col">EndDateDiscount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (Model.Count() > 0)
-                                        {
-                                            @foreach (var item in Model)
-                                            {
-                                                <tr class="gradeX odd" role="row">
-                                                    <td class="text-center">@item.ProductPriceId</td>
-                                                    <td class="text-center">@item.MainPrice</td>
-                                                    <td class="text-center">@item.SpecialPrice</td>
-                                                    <td class="text-center">@item.count</td>
-                                                    <td class="text-center">@item.MaxOrderCount</td>
-                                                    <td class="text-center">@item.CreatDate.ToString("dddd, dd MMMM yyyy")</td>
-                                                    <td class="text-center">@item.EndDateDiscount.ToString("dddd, dd MMMM yyyy")</td>
-
-                                               
-                                                </tr>
-
-                                            }
-                                        }
-                                        else
-                                        {
                                             <tr class="gradeX odd" role="row">
-                                                <td colspan="5" class="sorting_1">No price exist.</td>
-
+                                                <td class="text-center">@Model.Id</td>
+                                                <td class="text-center">@Model.ProductName</td>
+                                                <td class="text-center">@Model.MainPrice</td>
+                                                <td class="text-center">@Model.SpecialPrice</td>
+                                                <td class="text-center">@Model.count</td>
                                             </tr>
-                                        }
-
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="dataTables_info" id="datatable-editable_info" role="status" aria-live="polite">Showing 1 to 10 of 80 entries</div>
-                        </div>
-
                     </div>
                 </div>
             </div>

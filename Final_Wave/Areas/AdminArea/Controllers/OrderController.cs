@@ -4,26 +4,31 @@ using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Final_Wave.DataLayer.Repository.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-   // [Authorize]
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
         private readonly INotyfService _notify;
         private readonly IProductRepasitory _productRepository;
-        public OrderController(IUnitOfWork context, IMapper mapper, INotyfService notify, IProductRepasitory productRepository)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public OrderController(IUnitOfWork context, IMapper mapper, INotyfService notify, IProductRepasitory productRepository, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _mapper = mapper;
             _notify = notify;
             _productRepository = productRepository;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -33,7 +38,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             return View(order);
         }
 
-        public async Task<IActionResult> AddOrder()
+        public async Task<IActionResult> AddOrder(int id )
         {
             ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
             return View();
@@ -47,6 +52,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
                 return View(model);
 
             ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
+            model.UserId = _userManager.GetUserId(HttpContext.User);
             model.OrderTime = DateTime.Now;
             var mapModel = _mapper.Map<Order>(model);
             await _context.orderUW.Create(mapModel);
@@ -87,5 +93,40 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             _notify.Success("You successfuly Edited the socialMedia!", 5);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> messagepage()
+        {
+            var message = await _context.MessageUW.GetEntitiesAsync();
+            return View(message);
+        }
+
+        public async Task<IActionResult> Message(string id)
+        {
+            ViewBag.receiver = _userManager.GetUserId(HttpContext.User);
+            var order= await _context.orderUW.GetByIdAsync(id);
+            return View(order);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Message(MessageViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+     
+            model.userId_reciever = _userManager.GetUserId(HttpContext.User);
+            model.CreatMessage = DateTime.Now;
+            var mapModel = _mapper.Map<Message>(model);
+            await _context.MessageUW.Create(mapModel);
+            await _context.saveAsync();
+            _notify.Success("You successfully sent the message!", 5);
+            return RedirectToAction(nameof(messagepage)); ;
+
+
+        }
     }
+
+
 }

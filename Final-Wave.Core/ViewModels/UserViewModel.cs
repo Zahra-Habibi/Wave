@@ -11,14 +11,14 @@ namespace Final_Wave.Core.ViewModels
     public class UserViewModel
     {
 
-        public string FullName { get; set; }
+       
         public string Id { get; set; }
 
-        [Display(Name = "userName:")]
+        [Display(Name = "FullName:")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter your username.")]
-        [StringLength(maximumLength: 40, MinimumLength = 4, ErrorMessage = "Your userName can't less than 4 and more than 40 characters.")]
+        [StringLength(maximumLength: 40, MinimumLength = 3, ErrorMessage = "Your FullName can't less than 3 and more than 40 characters.")]
         [RegularExpression(@"^[^\\/:*;\.\)\(]+$", ErrorMessage = "Invalid! Can't use these.")]
-        public string UserName { get; set; }
+        public string FullName { get; set; }
 
 
         [Display(Name = "Email:")]
@@ -40,7 +40,10 @@ namespace Final_Wave.Core.ViewModels
         public bool IsActive { get; set; }
 
         [Display(Name ="UserImage")]
+        [DataType(DataType.ImageUrl)]
         public string? usrimag { get; set; }
+
+        public bool IsDelete { get; set; }
     }
 
     public class ChangePasswordByAdminViewModel
@@ -48,9 +51,11 @@ namespace Final_Wave.Core.ViewModels
         public string Id { get; set; }
 
         [Display(Name = "New Password")]
+        [Required(ErrorMessage ="Please Enter the new Password!")]
         public string NewPassword { get; set; }
 
         [Display(Name = "ConfirmNewPassword")]
+        [Required(ErrorMessage ="Enter the confirmPassword!")]
         [Compare("NewPassword", ErrorMessage = "Your confirm passowrd doesn't match")]
         public string ConfirmNewPassword { get; set; } 
 

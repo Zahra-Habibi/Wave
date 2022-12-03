@@ -17,12 +17,18 @@
                  <div class="container ">
                      <div class="divstyle-detail">
                           <div class="row p-5">
-                              <p><strong>Full_Name : </strong> @Model.FullName</p>
-                              <p><strong>Email : </strong> @Model.Email</p>
-                              <p><strong>User_Name : </strong> @Model.Email</p>
-                              <p><strong>IsActive : </strong> @Model.IsActive</p>
-                              <p> <strong>IsAdmin : </strong> @Model.IsAdmin</p>
-                              <p><strong>RegisterDate: </strong>@Model.RegisterDate</p>
+                            <div class="col-6">
+                                <p><strong>Full_Name : </strong> @Model.FullName</p>
+                                <p><strong>Email : </strong> @Model.Email</p>
+                                <p><strong>User_Name : </strong> @Model.Email</p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong>IsActive : </strong> @Model.IsActive</p>
+                                <p> <strong>IsAdmin : </strong> @Model.IsAdmin</p>
+                                <p><strong>RegisterDate: </strong>@Model.RegisterDate</p>
+                            </div>
+                          
+                             
                             <p>
                                 <strong>User_Profile :&nbsp;</strong>
                                 <img src="~/@Model.usrimag" alt="@Model.UserName" title="userprofile" class="imgdetail" />

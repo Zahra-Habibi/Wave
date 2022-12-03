@@ -1,4 +1,4 @@
-﻿@model Job
+﻿@model JobViewModel
 @{
     ViewData["Title"] = "Edit job";
 }
@@ -18,7 +18,7 @@
                     <div class="mb-1 mt-2 col-10  offset-1 card-box">
                             <form asp-controller="Job" asp-action="Edit" method="post" class="mt-5" enctype="multipart/form-data">   
                                 
-                                
+                                <input asp-for="Id" hidden />
                                 <div class="ml-3 mb-3 mr-3 ">
                                     <label><b>User_Name</b></label>
                                     <input asp-for="Name" type="text" placeholder="user Name " class="form-control" autocomplete="off">
@@ -73,9 +73,10 @@
                                 <label asp-for="Resume"><strong>Resume</strong></label>
                                 <input type="file" name="file" parsley-trigger="change" class="form-control" placeholder="Image">
                                 <span asp-validation-for="Resume" class="text-danger"></span>
+                                <a href="@Url.Content($"~/{Model.Resume}")" class="btn btn-outline-primary"></a>
                               </div>
 
-                               <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                            <div class="form-group text-right m-b-0 d-flex justify-content-center">
                                   <div class="mr-3 mb-3">
                                       <button class="btn btn-success btn-colorsave " type="submit">
                                          Save  <i class="fa fa-plus"></i>

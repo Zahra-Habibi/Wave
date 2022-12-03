@@ -14,7 +14,8 @@ using Polly;
 using Final_Wave.Hubs;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.SignalR;
-using Final_Wave.DataLayer.Migrations;
+using AspNetCoreHero.ToastNotification.Abstractions;
+using SignalRSample.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,10 +29,13 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddIdentityCore<IdentityUser>(options => 
-options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationContext>();
+//builder.Services.AddIdentityCore<IdentityUser>(options =>
+//options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<ApplicationContext>();
 
+
+//end cors
+builder.Services.AddSignalR();// on signalR
 
 builder.Services.AddControllersWithViews();
 
@@ -57,10 +61,8 @@ builder.Services.AddScoped<IProductRepasitory, ProductService>();
 builder.Services.AddAutoMapper(typeof(AutoMapping).Assembly);
 #endregion
 
-//end cors
-builder.Services.AddSignalR();// on signalR
 
-// for taostr
+
 // for taostr
 builder.Services.AddNotyf(config =>
 { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
@@ -98,6 +100,7 @@ app.MapHub<UserCountHub>("/UserCountHub");
 app.MapHub<JobHub>("/hubs/Job");
 app.MapHub<BasicChatHub>("/hubs/basicchat");
 app.MapHub<ChatHub>("/hubs/chat");
+app.MapHub<NotificationHub>("/hubs/notification");
 
 
 app.MapAreaControllerRoute(

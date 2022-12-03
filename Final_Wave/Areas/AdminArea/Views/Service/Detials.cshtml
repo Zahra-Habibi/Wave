@@ -17,12 +17,18 @@
                  <div class="container ">
                      <div class="divstyle-detail">
                           <div class="row p-5">
-                              <p> <strong>Service Name : </strong> @Model.Name</p>
-                              <p><strong>Short_Desctiption : </strong> @Html.Raw(Model.ShortDescription)</p>
+                            <div class="col-6">
+                                <p> <strong>Service Name : </strong> @Model.Name</p>
+                                <p><strong>Short_Desctiption : </strong> @Html.Raw(Model.ShortDescription)</p>
+                            </div>
+                            <div class="col-6">
+                                <p> <strong> ServiceImage Title : </strong> @Model.Title</p>
+                                <p> <strong> Image Alt : </strong> @Model.Alt</p>
+                                <p> <strong>User status : </strong> @Model.IsDelete</p>
+                            </div>
+                             
                               <p><strong>Full_Desctiption : </strong> @Html.Raw(Model.Descriptions)</p>
-                              <p> <strong> ServiceImage Title : </strong> @Model.Title</p>
-                              <p> <strong> Image Alt : </strong> @Model.Alt</p>
-                              <p> <strong>User status : </strong> @Model.IsDelete</p>
+                              
                               <p>
                                 <strong>About us Image :&nbsp;</strong> 
                                   <img src="~/@Model.ImageUrl" alt="@Model.Alt" title="@Model.Title" class="imgdetail" />

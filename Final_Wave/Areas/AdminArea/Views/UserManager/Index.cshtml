@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ApplicationUser>
+﻿@model IEnumerable<Final_Wave.DataLayer.Entites.ApplicationUser>
 @{
     ViewData["Title"] = "Index";
     var counter = 1;
@@ -47,7 +47,7 @@
                                          <td class="text-center">@counter</td>
                                          <td class="text-center">@item.FullName</td>
                                          <td class="text-center">@item.Email</td>
-                                          <td class="text-center">@item.RegisterDate</td> 
+                                          <td class="text-center">@item.RegisterDate.ToString("yyyy/MM/dd")</td> 
                                          <td style="color:@(item.IsActive? "green": "darkred"); font-weight:bold; ">@(item.IsActive? "Active" : "InActive")</td>
                                                 @if (item.IsAdmin == 1)
                                                 {
@@ -61,14 +61,22 @@
                                                       User
                                                 </td>
                                              }
-                                        <td class="text-center">
-                                            <img src="~/@item.usrimag" alt="@item.UserName" title="userprofile" class="imgsize img-thumbnail" />
-                                        </td>
-                                         <td class="text-center">
-                                            
-                                             <a asp-action="EditUser" asp-route-userId="@item.Id" asp-controller="UserManager" title="EditUser" class="btn-coloredit btn mr-3"><i class="fa fa-edit"></i></a>
-                                              <a asp-action="UserDetails" asp-route-userId="@item.Id" asp-controller="UserManager" title="Userdetail" class="btn-coloredit btn mr-3"><i class="fa fa-book"></i></a>
-                                             <a asp-action="ChangePassword" asp-route-id="@item.Id" asp-route-UserName="@item.UserName" asp-controller="UserManager" title="Change Passowrd" class="btn-success btn mr-3 "><i class="fa fa-key"></i></a>
+
+                                            <td class="text-center">
+                                                 <img src="~/@item.usrimag" alt="@item.UserName" title="userprofile" class="imgsize img-thumbnail" />
+                                            </td>
+                                            <td class="text-center">
+                                                 @if (item.IsDelete)
+                                               {
+                                                <a asp-action="Delete" asp-route-userId="@item.Id" asp-controller="UserManager" title="Undo" class="btn-success btn mr-4 btn-color-del mt-2"><i class="fa fa-undo"></i></a>
+                                               }
+                                                else
+                                               {
+                                                <a asp-action="Delete" asp-route-userId="@item.Id" asp-controller="UserManager" title="Delete" class="btn-danger btn-color-del btn mr-4 mt-2"><i class="fa fa-trash"></i></a>
+                                               }                                         
+                                             <a asp-action="EditUser" asp-route-userId="@item.Id" asp-controller="UserManager" title="EditUser" class="btn-coloredit btn mr-3 mt-2"><i class="fa fa-edit"></i></a>
+                                              <a asp-action="UserDetails" asp-route-userId="@item.Id" asp-controller="UserManager" title="Userdetail" class="btn-coloredit btn mr-3 mt-2"><i class="fa fa-book"></i></a>
+                                            <a asp-action="ChangePassword" asp-route-id="@item.Id" asp-route-UserName="@item.UserName" asp-controller="UserManager" title="Change Passowrd" class="btn-success btn mr-3 mt-2 "><i class="fa fa-key"></i></a>
                                           </td>
                                          
                                      </tr>

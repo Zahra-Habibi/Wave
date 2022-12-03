@@ -33,7 +33,50 @@ namespace Final_Wave.DataLayer.Repository.Services
         private GenericCLass<Latter> _letters;
         private GenericCLass<AdministrativeForm> _administrative;
         private GenericCLass<Reminder> _Reminder;
-        
+        private GenericCLass<Message> _Message;
+        private GenericCLass<PrograssBar> _prograss;
+        private GenericCLass<Notation> _notation;
+
+
+        //notation
+        public GenericCLass<Notation> NotationUW
+        {
+            get
+            {
+                if (_notation == null)
+                {
+                    _notation = new GenericCLass<Notation>(_context);
+                }
+                return _notation;
+            }
+        }
+
+        //prograss
+        public GenericCLass<PrograssBar> PrograssUW
+        {
+            get
+            {
+                if (_prograss == null)
+                {
+                    _prograss = new GenericCLass<PrograssBar>(_context);
+                }
+                return _prograss;
+            }
+        }
+
+        //message
+        public GenericCLass<Message> MessageUW
+        {
+            get
+            {
+                if (_Message == null)
+                {
+                    _Message = new GenericCLass<Message>(_context);
+                }
+                return _Message;
+            }
+        }
+
 
         //AdministrativeFormUW
         public GenericCLass<Reminder> ReminderUW

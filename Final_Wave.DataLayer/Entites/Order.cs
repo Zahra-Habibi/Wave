@@ -19,6 +19,8 @@ namespace Final_Wave.DataLayer.Entites
         public string PhoneNumber { get; set; }
         public string EmailAddress { get; set; }
         public string Description { get; set; }
+        public string? ShortDescription { get; set; }
+        public bool IsSend { get; set; }
 
         public DateTime OrderTime { get; set; } = DateTime.UtcNow;
 
@@ -30,6 +32,8 @@ namespace Final_Wave.DataLayer.Entites
 
         [ForeignKey("ProductId")]
         public Product product { get; set; }
+
+        public List<PrograssBar> prograssBars { get; set; }
 
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    //[Authorize]
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _context;
@@ -168,10 +168,11 @@ namespace Final_Wave.Areas.AdminArea.Controllers
 
         //add pricce
 
-        public IActionResult ShowAllPrice(int id)
+        public async Task<IActionResult> ShowAllPrice(int id)
         {
-            ViewBag.id = id;
-            return View(_productservice.ShowAllPriceForProduct(id));
+            var product = await _context.productUW.GetByIdAsync(id);
+            _notify.Information("You checked all the product price !", 5);
+            return View(product);
         }
 
         public IActionResult AddPrice(int id)
