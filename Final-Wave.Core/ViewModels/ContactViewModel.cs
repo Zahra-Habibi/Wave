@@ -9,6 +9,7 @@ namespace Final_Wave.Core.ViewModels
 {
     public class ContactViewModel
     {
+        [Key]
         public int Id { get; set; }
         [Required(ErrorMessage = "Please enter your Name")]
         public string Name { get; set; }

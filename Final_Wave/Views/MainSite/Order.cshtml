@@ -1,4 +1,4 @@
-﻿@model Final_Wave.Core.ViewModels.OrderViewModel
+﻿@model  Final_Wave.Core.ViewModels.OrderViewModel
 @{
     ViewData["Title"] = "Wave software service";
     ViewData["Description"] = "This site is a new site , It provide diffirent software (desktop application , mobile application web application, video and image editing,banner , prototype.).";
@@ -21,19 +21,21 @@
                 <div class="row mt-4">
                     <!-- start of form tag -->
                     <form class="col-md-12"asp-controller="MainSite" asp-action="Order" method="post" class="mt-5" enctype="multipart/form-data" autocomplete="off">
+                      <input value="@ViewBag.userid"  hidden asp-for="UserId"/>
                         <div class="row">
 
                             <div class="col">   
                                  <input type="text" asp-for="Name" class="form-control " placeholder="Enter your name ..." autocomplete="off"  />
                                 <span asp-validation-for="Name" class="text-danger"></span>
-                            </div>
 
-                            <div class="col">
-                                <select asp-for="ProductId" name="category" class="form-control" asp-items="ViewBag.CategoryId">
+                            </div>
+                            <div class="ml-3 mb-3 mr-3 col ">
+                                <select asp-for="ProductId" class="form-control" asp-items="ViewBag.CategoryId">
                                     <option selected>Select a product</option>
                                 </select>
                                 <span asp-validation-for="ProductId" class="text-danger"></span>
                             </div>
+                         
 
                         </div>
                         <div class="row mt-3">
@@ -48,6 +50,8 @@
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
 
                             </div>
+                            
+
                             <div class="col">
                                 <textarea class="form-control" rows="6" asp-for="Description" placeholder="Discription" ></textarea>
                                 <span asp-validation-for="Description" class="text-danger"></span>

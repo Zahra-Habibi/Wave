@@ -32,8 +32,8 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">LastName</th>
                                 <th scope="col">Date</th>
-                                <th scope="col">Image</th>
                                 <th scope="col">Resume</th>
+                                <th scope="col">Accepting</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Operation</th>
                             </tr>
@@ -47,16 +47,26 @@
                                          <td class="text-center">@item.LastName</td>
                                          <td class="text-center">@item.Date.ToString("dddd, dd MMMM yyyy")</td>
                                       
-                                              <td class="text-center">
-                                            <a class="btn btn-outline-primary" href="@item.Resume" target="_blank">Read now</a>
+                                          <td class="text-center">
+                                            <a class="btn btn-outline-primary" href="@Url.Content($"~/{item.Resume}")"  target="_blank">Read now</a>
                                          </td>
-                                       <td class="text-center">
-                                             @if(item.IsDelete){
-                                               <h5 class="text-danger text-center">Deleted</h5>
+                                    
+                                        <td class="text-center">
+                                            @if(item.IsRead){
+                                                <a asp-action="IsRead" asp-route-id="@item.Id" asp-controller="Job" title=" Readed" class="btn-success btn mr-3 mb-1 btn-color-del"><i class="fa fa-edit">Accepteduser</i></a>
+                                            }else{
+                                                <a asp-action="IsRead" asp-route-id="@item.Id" asp-controller="Job" title="No_Read" class="btn-primary btn mr-3 mb-1 btn-color-del"><i class="fa fa-book">NOt_Accepted</i></a>
+                                            }
+
+                                        </td>
+                                        <td class="text-center">
+                                            @if (item.IsDelete)
+                                            {
+                                                <h5 class="text-danger text-center">Deleted</h5>
                                             }
                                             else
                                             {
-                                              <h5 class="text-success text-center">Active</h5>
+                                                <h5 class="text-success text-center">Active</h5>
                                             }
                                         </td>
                                   
@@ -69,7 +79,6 @@
                                             {
                                                <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Job" title="Delete" class="btn-danger btn-color-del btn mr-3 mb-1"><i class="fa fa-trash"></i></a>
                                              }
-                                              <a asp-action="Edit" asp-route-id="@item.Id" title="Edit" asp-controller="Job" class="btn-coloredit btn mr-3 mb-1"><i class="fa fa-edit "></i></a>
                                               <a asp-action="Detials" asp-route-id="@item.Id" title="details" asp-controller="Job" class="btn-coloredit1 btn mr-3 mb-1"><i class="fa fa-book"></i></a>
                                           </td>
                                          

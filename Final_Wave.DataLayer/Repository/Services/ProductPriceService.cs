@@ -62,13 +62,10 @@ namespace Final_Wave.DataLayer.Repository.Services
 
                                                         select new SpecialProductViewModel
                                                         {
-                                                            EndDiscount = pr.EndDateDiscount,
                                                             MainPrice = pr.MainPrice,
                                                             ProductName = p.Title,
                                                             Productid = p.Id,
                                                             Productimg = p.ProductImage,
-                                                            Productsell = p.ProductSell,
-                                                            productstar = p.ProductStar,
                                                             sepcialprice = pr.SpecialPrice < pr.MainPrice && pr.EndDateDiscount >= DateTime.Now.Date ? pr.SpecialPrice : pr.MainPrice,
                                                             Productpriceid = pr.ProductPriceId,
                                                         }).ToList();

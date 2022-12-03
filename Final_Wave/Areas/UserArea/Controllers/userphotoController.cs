@@ -51,8 +51,7 @@ namespace Final_Wave.Areas.UserArea.Controllers
                 {
                     return View(model);
                 }
-                _notify.Success("You successfuly Edited !", 5);
-
+                _notify.Success("You successfuly changed your picture!", 5);
                  return RedirectToAction("Index", "UserHome");
   
         }

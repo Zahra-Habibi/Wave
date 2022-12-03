@@ -44,6 +44,12 @@ namespace Final_Wave.Controllers
                 TempData["Result"] = "false";
                 return RedirectToAction(nameof(Register));
             }
+            if (file == null)
+            {
+                ModelState.AddModelError("usrimag", "Please choose your image.");
+                return View(model);
+
+            }
 
             if (await _usermanager.FindByNameAsync(model.Email) != null)
             {
@@ -59,12 +65,12 @@ namespace Final_Wave.Controllers
                 IsAdmin = 2,
                 usrimag = imgname,
             };
-            //your whatsapp is off, I am calling
+
 
             IdentityResult result = await _usermanager.CreateAsync(user, model.PasswordHash);
             if (result.Succeeded)
             {
-            _notify.Success("You successfuly Registerd  !");
+               _notify.Success("You successfuly Registerd  !");
                 return RedirectToAction(nameof(Login));
             }
             return View(model);
@@ -115,11 +121,13 @@ namespace Final_Wave.Controllers
                        if (user.IsAdmin == 1)
                        {
                         //Admin
-                          return Redirect("/AdminArea/DashBoard/Index");
+                        _notify.Success("You successfully logined as an admin!", 5);
+                        return Redirect("/AdminArea/DashBoard/Index");
                        }
                        else if (user.IsAdmin == 2)
                        {
                         //User
+                        _notify.Success("You successfuly logined as a user!", 5);
                         return Redirect("/MainSite/Home");
                         }
 

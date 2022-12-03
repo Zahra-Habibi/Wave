@@ -17,8 +17,6 @@ namespace Final_Wave.Core.ViewModels
         [MaxLength(500, ErrorMessage = "Product title can not be more than 500 character!")]
         public string ProductName { get; set; }
 
-        public int Price { get; set; }
-
         [Display(Name = "Product description ")]
         public string? ShortDescription { get; set; }
 
@@ -43,12 +41,6 @@ namespace Final_Wave.Core.ViewModels
         [Display(Name ="fullDescription")]
         public string FullDescription { get; set; }
 
-        [Display(Name ="ProductSell")]
-        public int ProductSell { get; set; }
-
-        [Display(Name ="ProductStar")]
-        public byte ProductStar { get; set; }
-
         public bool IsOrginal { get; set; }
 
         public int CategoryId { get; set; }
@@ -60,13 +52,8 @@ namespace Final_Wave.Core.ViewModels
         [Display(Name = "SpecialPrice")]
         public int SpecialPrice { get; set; }
 
-        [Display(Name = "MaxOrderCount")]
-        [Required]
-        public int MaxOrderCount { get; set; }
-
         public int count { get; set; }
         public DateTime CreatDate { get; set; }
-        public DateTime EndDateDiscount { get; set; }
 
         public int ProductPriceId { get; set; }
         public ICollection<ProductGalleryViewModel> Photos { get; set; }

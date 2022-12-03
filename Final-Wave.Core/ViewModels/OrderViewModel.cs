@@ -39,7 +39,7 @@ namespace Final_Wave.Core.ViewModels
 
         [Display(Name = "OrderTime")]
         public DateTime OrderTime { get; set; }
-
+        public bool IsSend { get; set; }
         public string UserId { get; set; }
 
         public int ProductId { get; set; }

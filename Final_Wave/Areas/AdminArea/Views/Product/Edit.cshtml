@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="container mt-4">
+            <div class="container mt-1">
                 <div class="row">
                     <div class="alert alert-light alertstyle mb-3">
                         <i class="fa fa-pen "> Edit Product</i>
@@ -15,7 +15,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="mb-1 mt-3 col-8  offset-2 card-box">
+                    <div class="mb-1 mt-3 col-10  offset-1 card-box">
                           <form asp-action="Edit" method="post" asp-controller="Product" class="mt-3 m-2" enctype="multipart/form-data">
 
                                 <div class="form-group my-3">
@@ -70,29 +70,6 @@
                                 <input asp-for="count" type="text" placeholder="Count" class="form-control" autocomplete="off">
                                 <span asp-validation-for="count" class="text-danger"></span>
                             </div>
-
-                            <div class="ml-3 mb-3 mr-3">
-                                <label>MaxOrderCount</label>
-                                <input asp-for="MaxOrderCount" type="text" placeholder="maxordercount" class="form-control" autocomplete="off">
-                                <span asp-validation-for="MaxOrderCount" class="text-danger"></span>
-                            </div>
-
-                            <div class="ml-3 mb-3 mr-3">
-                                <select class="form-control" asp-for="ProductStar">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-
-
-                              <div class="ml-3 mb-3 mr-3">
-                                <label>EndDateDiscount</label>
-                                <input asp-for="EndDateDiscount" type="date" placeholder="EndDateDiscount" class="form-control" autocomplete="off">
-                                <span asp-validation-for="EndDateDiscount" class="text-danger"></span>
-                              </div> 
 
                                  <div class="ml-3 mb-3 mr-3">
                                  <div class="checkbox">

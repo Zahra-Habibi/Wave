@@ -15,8 +15,10 @@ namespace Final_Wave.DataLayer.Entites
         public string? usrimag { get;set; }
         public DateTime RegisterDate { get; set; } = DateTime.UtcNow;
         public List<Order> orders { get; set; }
+        public bool IsDelete { get; set; }
 
-        public virtual ICollection<Message> Messages { get; set; }  
-    
+        public List<Message> messages { get; set; }
+        public List<PrograssBar> prograssBars { get; set; }
+
     }
 }

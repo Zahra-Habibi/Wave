@@ -14,20 +14,23 @@
                 <div class="row">
                     <div class="col-md-5 form-contact-page">
                         <!-- Start of Get In touch -->
-                        <form method="post" asp-action="Contact" asp-controller="MainSite">
+                        <form asp-action="Contact" asp-controller="MainSite" method="post">
                            
                             <div class="form-home">
-                                <input type="text" class="form-control" placeholder="Full name"  asp-for="Name">
+                                <input type="text" class="form-control" placeholder="Full name"  asp-for="Name" autocomplete="off">
                                 <span asp-validation-for="Name" class="text-danger"></span>
                             </div>
-
                             <div class="mt-3 form-home">
-                                <input type="email" class="form-control" placeholder="Email address"  asp-for="Email">
+                                <input type="text" class="form-control" placeholder="PhoneNumber" asp-for="Phone" autocomplete="off">
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="mt-3 form-home">
+                                <input type="email" class="form-control" placeholder="Email address"  asp-for="Email" autocomplete="off">
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
 
                             <div class="mt-3 form-home">
-                                <textarea class="form-control" rows="5"  placeholder="Type Your Message:"   asp-for="Message"></textarea>
+                                <textarea class="form-control" rows="5"  placeholder="Type Your Message:"   asp-for="Message" ></textarea>
                                 <span asp-validation-for="Message" class="text-danger"></span>
                             </div>
 
@@ -41,7 +44,7 @@
                         <ul>
                             <li><a href="#" class="footer-menu"><i class="fa-solid fa-location-pin mt-3"></i>Kabul, Afghanistan </a></li>
                             <li><a href="#" class="footer-menu"><i class="fa-solid fa-phone"></i> +93770665909</a></li>
-                            <li><a href="habibi.zahra.ku@gmail.com" class="footer-menu"><i class="fa-solid fa-envelope"></i> wave.af@gmial.com</a></li>
+                            <li><a href="mailto:shirzad@gmail.com"  class="footer-menu"><i class="fa-solid fa-envelope"></i> wave.af@gmial.com</a></li>
                         </ul>
                     </div>
                 </div>

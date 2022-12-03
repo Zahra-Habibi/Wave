@@ -2,7 +2,7 @@
     <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
     <div class="pcoded-inner-navbar main-menu">
         <div class="">
- @*           @(await Component.InvokeAsync("UserInfoComponent"))*@
+            @(await Component.InvokeAsync("UserInfoComponent"))
         </div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="active">
@@ -110,6 +110,15 @@
                 <a asp-controller="Service" asp-action="Index" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="fa fa-wrench"></i></span>
                     <span class="pcoded-mtext" > Service</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li>
+                <a asp-controller="UserManager" asp-action="AdvancedChat" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="fa fa-message"></i></span>
+                    <span class="pcoded-mtext"> Chat</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

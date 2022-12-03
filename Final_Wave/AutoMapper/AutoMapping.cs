@@ -2,6 +2,7 @@
 using AutoMapper;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
+using static Final_Wave.Core.ViewModels.NotationViewModel;
 
 namespace Final_Wave.AutoMapper
 {
@@ -24,7 +25,9 @@ namespace Final_Wave.AutoMapper
             CreateMap<Latter, LetterViewModel>().ReverseMap();
             CreateMap<ContactUs, ContactViewModel>().ReverseMap();
             CreateMap<Reminder, ReminderViewModel>().ReverseMap();
-
+            CreateMap<Message, MessageViewModel>().ReverseMap();
+            CreateMap<PrograssBar, PrograssBarViewModel>().ReverseMap();
+            CreateMap<Notation, SentNotationListViewModel>().ReverseMap();
 
         }
     }

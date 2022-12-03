@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Final_Wave.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-   // [Authorize]
+    [Authorize]
     public class JobController : Controller
     {
         private readonly IUnitOfWork _context;
@@ -72,42 +72,24 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            Job jobs = await _context.JobUW.GetByIdAsync(id);
-            return View(jobs);
+            Job job = await _context.JobUW.GetByIdAsync(id);
+            var mapUser = _mapper.Map<JobViewModel>(job);
+            return View(mapUser);
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(JobViewModel viewmodel)
         {
-            if (ModelState.IsValid)
-            {
-              
+            if (!ModelState.IsValid)
+                return View(viewmodel);
 
-                Job job = new Job()
-                {
-                    Name = viewmodel.Name,
-                    Image = viewmodel.Image,
-                    Description = viewmodel.Description,
-                    EmailAddress = viewmodel.EmailAddress,
-                    JobName = viewmodel.JobName,
-                    LastName = viewmodel.LastName,
-                    Resume = viewmodel.Resume,
-                    PhoneNumber = viewmodel.PhoneNumber,
-                    Date = DateTime.Now,
-
-                };
-
-                await _context.JobUW.Create(job);
-                await _context.saveAsync();
-                _notify.Success("You sucessfully send your request    !", 5);
-                return RedirectToAction(nameof(AddJob));
-            }
-
-            return View(viewmodel);
-
-
+            var ser = await _context.JobUW.GetByIdAsync(viewmodel.Id);
+            var mapModel = _mapper.Map(viewmodel, ser);
+            _context.JobUW.Update(mapModel);
+            await _context.saveAsync();
+            _notify.Success("You successfuly Edited!", 5);
+            return RedirectToAction(nameof(Index));
         }
-
 
 
         [HttpGet]
@@ -153,6 +135,45 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             var job = await _context.JobUW.GetByIdAsync(id);
             _notify.Information("You checked all the job !", 5);
             return View(job);
+        }
+
+
+        public async Task<IActionResult> IsRead(int id)
+        {
+
+            var read =  await _context.JobUW.GetByIdAsync(id);
+            if (read.IsRead)
+            {
+                ViewBag.Message1 = "Are you suer , you want to accept this user?";
+            }
+            else
+            {
+                ViewBag.Message1 = "You can change your decision.";
+            }
+            return View(read);
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> IsRead(Job model1)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model1.IsRead)
+                {
+                    model1.IsRead = false;
+                }
+                else
+                {
+                    model1.IsRead = true;
+                }
+                _context.JobUW.Update(model1);
+                await _context.saveAsync();
+                _notify.Success("You  changed the job accepting!", 5);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model1);
         }
 
 

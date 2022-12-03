@@ -28,7 +28,7 @@
                     <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
                         <thead class="bgcolor   ">
                             <tr class="text-center">
-                                 <th scope="col">#</th>
+                                 <th scope="col">ID</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Created</th>
@@ -41,7 +41,7 @@
                              @foreach (var item in Model)
                                 {
                                      <tr>
-                                         <td class="text-center">@counter</td>
+                                         <td class="text-center">@item.Id</td>
                                          <td class="text-center">@item.ProductName</td>
                                          <td class="text-center">
                                              <img src="~/@item.ProductImage" alt="@item.Alt" title="@item.Title" class="imgsize img-thumbnail"/>

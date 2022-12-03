@@ -1,4 +1,17 @@
-﻿<nav class="navbar header-navbar pcoded-header">
+﻿
+<style>
+    .notification-menu {
+        padding: 10px 65px;
+        margin-top: 2px;
+        cursor: pointer;
+        white-space: nowrap;
+        background-color: white !important;
+        outline-color: black;
+        border-bottom: 1px solid #eee;
+    }
+</style> 
+
+<nav class="navbar header-navbar pcoded-header">
     <div class="navbar-wrapper">
         <div class="navbar-logo">
             <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!" style="text-decoration:none;">
@@ -20,6 +33,12 @@
             </ul>
 
             <ul class="nav-right">
+
+
+
+            
+
+         @*   Notification*@
                 <li class="header-notification">
                     <a href="#!" class="waves-effect waves-light" style="text-decoration:none;">
                         <i class="ti-bell"></i>
@@ -58,3 +77,6 @@
         </div>
     </div>
 </nav>
+<script src="~/js/dist/browser/signalr.min.js"></script>
+<script src="~/js/dist/browser/signalr.js"></script>
+<script src="~/js/dist/notification.js"></script>

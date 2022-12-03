@@ -17,17 +17,23 @@
                  <div class="container">
                      <div class="divstyle-detail">
                           <div class="row p-5">
-                              <p> <strong>Title : </strong> @Model.Title</p>
-                              <p> <strong>Alt : </strong> @Model.Alt</p>
-                              <p><strong>Desctiption : </strong> @Model.Descriptions</p>
-                              <p> <strong>Email : </strong> @Model.Email</p>
-                              <p> <strong>Phone : </strong> @Model.PhoneNumber</p>
-                              <p> <strong>Address : </strong> @Model.Address</p>
-                              <p> <strong>User status : </strong> @Model.IsDelete</p>
-                              <p>
-                                <strong>About us Image :&nbsp;</strong> 
-                                  <img src="~/@Model.Image" alt="@Model.Alt" title="@Model.Title" class="imgdetail" />
-                              </p>
+                            <div class="col-6">
+                                <p> <strong>Email : </strong> @Model.Email</p>
+                                <p> <strong>Phone : </strong> @Model.PhoneNumber</p>
+                                <p> <strong>Address : </strong> @Model.Address</p>
+                            </div>
+                            <div class="col-6">
+                                <p> <strong>Title : </strong> @Model.Title</p>
+                                <p> <strong>Alt : </strong> @Model.Alt</p>
+                                <p> <strong>User status : </strong> @Model.IsDelete</p>
+                            </div>
+                           
+                            <p><strong>Desctiption : </strong>@Html.Raw(Model.Descriptions)</p>
+  
+                             <p>
+                               <strong>About us Image :&nbsp;</strong> 
+                               <img src="~/@Model.Image" alt="@Model.Alt" title="@Model.Title" class="imgdetail" />
+                             </p>
                           </div>
                           <div class="form-group text-right m-b-0 d-flex justify-content-center">
                               <a asp-action="Index" class="btn btn-back mb-3"> Back  </a>

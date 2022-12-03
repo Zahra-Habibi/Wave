@@ -56,6 +56,7 @@ namespace Final_Wave.Core.ViewModels
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public bool IsDelete { get; set; }
+        public bool IsRead { get; set; }
         public int ProductId { get; set; }
 
 

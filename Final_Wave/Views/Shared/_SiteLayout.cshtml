@@ -53,7 +53,7 @@
                                         <a class="nav-link" asp-controller="MainSite" asp-action="AddJob">Job</a>
                                     </li>
                                     <li class="nav-item myList">
-                                        <a class="nav-link message-icon" asp-controller="MainSite" asp-action="Index" title="message"><i class="fa-solid fa-message"></i></a>
+                                        <a class="nav-link message-icon" asp-area="UserArea" asp-controller="UserHome" asp-action="AdvancedChat" title="message"><i class="fa-solid fa-message"></i></a>
                                     </li>
                                 </ul>
 
@@ -194,6 +194,8 @@
 
     <!--------------- Scripts Links--------------->
     <partial name="_JsLinks" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await Component.InvokeAsync("Notyf")
     @RenderSection("mySection", false)
 </body>
 </html>

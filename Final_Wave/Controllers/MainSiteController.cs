@@ -1,5 +1,4 @@
-﻿
-using AspNetCoreHero.ToastNotification.Abstractions;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
 using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
@@ -9,6 +8,7 @@ using Final_Wave.DataLayer.Repository.Interfaces;
 using Final_Wave.DataLayer.Repository.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -27,7 +27,8 @@ namespace Final_Wave.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly ApplicationContext _contexts;
         private IProductPrice _productservice;
-        public MainSiteController(IUnitOfWork context, INotyfService noty, IMapper mapper, IProductRepasitory product, IWebHostEnvironment webHostEnvironment,ApplicationContext c, IProductPrice productservice)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public MainSiteController(IUnitOfWork context, INotyfService noty, IMapper mapper, IProductRepasitory product, IWebHostEnvironment webHostEnvironment,ApplicationContext c, IProductPrice productservice, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _notify = noty;
@@ -36,6 +37,7 @@ namespace Final_Wave.Controllers
             _webHostEnvironment = webHostEnvironment;
             _contexts = c;
             _productservice = productservice;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -139,12 +141,13 @@ namespace Final_Wave.Controllers
             await _context.conductUW.Create(mapModel);
             await _context.saveAsync();
             _notify.Success("Your message was sent successfuly!");
-            return RedirectToAction(nameof(Contact));
+            return RedirectToAction(nameof(Contact)); ;
         }
 
         [Authorize]
-        public async Task<IActionResult> Order()
+        public async Task<IActionResult> Order(string id)
         {
+            ViewBag.userid = _userManager.GetUserId(HttpContext.User);
             ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
             return View();
         }
@@ -158,12 +161,13 @@ namespace Final_Wave.Controllers
                 return View(model);
 
             ViewBag.CategoryId = new SelectList(await _context.productUW.GetEntitiesAsync(), "Id", "ProductName", "ProductImage ", "CategoryId");
+            model.UserId = _userManager.GetUserId(HttpContext.User);
             model.OrderTime = DateTime.Now;
             var mapModel = _mapper.Map<Order>(model);
-             _context.orderUW.Create(mapModel);
+            await _context.orderUW.Create(mapModel);
             await _context.saveAsync();
             _notify.Success("You successfully orderd!", 5);
-            return RedirectToAction(nameof(Order));
+            return RedirectToAction(nameof(Order)); ;
 
             
         }
@@ -204,7 +208,7 @@ namespace Final_Wave.Controllers
             };
             await _context.JobUW.Create(slider);
             await _context.saveAsync();
-            _notify.Success("You successfuly Added  a slider !", 5);
+            _notify.Success("You successfuly sent your request !", 5);
             return RedirectToAction(nameof(AddJob));
 
         }

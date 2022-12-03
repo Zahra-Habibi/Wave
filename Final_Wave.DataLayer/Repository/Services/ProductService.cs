@@ -1,4 +1,5 @@
-﻿using Final_Wave.DataLayer.Contexxt;
+﻿using Final_Wave.Core.ViewModels;
+using Final_Wave.DataLayer.Contexxt;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -70,6 +71,41 @@ namespace Final_Wave.DataLayer.Repository.Services
         {
             return await _context.skills.ToListAsync();
         }
+
+        public bool ExistEmail(string email, string id)
+        {
+            return _context.Users.Any(u => u.Email == email && u.Id != id);
+        }
+
+
+        public List<OrderViewModel> ShowAllCommentForProduct(int productid)
+        {
+            List<OrderViewModel> showComments = (from c in _context.orders
+                                                                 join u in _context.Users on c.UserId equals u.Id
+
+                                                                 where (c.ProductId == productid )
+
+                                                                 select new OrderViewModel
+                                                                 {
+
+                               
+                                                                     Name = u.FullName ,
+                                                                     PhoneNumber=c.PhoneNumber,
+                                                                     EmailAddress=c.EmailAddress,
+                                                                     LastName=c.LastName,
+                                                                     Description=c.Description,
+                                                                     OrderTime=c.OrderTime,
+                                                                     ProductId=c.ProductId,
+                                                                     UserId=u.Id,
+
+                                                                 }).ToList();
+            return showComments;
+        }
+
+
+
+
+
 
 
     }

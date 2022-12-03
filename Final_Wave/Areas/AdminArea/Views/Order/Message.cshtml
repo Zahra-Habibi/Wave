@@ -1,0 +1,42 @@
+﻿@model Message
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="mb-1 mt-3 col-8  offset-2 card-box">
+            <form asp-controller="Order" asp-action="messagepage" method="post" class="mt-5" enctype="multipart/form-data">
+                <input asp-for="userId_reciever" value="@ViewBag.receiver" />
+                <div class="ml-3 mb-3 mr-3 ">
+                    <label>Message_title</label>
+                    <input asp-for="Title" type="text" placeholder="Title " class="form-control" autocomplete="off">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="ml-3 mb-3 mr-3">
+                     <label>Message</label>
+                     <textarea asp-for="Text" placeholder="Short Description " class="form-control"></textarea>
+                     <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                    <div class="mr-3 mb-3">
+                        <button class="btn btn-success btn-colorsave " type="submit">
+                            Save  <i class="fa fa-plus"></i>
+                        </button>
+                    </div>&nbsp;
+                    <div class="ml-3 mb-3">
+                        <a asp-action="ShowProduct" class="btn btn-back btn-primary">
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+

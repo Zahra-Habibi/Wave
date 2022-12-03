@@ -1,0 +1,82 @@
+﻿@model PrograssBarViewModel
+@{
+    ViewData["Title"] = "Prograssbar";
+}
+
+
+<div class="mt-5"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-plus "> Work Prograss </i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-8  offset-2 card-box">
+                        <form asp-controller="PrograssBar" asp-action="AddPrograss" method="post" class="mt-5" enctype="multipart/form-data">
+
+                            <div class="ml-3 mb-3 mr-3 ">
+                                <label>Requirment prograss</label>
+                                <input asp-for="Requirement" type="number" placeholder=" " class="form-control" autocomplete="off">
+                                <span asp-validation-for="Requirement" class="text-danger"></span>
+                            </div>
+
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>Designing prograss</label>
+                                <input asp-for="Design" type="number" placeholder="" class="form-control" autocomplete="off">
+                                <span asp-validation-for="Design" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>Coding prograss</label>
+                                <input asp-for="Codind" type="number" placeholder="Title" class="form-control" autocomplete="off">
+                                <span asp-validation-for="Codind" class="text-danger"></span>
+                            </div>
+                            <input asp-for="UserId" hidden />
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>Testing prograss</label>
+                                <input asp-for="Testing" type="number" placeholder="Count" class="form-control" autocomplete="off">
+                                <span asp-validation-for="Testing" class="text-danger"></span>
+                            </div>
+
+                             <div class="ml-3 mb-3 mr-3">
+                                <label>Maintenance prograss</label>
+                                <input asp-for="Testing" type="number" placeholder="Count" class="form-control" autocomplete="off">
+                               <span asp-validation-for="Testing" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                <div class="mr-3 mb-3">
+                                    <button class="btn btn-success btn-colorsave " type="submit">
+                                        Save  <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>&nbsp;
+                                <div class="ml-3 mb-3">
+                                    <a asp-action="Index" class="btn btn-back btn-primary">
+                                        Cancel
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/panel/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("ShortDescription");
+</script>
+
+
+
