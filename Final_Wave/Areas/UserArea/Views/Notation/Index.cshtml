@@ -47,11 +47,13 @@
                                             @if (item.IsAccept)
                                             {
 
-                                                <span class="btn btn-info">Accepted</span>
+                                                <a asp-action="Accept" asp-route-notationId="@item.NotationID" title="Accept" asp-controller="Notation" class="btn-coloredit btn mr-3 mb-1"><i class="fa fa-edit"></i></a>
                                             }
                                             else
                                             {
-                                                    <span class="btn btn-warning">Rejected</span>                                                
+                                                 
+                                                    <span class="btn btn-info">Accepted</span>
+                                                
                                             }
                                         </td>
                                          
@@ -67,7 +69,7 @@
           </div>
      </div>
  </div>
-   @section AdminScripts
+   @section UserScripts
 {
     <script>
     function myfunction() {

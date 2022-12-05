@@ -30,9 +30,40 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         public async Task<IActionResult> Index()
         {
 
-            ViewBag.userid = _userManager.GetUserId(HttpContext.User);
-           ViewBag.notationid = new SelectList(await _context.UserUW.GetEntitiesAsync(), "Id", "FullName", "usrimag ");
+            var notations = await _context.NotationUW.GetEntitiesAsync(x => x.UserID_Creator == _userManager.GetUserId(HttpContext.User), null, "User_Creator");
+            return View(notations);
+        }
+
+        public async Task<IActionResult> GetNotation(int orderId)
+        {
+            var order = await _context.orderUW.GetByIdAsync(orderId);
+            ViewBag.orderId = order.Id;
+            ViewBag.reciever = order.UserId;
             return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GetNotation(NotationSentViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+
+            Notation notation = new Notation
+            {
+                NotationContent = model.NotationContent,
+                NotationTitle = model.NotationTitle,
+                NotationDate = DateTime.Now,
+               UserID_Creator = _userManager.GetUserId(HttpContext.User),
+               UserID_Reciever = model.UserID_Reciever
+            };
+            await _context.NotationUW.Create(notation);
+            await _context.saveAsync();
+
+            _notify.Success("You successfuly Sent  !", 5);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
