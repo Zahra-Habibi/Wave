@@ -4,6 +4,7 @@ using Final_Wave.DataLayer.Contexxt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Wave.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221205161455_mig-notationUpdate")]
+    partial class mignotationUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -588,22 +590,22 @@ namespace Final_Wave.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrograssId"), 1L, 1);
 
-                    b.Property<int?>("Codind")
+                    b.Property<int>("Codind")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Design")
+                    b.Property<int>("Design")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Maintenance")
+                    b.Property<int>("Maintenance")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OrderTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Requirement")
+                    b.Property<int>("Requirement")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Testing")
+                    b.Property<int>("Testing")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")

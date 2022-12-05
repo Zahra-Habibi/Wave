@@ -17,6 +17,7 @@ namespace Final_Wave.DataLayer.Entites
         public DateTime NotationDate { get; set; }
         public string UserID_Creator { get; set; }
         public string UserID_Reciever { get; set; }
+        public bool IsAccept { get; set; }
         //
         [ForeignKey("UserID_Creator")]
         public virtual ApplicationUser User_Creator { get; set; }

@@ -20,12 +20,11 @@ namespace Final_Wave.Core.ViewModels
 
         public class SentNotationListViewModel
         {
-            public int NotationID { get; set; }
             public string NotationTitle { get; set; }
             public string NotationContent { get; set; }
             public DateTime NotationDate { get; set; }
-            public NotationCreatorInfo RecieverInfo { get; set; }
             public string UserID_Creator { get; set; }
+            public string UserID_Reciever { get; set; }
         }
 
         public class NotationCreatorInfo
@@ -34,6 +33,14 @@ namespace Final_Wave.Core.ViewModels
             public string Family { get; set; }
             public string FullName { get; set; }
             public string UserID_Creator { get; set; }
+        }
+        public class NotationSentViewModel
+        {
+            public string NotationTitle { get; set; }
+            public string NotationContent { get; set; }
+            public DateTime NotationDate { get; set; }
+            public string UserID_Creator { get; set; }
+            public string UserID_Reciever { get; set; }
         }
     }
 }
