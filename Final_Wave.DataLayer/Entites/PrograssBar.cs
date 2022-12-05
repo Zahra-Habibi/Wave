@@ -12,11 +12,11 @@ namespace Final_Wave.DataLayer.Entites
     {
         [Key]
         public int PrograssId { get; set; }
-        public int Requirement { get; set; }
-        public int Design { get; set; }
-        public int Codind { get; set; }
-        public int Testing { get; set; }
-        public int Maintenance { get; set; }
+        public int? Requirement { get; set; }
+        public int? Design { get; set; }
+        public int? Codind { get; set; }
+        public int? Testing { get; set; }
+        public int? Maintenance { get; set; }
         public string UserId { get; set; }
         public int orderid { get; set; }
 

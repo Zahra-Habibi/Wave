@@ -12,6 +12,7 @@ namespace Final_Wave.DataLayer.Entites
         [Key]
         public int Id { get; set; }
         public string CategoryName { get; set; }
+
         public string? CategoryPhoto { get; set; }
         public string Alt { get; set; }
         public string Title { get; set; }

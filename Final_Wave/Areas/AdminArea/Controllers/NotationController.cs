@@ -30,8 +30,8 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         public async Task<IActionResult> Index()
         {
 
-            ViewBag.userid = _userManager.GetUserId(HttpContext.User);
-           ViewBag.notationid = new SelectList(await _context.UserUW.GetEntitiesAsync(), "Id", "FullName", "usrimag ");
+            ViewBag.UserID_Creator = _userManager.GetUserId(HttpContext.User);
+            ViewBag.userId_Reciever = new SelectList(await _context.UserUW.GetEntitiesAsync(), "Id", "FullName", "usrimag ");
             return View();
         }
 
@@ -43,7 +43,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            ViewBag.notationid = new SelectList(await _context.UserUW.GetEntitiesAsync(), "Id", "FullName", "usrimag ");
+            ViewBag.userId_Reciever = new SelectList(await _context.UserUW.GetEntitiesAsync(), "Id", "FullName", "usrimag ");
             model.UserID_Creator = _userManager.GetUserId(HttpContext.User);
             model.NotationDate = DateTime.Now;
             var mapModel = _mapper.Map<Notation>(model);

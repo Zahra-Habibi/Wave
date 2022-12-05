@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="mb-1 mt-3 col-8 offset-2 card-box">
                         <form  class="mt-5" enctype="multipart/form-data" autocomplete="off" asp-action="Index" asp-controller="Notation">
-
+                            <input asp-for="UserID_Creator" value="@ViewBag.UserID_Creator" />
                             <div class="row" >
                                 <label class="col-md-4 col-xs-12">Message date :</label>
                                 <div class="col-md-8 col-xs-12">
@@ -41,7 +41,7 @@
                             <div class="row">
                                 <label class="col-md-3 col-xs-12">Slect user :</label>
                                 <div class="col-md-9 col-xs-12">
-                                <select asp-for="UserID_Reciever" class="form-select" asp-items="ViewBag.notationid">
+                                <select asp-for="UserID_Reciever" class="form-select" asp-items="@ViewBag.userId_Reciever">
                                     <option selected>Select a product</option>
                                 </select>
                                 </div>

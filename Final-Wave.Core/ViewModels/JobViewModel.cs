@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -51,7 +52,10 @@ namespace Final_Wave.Core.ViewModels
 
         [Display(Name = ("Resume"))]
         //public IFormFile ResumePhoto { get; set; }
-        public string? Resume { get; set; }
+        [DataType(DataType.Upload)]
+        [AllowedExtensions(new string[] { ".pdf" })]
+        //[Required(ErrorMessage ="please enter the resume file!")]
+        public string Resume { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; } = DateTime.UtcNow;

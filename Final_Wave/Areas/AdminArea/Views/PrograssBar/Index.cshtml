@@ -1,65 +1,88 @@
-﻿@model PrograssBar
-
-
+﻿@model IEnumerable<OrderViewModel>
+@{
+    ViewData["Title"] = "ShowProduct";
+    var counter = 1;
+}
 <div class="container">
     <div class="row">
         <div class="col-12">
             <div class="container mt-4">
                 <div class="row">
-                    <div class="alert alert-info alertstyle mb-3">
-                        <i class="fas fa-book"> Order Prograss daily or weekly</i>
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa  fa-picture-o ">Order report </i>
                     </div>
                 </div>
             </div>
-            <div class="col-8 mt-5  offset-2">
-                <div class="container mt-5">
-                    <div class="divstyle-detail">
-                        <div class="row p-5">
-                            <p>
-                                <strong>The Requierment prograss : </strong> <div class="col-md-12 col-lg-12">
-                                    <div class="progress " style="height: 30px;">
-                                        <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " style="width:@Model.Requirement;"></div>
-                                    </div>
-                                </div>
-                            </p>
-                            <p>
-                                <strong>
-                                    The Designing prograss :  <div class="col-md-12 col-lg-12">
-                                        <div class="progress " style="height: 30px;">
-                                            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " aria-valuenow="@Model.Codind"  style="width: 10%;">10%</div>
-                                        </div>
-                                    </div>
-                            </p>
-                            <p>
-                                <strong>
-                                    The Coding/backend prograss :  <div class="col-md-12 col-lg-12">
-                                        <div class="progress " style="height: 30px;">
-                                            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " style="width: 10%;">10%</div>
-                                        </div>
-                                    </div>
-                            </p>
-                            <p>
-                                <strong>
-                                    The testing prograss :  <div class="col-md-12 col-lg-12">
-                                        <div class="progress " style="height: 30px;">
-                                            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " style="width: 10%;">10%</div>
-                                        </div>
-                                    </div>
-                            </p>
-                            <p>
-                                <strong>
-                                    The maintenance :  <div class="col-md-12 col-lg-12">
-                                        <div class="progress " style="height: 30px;">
-                                            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " style="width: 10%;">10%</div>
-                                        </div>
-                                    </div>
-                            </p>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-2 mt-3">
 
-                        </div>
+                        <i class="fa fa-search fabg  ">
+                            <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search Product..." class="search" />
+                        </i>
+                    </div>
+                    <div class="table-responsive table-style">
+                        <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
+                            <thead class="bgcolor   ">
+                                <tr class="text-center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">LastName</th>
+                                    <th scope="col">OrderTime</th>
+                                    <th scope="col">Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td scope="row">@item.Id</td>
+                                        <td>@item.Name</td>
+                                        <td scope="row">@item.Name</td>
+                                        <td scope="row">@item.LastName</td>
+                                        <td scope="row">@item.OrderTime</td>
+                                        <td>
+                                            <a class="btn customBlue" asp-controller="PrograssBar" asp-action="AddPrograss" title="prograss" asp-route-id="@item.Id">
+                                                <i class="fa fa-edit"> Prograss</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    counter++;
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+@section AdminScripts
+    {
+    <script>
+        function myfunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (var i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    }
+
 

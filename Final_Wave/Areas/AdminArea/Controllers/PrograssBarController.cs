@@ -26,9 +26,12 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             _notify = NOTY;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int id)
         {
-            return View();
+            var order = await _context.orderUW.GetEntitiesAsync();
+            ViewBag.order = id;
+            var mapModel = _mapper.Map<IEnumerable<OrderViewModel>>(order);
+            return View(mapModel);
         }
 
         public async Task<IActionResult> AddPrograss(int id)

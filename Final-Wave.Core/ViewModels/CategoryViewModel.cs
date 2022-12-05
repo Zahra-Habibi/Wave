@@ -16,6 +16,8 @@ namespace Final_Wave.Core.ViewModels
         public string CategoryName { get; set; }
 
         [Display(Name = "Image")]
+        [DataType(DataType.Upload)]
+        [AllowedExtensions(new string[] { ".jpg", ".png", ".jpeg" })]
         public string? CategoryPhoto { get; set; }
 
         [Display(Name = "Alt")]

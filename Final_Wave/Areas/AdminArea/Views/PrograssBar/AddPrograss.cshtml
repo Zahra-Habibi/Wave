@@ -20,7 +20,8 @@
                 <div class="row">
                     <div class="mb-1 mt-3 col-8  offset-2 card-box">
                         <form asp-controller="PrograssBar" asp-action="AddPrograss" method="post" class="mt-5" enctype="multipart/form-data">
-
+                            <input asp-for="UserId" value="" />
+                            <input asp-for="orderid" value=" " />
                             <div class="ml-3 mb-3 mr-3 ">
                                 <label>Requirment prograss</label>
                                 <input asp-for="Requirement" type="number" placeholder=" " class="form-control" autocomplete="off">
@@ -39,7 +40,6 @@
                                 <input asp-for="Codind" type="number" placeholder="Title" class="form-control" autocomplete="off">
                                 <span asp-validation-for="Codind" class="text-danger"></span>
                             </div>
-                            <input asp-for="UserId" hidden />
                             <div class="ml-3 mb-3 mr-3">
                                 <label>Testing prograss</label>
                                 <input asp-for="Testing" type="number" placeholder="Count" class="form-control" autocomplete="off">
@@ -71,6 +71,9 @@
 
             </div>
         </div>
+    </div>
+    <div class="row mt-5">
+        @(await Component.InvokeAsync("PrograssComponent", @ViewBag.order))
     </div>
 </div>
 <script src="~/panel/ckeditor/ckeditor.js"></script>

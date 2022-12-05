@@ -1,0 +1,10 @@
+﻿@model IEnumerable<PrograssBar>
+
+@foreach (var item in Model)
+{
+    <div class="col-md-6 col-lg-6">
+        <div class="progress " style="height: 30px;">
+            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " style="width: @item.Requirement;">@item.Requirement %</div>
+        </div>
+    </div>
+}
