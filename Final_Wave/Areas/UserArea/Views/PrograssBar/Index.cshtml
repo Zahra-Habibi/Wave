@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PrograssBar>
+@{
+    ViewData["Title"] = "Prograssbar";
+    var counter = 1;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa  fa-picture-o "> Order prograss </i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="table-responsive table-style">
+                        <h4 class="text-center mt-3 mb-2"> Your order prograss</h4>
+                        @foreach (var item in Model)
+                        {@*
+                        <div class="progress">
+                        <div class="progress-bar progress-bar-striped" style="width:@item.Requirement %;">@item.Requirement %</div>
+                        </div*@
+                            <div class="row">
+                                <div class="mb-3 mt-2  col-md-6">
+                                    <p> <strong>PrograssDate:</strong> <b class="text-danger"> @item.OrderTime.ToString("dddd, dd MMMM yyyy")</b></p>
+                                    <p> <strong>PrograssId:</strong> @item.PrograssId</p>
+                                    <p> <strong>Requirement prograss:</strong> <i class="text-info">@item.Requirement %</i>  </p>
+                                    <p> <strong>Design Prograss :</strong> <i class="text-info">@item.Design %</i></p>
+                                </div>
+                                <div class="mb-3 mt-2  col-md-6">
+                                    <p> <strong>coding prograss:</strong> <i class="text-info">@item.Codind %</i></p>
+                                    <p> <strong>Testing Prograss:</strong> <i class="text-info">@item.Testing %</i></p>
+                                    <p><strong>Maintenance Prograss:</strong> <i class="text-info">@item.Maintenance %</i></p>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
