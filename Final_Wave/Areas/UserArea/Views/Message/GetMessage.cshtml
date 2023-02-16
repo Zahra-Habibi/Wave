@@ -1,0 +1,63 @@
+﻿@using static Final_Wave.Core.ViewModels.ChatMessageViewModel
+@model MessageSentViewModel
+
+@{
+    ViewData["Title"] = "Message";
+    Layout = "~/Areas/AdminArea/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa fa-user ">  add Message </i>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="mb-1 mt-3 col-10 offset-1 card-box">
+                        <form asp-controller="Message" asp-action="GetMessage" method="post" class="mt-5" autocomplete="off">
+
+                            <div class="ml-3 mb-3 mr-3 ">
+                                <label>Title</label>
+                                <input type="text" asp-for="Title" class="form-control " placeholder=" title ..." autocomplete="off" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="ml-3 mb-3 mr-3">
+                                <label>Description</label>
+                                <textarea type="text" asp-for="Text" class="form-control " placeholder=" Description..." autocomplete="off"></textarea>
+                                <span asp-validation-for="Text" class="text-danger"></span>
+                            </div>
+
+                            <input asp-for="UserID_Reciever" value="@ViewBag.reciever" hidden />
+
+                            <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                                <div class="mr-3 mb-3">
+                                    <button class="btn btn-success btn-colorsave " type="submit">
+                                        Send  <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>&nbsp;
+                                <div class="ml-3 mb-3">
+                                    <a asp-action="Index" class="btn btn-back btn-primary">
+                                        Cancel
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/panel/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("NotationContent");
+</script>
