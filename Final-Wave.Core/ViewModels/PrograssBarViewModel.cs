@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Final_Wave.Core.ViewModels.NotationViewModel;
 
 namespace Final_Wave.Core.ViewModels
 {
@@ -26,9 +27,8 @@ namespace Final_Wave.Core.ViewModels
         public int Maintenance { get; set; }
 
 
-        public string UserId { get; set; }
-        public int orderid { get; set; }
-
+        public string UserID_Reciever { get; set; }
+        public NotationCreatorInfo CreatorInfo { get; set; }
 
         public DateTime OrderTime { get; set; } = DateTime.UtcNow;
     }

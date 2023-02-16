@@ -9,14 +9,15 @@
 <!-- Start of product detail -->
 <div class="container-fluid product-custome mt-4 custome-bubles">
     <div class="row">
-        <div class="col-sm-6 col-md-6 ml-1">
-            <img src="~/@Model.ImageUrl" title="@Model.Title" alt="@Model.Alt" class="img-responsive img-product-detail mt-4">
+        <div class="col-md-3"></div>
+        <div class="col-sm-3 col-md-1 ml-1 mt-5">
+            <img src="~/@Model.ImageUrl" title="@Model.Title" alt="@Model.Alt" class="img-responsive  mt-4">
         </div>
         <div class="col-sm-6 col-md-5">
             <h4 class="mt-5 ml-3 product-title"><span class="product-name">@Model.Name </span> @Model.Title</h4>
             <p class="mt-2 ml-3">@Html.Raw(Model.ShortDescription)</p>
             <p class="mt-2 ml-3">@Html.Raw(Model.Descriptions)</p>
-            <a asp-action="AdvancedChat" asp-controller="UserHome" asp-area="UserArea" class="want-product ml-3">Want This Product</a>
+           @* <a asp-action="AdvancedChat" asp-controller="UserHome" asp-area="UserArea" class="want-product ml-3">Want This Product</a>*@
         </div>
     </div>
     <br><br><br>

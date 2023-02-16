@@ -39,7 +39,7 @@
             
 
          @*   Notification*@
-                <li class="header-notification">
+               @* <li class="header-notification">
                     <a href="#!" class="waves-effect waves-light" style="text-decoration:none;">
                         <i class="ti-bell"></i>
                         <span class="badge bg-c-red"></span>
@@ -50,7 +50,7 @@
                             <label class="label label-danger">New</label>
                         </li>
                     </ul>
-                </li>
+                </li>*@
 
                 <li class="user-profile header-notification">
                     <a href="#!" class="waves-effect waves-light" style="text-decoration:none;">
@@ -60,7 +60,7 @@
 
                     <ul class="show-notification profile-notification">
                         <li class="waves-effect waves-light">
-                            <a href="user-profile.html" style="text-decoration:none;">
+                            <a asp-action="Index" asp-controller="UserManager" asp-area="AdminArea" style="text-decoration:none;">
                                 <i class="ti-user"></i> Profile
                             </a>
                         </li>

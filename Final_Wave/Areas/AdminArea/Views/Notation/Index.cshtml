@@ -14,83 +14,76 @@
                 </div>
             </div>
             <div class="container">
-                 <div class="mb-2 mt-3 wrapper">
-                         <i class="fa fa-search fabg ">
-                         <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search ..." class="search" />
-                         </i>
-                 </div>
+                <div class="mb-2 mt-3 wrapper">
+                    <i class="fa fa-search fabg ">
+                        <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search ..." class="search" />
+                    </i>
+                </div>
                 <div class="row">
-                 <div class="table-responsive table-style">
-                    <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
-                        <thead class="bgcolor   ">
-                            <tr class="text-center">
-                                <th scope="col" >#</th>
-                                <th scope="col">Sender</th>
-                                <th scope="col">Recieved Date</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Content</th>
-                                <th scope="col">Operation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                             @foreach (var item in Model)
+                    <div class="table-responsive table-style">
+                        <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
+                            <thead class="bgcolor   ">
+                                <tr class="text-center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Sender</th>
+                                    <th scope="col">Recieved Date</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
                                 {
-                                     <tr>
-                                         <td class="text-center">@counter</td>
-                                         <td class="text-center">@item.User_Creator.FullName</td>
-                                         <td class="text-center">@item.NotationDate.ToString("dddd, dd MMMM yyyy")</td>
-                                         <td class="text-center">@item.NotationTitle</td>
-                                         <td class="text-center">@item.NotationContent</td>
-                                        
+                                    <tr>
+                                        <td class="text-center">@counter</td>
+                                        <td class="text-center">@item.User_Creator.FullName</td>
+                                        <td class="text-center">@item.NotationDate.ToString("dddd, dd MMMM yyyy")</td>
+                                        <td class="text-center">@item.NotationTitle</td>
+
                                         <td class="text-center">
-                                              <a asp-action="Read" asp-route-id="@item.NotationID" title="Read" asp-controller="Notation" class="btn-success btn mr-3 mb-1 "><i class="fa fa-book "></i></a>
+                                            <a asp-action="Read" asp-route-id="@item.NotationID" title="Read" asp-controller="Notation" class="btn-success btn mr-3 mb-1 "><i class="fa fa-book "></i></a>
                                             @if (item.IsAccept)
                                             {
-
-                                                <span class="btn btn-info">Accepted</span>
+                                                <span class="btn btn-info">Accepted</span>   
                                             }
                                             else
                                             {
-                                                    <span class="btn btn-warning">Rejected</span>                                                
+                                                <span class="btn btn-warning">Rejected</span>
                                             }
                                         </td>
-                                         
-                                     </tr>
-                                          counter++;
+
+                                    </tr>
+                                    counter++;
                                 }
                             </tbody>
-                    </table>
-                  </div>
+                        </table>
+                    </div>
                 </div>
-             </div>
+            </div>
 
-          </div>
-     </div>
- </div>
-   @section AdminScripts
-{
+        </div>
+    </div>
+</div>
+@section AdminScripts
+    {
     <script>
-    function myfunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-
-        for (var i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+        function myfunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (var i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
     </script>
     }
-

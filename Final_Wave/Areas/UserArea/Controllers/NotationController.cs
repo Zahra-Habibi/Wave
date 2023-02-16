@@ -2,11 +2,14 @@
 using AutoMapper;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Final_Wave.Areas.UserArea.Controllers
 {
+    [Area("UserArea")]
+    [Authorize]
     public class NotationController : Controller
     {
         private readonly IUnitOfWork _context;
@@ -32,7 +35,15 @@ namespace Final_Wave.Areas.UserArea.Controllers
             notaton.IsAccept = true;
              _context.NotationUW.Update(notaton);
             await _context.saveAsync();
+            _notify.Information("You accepted  the notation form !", 5);
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Read(int id)
+        {
+            var notation = await _context.NotationUW.GetByIdAsync(id);
+            _notify.Information("You checked all the notation !", 5);
+            return View(notation);
         }
     }
 }

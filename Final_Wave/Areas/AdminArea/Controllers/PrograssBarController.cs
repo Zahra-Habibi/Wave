@@ -1,5 +1,6 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using AutoMapper;
+using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
@@ -26,14 +27,18 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             _notify = NOTY;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int id)
         {
-            return View();
+            var prograss = await _context.PrograssUW.GetEntitiesAsync(x => x.UserID_Creator == _userManager.GetUserId(HttpContext.User), null, "User_Creator");
+            return View(prograss);
         }
 
-        public async Task<IActionResult> AddPrograss(int id)
+        public async Task<IActionResult> AddPrograss(int orderId)
         {
-            return View();
+             var order = await _context.orderUW.GetByIdAsync(orderId);
+            ViewBag.orderId = order.Id;
+            ViewBag.reciever = order.UserId;
+            return View(); ;
         }
 
         [HttpPost]
@@ -42,13 +47,61 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            model.UserId = _userManager.GetUserId(HttpContext.User);
-            model.OrderTime = DateTime.Now;
-            var mapModel = _mapper.Map<PrograssBar>(model);
-            await _context.PrograssUW.Create(mapModel);
+
+
+            PrograssBar prograss = new PrograssBar
+            {
+                Requirement = model.Requirement,
+                Design=model.Design,
+                Maintenance=model.Maintenance,
+                Testing=model.Testing,
+                Codind=model.Codind,
+                OrderTime=model.OrderTime,
+                UserID_Creator = _userManager.GetUserId(HttpContext.User),
+                UserID_Reciever = model.UserID_Reciever
+            };
+            await _context.PrograssUW.Create(prograss);
             await _context.saveAsync();
-            _notify.Success("You successfully orderd!", 5);
-            return RedirectToAction(nameof(Order));
+            _notify.Success("You successfuly Sent prograss  !", 5);
+            return RedirectToAction(nameof(Index));
         }
+
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var prograss = await _context.PrograssUW.GetByIdAsync(id);
+            var maper=_mapper.Map<PrograssBar>(prograss);
+            return View(maper); ;
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(PrograssBarViewModel model)
+        {
+
+
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            PrograssBar prograss = new PrograssBar
+            {
+                PrograssId=model.PrograssId,
+                Requirement = model.Requirement,
+                Design = model.Design,
+                Maintenance = model.Maintenance,
+                Testing = model.Testing,
+                Codind = model.Codind,
+                OrderTime = model.OrderTime,
+                UserID_Creator = _userManager.GetUserId(HttpContext.User),
+                UserID_Reciever = model.UserID_Reciever
+            };
+            _context.PrograssUW.Update(prograss);
+            await _context.saveAsync();
+            _notify.Success("You successfuly Edited !", 5);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

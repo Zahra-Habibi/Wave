@@ -613,6 +613,8 @@ a.home {
     padding: 20px;
     transition: all 0.2s;
     border-radius: 10px;
+    align-content:center;
+   
 }
 
     .service-icon:hover {
@@ -623,6 +625,9 @@ a.home {
 .cardImg {
     border-radius: 10px !important;
     opacity: 5;
+    align-items:center;
+    align-content:center;
+    text-align:center;
 }
 
 .service-card {

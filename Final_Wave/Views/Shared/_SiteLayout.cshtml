@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,8 +57,7 @@
                                 </ul>
 
                                 <ul class="nav navbar-nav ml-auto custome-login">
-                                    <a asp-action="Register" asp-controller="Account" class="sign-up"><span class="fas fa-user"></span> Sign Up &nbsp;</a>
-                                    <a asp-action="Login" asp-controller="Account"><span class="fa-solid fa-right-to-bracket ml-1"></span> Login</a>
+                                    @(await Component.InvokeAsync("UserInformationComponent"))
                                 </ul>
                                 <!-- &nbsp;<img src="assets/images/moon.png" class="isDay" id="icon" onclick="darkApplier()"> -->
                                 &nbsp;<div class="ToggleIconsWrapper" onclick="darkApplier()">

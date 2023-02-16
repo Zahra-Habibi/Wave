@@ -9,7 +9,7 @@
             <div class="container mt-4">
                 <div class="row">
                     <div class="alert alert-light alertstyle mb-3">
-                        <i class="fa fa-plus "> Order</i>
+                        <i class="fa fa-plus "> Order accepting form</i>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,6 @@
                                 <th scope="col">Sender</th>
                                 <th scope="col">Recieved Date</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Content</th>
                                 <th scope="col">Operation</th>
                             </tr>
                         </thead>
@@ -40,14 +39,20 @@
                                          <td class="text-center">@item.User_Creator.FullName</td>
                                          <td class="text-center">@item.NotationDate.ToString("dddd, dd MMMM yyyy")</td>
                                          <td class="text-center">@item.NotationTitle</td>
-                                         <td class="text-center">@item.NotationContent</td>
                                         
                                         <td class="text-center">
                                               <a asp-action="Read" asp-route-id="@item.NotationID" title="Read" asp-controller="Notation" class="btn-success btn mr-3 mb-1 "><i class="fa fa-book "></i></a>
-                                            @if (item.IsAccept)
+                                            @if (!item.IsAccept)
                                             {
 
-                                                <a asp-action="Accept" asp-route-notationId="@item.NotationID" title="Accept" asp-controller="Notation" class="btn-coloredit btn mr-3 mb-1"><i class="fa fa-edit"></i></a>
+                                                <a asp-action="Accept" asp-route-notationId="@item.NotationID" title="Accept" asp-controller="Notation" class="btn-coloredit btn mr-3 mb-1"><i class="fa fa-edit">Accept</i></a> 
+                                                <i>
+                                                    <a href="#!" class="waves-effect waves-light" style="text-decoration:none;">
+                                                        <i class="ti-bell"></i>
+
+                                                        <span class="badge bg-c-red">New</span>
+                                                    </a>
+                                                </i>
                                             }
                                             else
                                             {

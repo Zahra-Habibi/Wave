@@ -210,7 +210,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
 
 
         //chat
-        public IActionResult AdvancedChat()
+        public IActionResult AdvancedChat(string receiverId, string message, string receiverName)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ChatVM chatVm = new()

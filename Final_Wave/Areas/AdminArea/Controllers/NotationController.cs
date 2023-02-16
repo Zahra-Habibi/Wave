@@ -2,6 +2,7 @@
 using AutoMapper;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
+using Final_Wave.DataLayer.Migrations;
 using Final_Wave.DataLayer.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -29,7 +30,6 @@ namespace Final_Wave.Areas.AdminArea.Controllers
         }
         public async Task<IActionResult> Index()
         {
-
             var notations = await _context.NotationUW.GetEntitiesAsync(x => x.UserID_Creator == _userManager.GetUserId(HttpContext.User), null, "User_Creator");
             return View(notations);
         }
@@ -39,7 +39,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             var order = await _context.orderUW.GetByIdAsync(orderId);
             ViewBag.orderId = order.Id;
             ViewBag.reciever = order.UserId;
-            return View();
+            return View(); ;
         }
 
 
@@ -74,7 +74,7 @@ namespace Final_Wave.Areas.AdminArea.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            ViewBag.notationid = new SelectList(await _context.UserUW.GetEntitiesAsync(), "Id", "FullName", "usrimag ");
+            ViewBag.userId_Reciever = new SelectList(await _context.UserUW.GetEntitiesAsync(), "Id", "FullName", "usrimag ");
             model.UserID_Creator = _userManager.GetUserId(HttpContext.User);
             model.NotationDate = DateTime.Now;
             var mapModel = _mapper.Map<Notation>(model);
@@ -86,5 +86,13 @@ namespace Final_Wave.Areas.AdminArea.Controllers
 
         }
 
+
+        public async Task<IActionResult> Read(int id)
+        {
+            var notation = await _context.NotationUW.GetByIdAsync(id);
+            notation.IsAccept = true; 
+            _notify.Information("You checked all the notation !", 5);
+            return View(notation);
+        }
     }
 }

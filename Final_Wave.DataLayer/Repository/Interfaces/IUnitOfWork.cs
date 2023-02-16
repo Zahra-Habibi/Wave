@@ -29,6 +29,7 @@ namespace Final_Wave.DataLayer.Repository.Interfaces
         public GenericCLass<Message> MessageUW { get; }
         public GenericCLass<PrograssBar> PrograssUW { get; }
         public GenericCLass<Notation> NotationUW { get; }
+        public GenericCLass<ChatMessage> ChatMessageUW { get; }
         Task saveAsync();
         void Dispose();
     }

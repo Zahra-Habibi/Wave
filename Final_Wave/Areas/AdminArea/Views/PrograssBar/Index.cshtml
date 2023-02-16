@@ -1,65 +1,43 @@
-﻿@model PrograssBar
-
-
+﻿@model IEnumerable<PrograssBar>
+@{
+    ViewData["Title"] = "Prograssbar";
+    var counter = 1;
+}
 <div class="container">
     <div class="row">
         <div class="col-12">
             <div class="container mt-4">
                 <div class="row">
-                    <div class="alert alert-info alertstyle mb-3">
-                        <i class="fas fa-book"> Order Prograss daily or weekly</i>
+                    <div class="alert alert-light alertstyle mb-3">
+                        <i class="fa  fa-picture-o ">Order prograss </i>
                     </div>
                 </div>
             </div>
-            <div class="col-8 mt-5  offset-2">
-                <div class="container mt-5">
-                    <div class="divstyle-detail">
-                        <div class="row p-5">
-                            <p>
-                                <strong>The Requierment prograss : </strong> <div class="col-md-12 col-lg-12">
-                                    <div class="progress " style="height: 30px;">
-                                        <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " style="width:@Model.Requirement;"></div>
-                                    </div>
-                                </div>
-                            </p>
-                            <p>
-                                <strong>
-                                    The Designing prograss :  <div class="col-md-12 col-lg-12">
-                                        <div class="progress " style="height: 30px;">
-                                            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " aria-valuenow="@Model.Codind"  style="width: 10%;">10%</div>
-                                        </div>
-                                    </div>
-                            </p>
-                            <p>
-                                <strong>
-                                    The Coding/backend prograss :  <div class="col-md-12 col-lg-12">
-                                        <div class="progress " style="height: 30px;">
-                                            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " style="width: 10%;">10%</div>
-                                        </div>
-                                    </div>
-                            </p>
-                            <p>
-                                <strong>
-                                    The testing prograss :  <div class="col-md-12 col-lg-12">
-                                        <div class="progress " style="height: 30px;">
-                                            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " style="width: 10%;">10%</div>
-                                        </div>
-                                    </div>
-                            </p>
-                            <p>
-                                <strong>
-                                    The maintenance :  <div class="col-md-12 col-lg-12">
-                                        <div class="progress " style="height: 30px;">
-                                            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated " style="width: 10%;">10%</div>
-                                        </div>
-                                    </div>
-                            </p>
+            <div class="container">
+                <div class="row">
+                    <div class="table-responsive table-style">
+                      @foreach (var item in Model)
+                      {@*
+                           <div class="progress">
+                              <div class="progress-bar progress-bar-striped" style="width:@item.Requirement %;">@item.Requirement %</div>
+                          </div*@
+                           <div class="mb-3 mt-2 ">
+                                <h4 class="text-center"> Your order prograss</h4>
+                                <p> <strong>PrograssDate:</strong> @item.OrderTime</p>
+                                <p> <strong>PrograssId:</strong> @item.PrograssId</p>
+                                <p> <strong>Requirement prograss:</strong> <i class="text-info">@item.Requirement %</i>  </p>
+                                <p> <strong>Design Prograss :</strong> <i class="text-info">@item.Design %</i></p>
+                                <p> <strong>coding prograss:</strong> <i class="text-info">@item.Codind %</i></p>
+                                <p> <strong>Testing Prograss:</strong> <i class="text-info">@item.Testing %</i></p>
+                                <p><strong>Maintenance Prograss:</strong> <i class="text-info">@item.Maintenance %</i></p>
+                              
+                           </div>
+                          
+                      }
+                    </div>
+                </div>
+            </div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
-

@@ -2,10 +2,6 @@
 @model Final_Wave.DataLayer.Entites.ChatVM
 @using Microsoft.AspNetCore.Identity
 
-
-
-
-
 <div class="pb-4">
     <input type="hidden" id="hdUserId" value="@Model.UserId" />
 </div>
@@ -14,18 +10,17 @@
         @if (Context.User.Identity.IsAuthenticated)
         {
 
-            <!-- RH: this is bootstrap 5 tabbed panel -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item w-50" role="presentation">
                     <a class="nav-link active text-center" id="public-tab" onclick="setchatboxColor('mainchatTab','black')" data-bs-toggle="tab"
                    href="#publictabbox" role="tab" aria-controls="public" aria-selected="true">
-                        PUBLIC
+                        PUBLIC Chat
                     </a>
                 </li>
                 <li class="nav-item w-50" role="presentation">
                     <a class="nav-link text-center" id="private-tab" onclick="setchatboxColor('mainchatTab','teal')" data-bs-toggle="tab"
                    href="#privatetabbox" role="tab" aria-controls="private" aria-selected="false">
-                        <span id="private-badge" class="badge bg-danger"></span> PRIVATE
+                        <span id="private-badge" class="badge bg-danger"></span> PRIVATE Chat
                     </a>
                 </li>
             </ul>

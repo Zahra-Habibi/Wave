@@ -18,7 +18,7 @@ namespace Final_Wave.DataLayer.Entites
         public string EmailAddress { get; set; }
         public string Description { get; set; }
         public string? Image { get; set; }
-        public string? Resume { get; set; }
+        public string Resume { get; set; }
         public bool IsDelete { get; set; }
         public bool IsRead { get; set; }
         public string JobName { get; set; }

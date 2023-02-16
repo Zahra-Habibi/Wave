@@ -12,19 +12,19 @@ namespace Final_Wave.DataLayer.Entites
     {
         [Key]
         public int PrograssId { get; set; }
-        public int Requirement { get; set; }
-        public int Design { get; set; }
-        public int Codind { get; set; }
-        public int Testing { get; set; }
-        public int Maintenance { get; set; }
-        public string UserId { get; set; }
-        public int orderid { get; set; }
+        public int? Requirement { get; set; }
+        public int? Design { get; set; }
+        public int? Codind { get; set; }
+        public int? Testing { get; set; }
+        public int? Maintenance { get; set; }
+        public string UserID_Creator { get; set; }
+        public string UserID_Reciever { get; set; }
+        //
+        [ForeignKey("UserID_Creator")]
+        public virtual ApplicationUser User_Creator { get; set; }
 
-        [ForeignKey("orderid")]
-        public Order order { get; set; }
-
-        [ForeignKey("UserId")]
-        public ApplicationUser user { get; set; }
+        [ForeignKey("UserID_Reciever")]
+        public virtual ApplicationUser User_Reciever { get; set; }
 
 
         public DateTime OrderTime { get; set; } = DateTime.UtcNow;

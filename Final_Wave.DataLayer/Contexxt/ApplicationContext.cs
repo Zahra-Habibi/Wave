@@ -36,6 +36,8 @@ namespace Final_Wave.DataLayer.Contexxt
         public DbSet<ProductPrice> ProductPrice { get; set; }
         public DbSet<PrograssBar> prograssBars { get; set; }
         public DbSet<Notation> Notation_tbl { get; set; }
+        public DbSet<ChatMessage> chatmessage { get; set; }
+   
 
 
 

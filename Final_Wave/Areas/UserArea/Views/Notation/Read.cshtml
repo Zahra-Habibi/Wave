@@ -1,0 +1,42 @@
+﻿@model Notation
+@{
+    ViewData["Title"] = "Detials";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="container mt-1">
+                <div class="row">
+                    <div class="alert alert-info alertstyle mb-3">
+                        <i class="fa fa-book"> Notation Details</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 mt-5  offset-2">
+                <div class="container mt-5">
+                    <div class="divstyle-detail">
+                        <div class="row p-5">
+                            <div class="col-12">
+                                <p> <strong>NotationDate : </strong>@Model.NotationDate </p>
+                                <p> <strong>NotationId : </strong>@Model.NotationID </p>
+                                <p> <strong>User_sender : </strong>@Model.UserID_Creator </p>
+                                <p><strong>Short_Description : </strong>@Html.Raw(Model.NotationContent)</p>
+                                <p> <strong>Isaccpet : </strong> @Model.IsAccept</p>
+                                <p> <strong>Title : </strong> @Model.NotationTitle</p>
+                                
+                            </div>
+                        </div>
+                        <div class="form-group text-right m-b-0 d-flex justify-content-center">
+                            <a asp-action="Index" class="btn btn-back mb-3"> Dack</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

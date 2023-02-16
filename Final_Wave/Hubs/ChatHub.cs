@@ -95,21 +95,7 @@ namespace Final_Wave.Hubs
             await Clients.All.SendAsync("ReceiveDeletePrivateChat", chartId);
         }
 
-        //public async Task SendMessageToAll(string user, string message)
-        //{
-        //    await Clients.All.SendAsync("MessageReceived", user, message);
-        //}
-        //[Authorize]
-        //public async Task SendMessageToReceiver(string sender, string receiver, string message)
-        //{
-        //    var userId = _db.Users.FirstOrDefault(u => u.Email.ToLower() == receiver.ToLower()).Id;
-
-        //    if (!string.IsNullOrEmpty(userId))
-        //    {
-        //        await Clients.User(userId).SendAsync("MessageReceived", sender, message);
-        //    }
-
-        //}
+     
 
     } 
 }

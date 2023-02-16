@@ -20,13 +20,13 @@
             {
                if(!item.IsDelete){
                 <div class="col-sm-6 col-md-3">
-                    <div class="card  service-card mt-2">
+                    <div class="card  text-center service-card mt-2">
                         <a asp-controller="Home" asp-action="Services" class=" service-icon">
                             <img src="~/@item.ImageUrl" class="img-fluid " alt="@item.Alt" title="@item.Title" class="cardImg img-responsive" asp-append-version="true" />
                         </a>
 
                         <div class="card-body">
-                            <h5 class=" custome-service-title card-title text-left">@item.Name</h5>
+                            <h5 class=" custome-service-title card-title ">@item.Name</h5>
                             <p class="card-text text-left">  @Html.Raw(item.ShortDescription)</p>
                             <a asp-controller="MainSite" asp-action="ServiceDetials" asp-route-id="@item.Id" class="card-link service-detail-btn form-control">Service Detail</a>
                         </div>

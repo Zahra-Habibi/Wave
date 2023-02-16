@@ -18,7 +18,6 @@ namespace Final_Wave.DataLayer.Entites
         public bool IsDelete { get; set; }
 
         public List<Message> messages { get; set; }
-        public List<PrograssBar> prograssBars { get; set; }
 
     }
 }
