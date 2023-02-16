@@ -15,7 +15,7 @@
         </ul>
             <br />
 
-            <ul class="pcoded-item pcoded-left-item">
+         <ul class="pcoded-item pcoded-left-item">
            
             <li class="pcoded-hasmenu">
                 <a  class="waves-effect waves-dark">
@@ -117,10 +117,43 @@
         <ul class="pcoded-item pcoded-left-item">
             <li>
                 <a asp-controller="UserManager" asp-action="AdvancedChat" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="fa fa-message"></i></span>
+                    <span class="pcoded-micon"><i class="fa fa-comment"></i></span>
                     <span class="pcoded-mtext"> Chat</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
+            </li>
+        </ul>
+
+        <ul class="pcoded-item pcoded-left-item">
+
+            <li class="pcoded-hasmenu">
+                <a class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="icon-users"></i></span>
+                    <span class="pcoded-mtext">Order</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li>
+                        <a asp-controller="Order" asp-action="Index" class="waves-effect waves-dark">
+                            <span class="pcoded-micon"><i class="icon-office"></i></span>
+                            <span class="pcoded-mtext">Order </span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a asp-controller="Notation" asp-action="Index" class="waves-effect waves-dark">
+                            <span><i class="fa fa-picture-o"></i></span>
+                            <span class="pcoded-mtext">Notation order</span>
+                        </a>
+                    <li>
+                    <li>
+                        <a asp-controller="PrograssBar" asp-action="Index" class="waves-effect waves-dark">
+                            <span><i class="icon-office"></i></span>
+                            <span class="pcoded-mtext">Prograss order</span>
+                        </a>
+                    <li>
+                </ul>
             </li>
         </ul>
 
@@ -134,15 +167,6 @@
             </li>
         </ul>
 
-        <ul class="pcoded-item pcoded-left-item">
-            <li>
-              <a asp-controller="Order" asp-action="Index" class="waves-effect waves-dark">
-                <span class="pcoded-micon"><i class="icon-office"></i></span>
-                <span class="pcoded-mtext">Order </span>
-                <span class="pcoded-mcaret"></span>
-             </a>
-          </li>
-        </ul>
           <ul class="pcoded-item pcoded-left-item">
                 <li>
                     <a asp-controller="Job" asp-action="Index" class="waves-effect waves-dark">

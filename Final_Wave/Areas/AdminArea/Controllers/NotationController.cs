@@ -2,6 +2,7 @@
 using AutoMapper;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
+using Final_Wave.DataLayer.Migrations;
 using Final_Wave.DataLayer.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -85,5 +86,13 @@ namespace Final_Wave.Areas.AdminArea.Controllers
 
         }
 
+
+        public async Task<IActionResult> Read(int id)
+        {
+            var notation = await _context.NotationUW.GetByIdAsync(id);
+            notation.IsAccept = true; 
+            _notify.Information("You checked all the notation !", 5);
+            return View(notation);
+        }
     }
 }

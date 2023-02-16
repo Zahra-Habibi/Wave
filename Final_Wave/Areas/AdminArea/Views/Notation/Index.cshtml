@@ -14,133 +14,76 @@
                 </div>
             </div>
             <div class="container">
-                 <div class="mb-2 mt-3 wrapper">
-                         <i class="fa fa-search fabg ">
-                         <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search ..." class="search" />
-                         </i>
-                 </div>
+                <div class="mb-2 mt-3 wrapper">
+                    <i class="fa fa-search fabg ">
+                        <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search ..." class="search" />
+                    </i>
+                </div>
                 <div class="row">
-<<<<<<< HEAD
-                    <div class="mb-1 mt-3 col-8 offset-2 card-box">
-                        <form  class="mt-5" enctype="multipart/form-data" autocomplete="off" asp-action="Index" asp-controller="Notation">
-                            <input asp-for="UserID_Creator" value="@ViewBag.UserID_Creator" />
-                            <div class="row" >
-                                <label class="col-md-4 col-xs-12">Message date :</label>
-                                <div class="col-md-8 col-xs-12">
-                                    <div style="color:darkgreen;">@DateTime.Now.ToString("yyyy/MM/dd")</div>
-                                </div>
-                            </div><br />
-
-                            <div class="row" >
-                                <label class="col-md-3 col-xs-12">NotationTitle :</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input type="text" asp-for="NotationTitle" class="form-control " placeholder="About title ..." autocomplete="off" class="form-control" />
-                                </div>
-                            </div><br />
-
-                            <div class="row" >
-                                <label class="col-md-3 col-xs-12">Notation Content :</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <textarea type="text" asp-for="NotationContent" rows="8" class="form-control " placeholder="about Description..." autocomplete="off"></textarea>
-                                </div>
-                            </div><br />
-                            <div class="row">
-                                <label class="col-md-3 col-xs-12">Slect user :</label>
-                                <div class="col-md-9 col-xs-12">
-                                <select asp-for="UserID_Reciever" class="form-select" asp-items="@ViewBag.userId_Reciever">
-                                    <option selected>Select a product</option>
-                                </select>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group text-right m-b-0 d-flex justify-content-center">
-                                <div class="mr-3 mb-3">
-                                    <button class="btn btn-success btn-colorsave " type="submit">
-                                        Save  <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>&nbsp;
-                                <div class="ml-3 mb-3">
-                                    <a asp-action="Index" class="btn btn-back btn-primary">
-                                        Cancel
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-=======
-                 <div class="table-responsive table-style">
-                    <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
-                        <thead class="bgcolor   ">
-                            <tr class="text-center">
-                                <th scope="col" >#</th>
-                                <th scope="col">Sender</th>
-                                <th scope="col">Recieved Date</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Content</th>
-                                <th scope="col">Operation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                             @foreach (var item in Model)
+                    <div class="table-responsive table-style">
+                        <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
+                            <thead class="bgcolor   ">
+                                <tr class="text-center">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Sender</th>
+                                    <th scope="col">Recieved Date</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
                                 {
-                                     <tr>
-                                         <td class="text-center">@counter</td>
-                                         <td class="text-center">@item.User_Creator.FullName</td>
-                                         <td class="text-center">@item.NotationDate.ToString("dddd, dd MMMM yyyy")</td>
-                                         <td class="text-center">@item.NotationTitle</td>
-                                         <td class="text-center">@item.NotationContent</td>
-                                        
+                                    <tr>
+                                        <td class="text-center">@counter</td>
+                                        <td class="text-center">@item.User_Creator.FullName</td>
+                                        <td class="text-center">@item.NotationDate.ToString("dddd, dd MMMM yyyy")</td>
+                                        <td class="text-center">@item.NotationTitle</td>
+
                                         <td class="text-center">
-                                              <a asp-action="Read" asp-route-id="@item.NotationID" title="Read" asp-controller="Notation" class="btn-success btn mr-3 mb-1 "><i class="fa fa-book "></i></a>
+                                            <a asp-action="Read" asp-route-id="@item.NotationID" title="Read" asp-controller="Notation" class="btn-success btn mr-3 mb-1 "><i class="fa fa-book "></i></a>
                                             @if (item.IsAccept)
                                             {
-
-                                                <span class="btn btn-info">Accepted</span>
+                                                <span class="btn btn-info">Accepted</span>   
                                             }
                                             else
                                             {
-                                                    <span class="btn btn-warning">Rejected</span>                                                
+                                                <span class="btn btn-warning">Rejected</span>
                                             }
                                         </td>
-                                         
-                                     </tr>
-                                          counter++;
+
+                                    </tr>
+                                    counter++;
                                 }
                             </tbody>
-                    </table>
-                  </div>
->>>>>>> 5642dc3c4e6ff5c350938220c5fc55366d4236a4
+                        </table>
+                    </div>
                 </div>
-             </div>
+            </div>
 
-          </div>
-     </div>
- </div>
-   @section AdminScripts
-{
+        </div>
+    </div>
+</div>
+@section AdminScripts
+    {
     <script>
-    function myfunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-
-        for (var i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
+        function myfunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (var i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-    }
     </script>
     }
-

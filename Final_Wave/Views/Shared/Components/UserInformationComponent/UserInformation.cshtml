@@ -1,0 +1,11 @@
+﻿@model Final_Wave.DataLayer.Entites.ApplicationUser
+@{
+    string Role = "";
+}
+<ul class="nav navbar-nav ml-auto custome-login">
+   @* <img class="img-10 img-radius" src="~/@Model.usrimag" alt="User-Profile-Image">*@
+    <div class="user-details">
+        <span id="more-details">@Model.FullName </span>
+        <img class="img-80 img-radius" src="~/@Model.usrimag" alt="User-Profile-Image" style="width:40px; height:40px; border-radius:50%">
+    </div>
+</ul>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static Final_Wave.Core.ViewModels.NotationViewModel;
 
 namespace Final_Wave.Core.ViewModels
 {
@@ -25,6 +26,6 @@ namespace Final_Wave.Core.ViewModels
 
         public string userId_sender { get; set; }
         public string userId_reciever { get; set; }
-
     }
+
 }

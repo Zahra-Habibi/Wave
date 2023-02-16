@@ -4,6 +4,7 @@ using Final_Wave.DataLayer.Contexxt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Wave.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221206140346_nn")]
+    partial class nn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,41 +197,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("categories");
-                });
-
-            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ChatMessage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsAccept")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserID_Creator")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserID_Reciever")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserID_Creator");
-
-                    b.HasIndex("UserID_Reciever");
-
-                    b.ToTable("chatmessage");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.ChatRoom", b =>
@@ -998,21 +965,6 @@ namespace Final_Wave.DataLayer.Migrations
                         .HasForeignKey("UserID");
 
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ChatMessage", b =>
-                {
-                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "User_Creator")
-                        .WithMany()
-                        .HasForeignKey("UserID_Creator");
-
-                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "User_Reciever")
-                        .WithMany()
-                        .HasForeignKey("UserID_Reciever");
-
-                    b.Navigation("User_Creator");
-
-                    b.Navigation("User_Reciever");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Latter", b =>

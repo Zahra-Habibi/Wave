@@ -1,6 +1,6 @@
-﻿@model IEnumerable<OrderViewModel>
+﻿@model IEnumerable<PrograssBar>
 @{
-    ViewData["Title"] = "ShowProduct";
+    ViewData["Title"] = "Prograssbar";
     var counter = 1;
 }
 <div class="container">
@@ -9,48 +9,31 @@
             <div class="container mt-4">
                 <div class="row">
                     <div class="alert alert-light alertstyle mb-3">
-                        <i class="fa  fa-picture-o ">Order report </i>
+                        <i class="fa  fa-picture-o ">Order prograss </i>
                     </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="mb-2 mt-3">
-
-                        <i class="fa fa-search fabg  ">
-                            <input type="text" id="myInput" onkeyup="myfunction()" placeholder="search Product..." class="search" />
-                        </i>
-                    </div>
                     <div class="table-responsive table-style">
-                        <table class="table table-bordered table-hover table-striped mt-4   " id="myTable">
-                            <thead class="bgcolor   ">
-                                <tr class="text-center">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">LastName</th>
-                                    <th scope="col">OrderTime</th>
-                                    <th scope="col">Operation</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td scope="row">@item.Id</td>
-                                        <td>@item.Name</td>
-                                        <td scope="row">@item.Name</td>
-                                        <td scope="row">@item.LastName</td>
-                                        <td scope="row">@item.OrderTime</td>
-                                        <td>
-                                            <a class="btn customBlue" asp-controller="PrograssBar" asp-action="AddPrograss" title="prograss" asp-route-id="@item.Id">
-                                                <i class="fa fa-edit"> Prograss</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    counter++;
-                                }
-                            </tbody>
-                        </table>
+                      @foreach (var item in Model)
+                      {@*
+                           <div class="progress">
+                              <div class="progress-bar progress-bar-striped" style="width:@item.Requirement %;">@item.Requirement %</div>
+                          </div*@
+                           <div class="mb-3 mt-2 ">
+                                <h4 class="text-center"> Your order prograss</h4>
+                                <p> <strong>PrograssDate:</strong> @item.OrderTime</p>
+                                <p> <strong>PrograssId:</strong> @item.PrograssId</p>
+                                <p> <strong>Requirement prograss:</strong> <i class="text-info">@item.Requirement %</i>  </p>
+                                <p> <strong>Design Prograss :</strong> <i class="text-info">@item.Design %</i></p>
+                                <p> <strong>coding prograss:</strong> <i class="text-info">@item.Codind %</i></p>
+                                <p> <strong>Testing Prograss:</strong> <i class="text-info">@item.Testing %</i></p>
+                                <p><strong>Maintenance Prograss:</strong> <i class="text-info">@item.Maintenance %</i></p>
+                              
+                           </div>
+                          
+                      }
                     </div>
                 </div>
             </div>
@@ -58,31 +41,3 @@
         </div>
     </div>
 </div>
-@section AdminScripts
-    {
-    <script>
-        function myfunction() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-
-            for (var i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
-    }
-
-

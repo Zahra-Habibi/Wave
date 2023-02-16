@@ -36,7 +36,21 @@ namespace Final_Wave.DataLayer.Repository.Services
         private GenericCLass<Message> _Message;
         private GenericCLass<PrograssBar> _prograss;
         private GenericCLass<Notation> _notation;
+        private GenericCLass<ChatMessage> _chatmUW;
 
+
+        //notation
+        public GenericCLass<ChatMessage> ChatMessageUW
+        {
+            get
+            {
+                if (_chatmUW == null)
+                {
+                    _chatmUW = new GenericCLass<ChatMessage>(_context);
+                }
+                return _chatmUW;
+            }
+        } 
 
         //notation
         public GenericCLass<Notation> NotationUW

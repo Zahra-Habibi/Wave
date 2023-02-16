@@ -21,6 +21,7 @@ namespace Final_Wave.DataLayer.Entites
         public string Description { get; set; }
         public string? ShortDescription { get; set; }
         public bool IsSend { get; set; }
+        //public bool IsAccept { get; set; }
 
         public DateTime OrderTime { get; set; } = DateTime.UtcNow;
 

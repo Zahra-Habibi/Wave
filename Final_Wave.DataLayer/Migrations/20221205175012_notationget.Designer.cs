@@ -4,6 +4,7 @@ using Final_Wave.DataLayer.Contexxt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Final_Wave.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221205175012_notationget")]
+    partial class notationget
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,41 +197,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("categories");
-                });
-
-            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ChatMessage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsAccept")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserID_Creator")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserID_Reciever")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserID_Creator");
-
-                    b.HasIndex("UserID_Reciever");
-
-                    b.ToTable("chatmessage");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.ChatRoom", b =>
@@ -632,9 +599,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<int?>("Maintenance")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("OrderTime")
                         .HasColumnType("datetime2");
 
@@ -644,19 +608,17 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Property<int?>("Testing")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserID_Creator")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserID_Reciever")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("orderid")
+                        .HasColumnType("int");
 
                     b.HasKey("PrograssId");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("UserId");
 
-                    b.HasIndex("UserID_Creator");
-
-                    b.HasIndex("UserID_Reciever");
+                    b.HasIndex("orderid");
 
                     b.ToTable("prograssBars");
                 });
@@ -1000,21 +962,6 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Final_Wave.DataLayer.Entites.ChatMessage", b =>
-                {
-                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "User_Creator")
-                        .WithMany()
-                        .HasForeignKey("UserID_Creator");
-
-                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "User_Reciever")
-                        .WithMany()
-                        .HasForeignKey("UserID_Reciever");
-
-                    b.Navigation("User_Creator");
-
-                    b.Navigation("User_Reciever");
-                });
-
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Latter", b =>
                 {
                     b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "Users")
@@ -1100,21 +1047,19 @@ namespace Final_Wave.DataLayer.Migrations
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.PrograssBar", b =>
                 {
-                    b.HasOne("Final_Wave.DataLayer.Entites.Order", null)
+                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "user")
                         .WithMany("prograssBars")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("UserId");
 
-                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "User_Creator")
-                        .WithMany()
-                        .HasForeignKey("UserID_Creator");
+                    b.HasOne("Final_Wave.DataLayer.Entites.Order", "order")
+                        .WithMany("prograssBars")
+                        .HasForeignKey("orderid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Final_Wave.DataLayer.Entites.ApplicationUser", "User_Reciever")
-                        .WithMany()
-                        .HasForeignKey("UserID_Reciever");
+                    b.Navigation("order");
 
-                    b.Navigation("User_Creator");
-
-                    b.Navigation("User_Reciever");
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Reminder", b =>
@@ -1182,6 +1127,8 @@ namespace Final_Wave.DataLayer.Migrations
                     b.Navigation("messages");
 
                     b.Navigation("orders");
+
+                    b.Navigation("prograssBars");
                 });
 
             modelBuilder.Entity("Final_Wave.DataLayer.Entites.Category", b =>
