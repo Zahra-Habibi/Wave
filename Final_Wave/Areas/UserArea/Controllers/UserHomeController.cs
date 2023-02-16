@@ -8,6 +8,7 @@ using System.Security.Claims;
 namespace Final_Wave.Areas.UserArea.Controllers
 {
     [Area("UserArea")]
+    [Authorize]
     public class UserHomeController : Controller
     {
         private readonly ApplicationContext _contexts;
