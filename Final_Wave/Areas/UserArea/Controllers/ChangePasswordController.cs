@@ -4,12 +4,14 @@ using Final_Wave.Core.PulicClasses;
 using Final_Wave.Core.ViewModels;
 using Final_Wave.DataLayer.Entites;
 using Final_Wave.DataLayer.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Final_Wave.Areas.UserArea.Controllers
 {
     [Area("UserArea")]
+    [Authorize]
     public class ChangePasswordController : Controller
     {
         private readonly UserManager<ApplicationUser> _usermanager;
